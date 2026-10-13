@@ -22,8 +22,10 @@
       menu.classList.remove('is-fixed', 'is-shown');
     } else if (slotBottom < 0 || menu.classList.contains('is-fixed')) {
       if (!menu.classList.contains('is-fixed')) {
+        menu.style.transition = 'none';                     // ohne Übergang andocken, sonst blitzt der Header kurz auf
         menu.classList.add('is-fixed');
         void menu.offsetWidth;                              // Startposition (oben außerhalb) übernehmen
+        menu.style.transition = '';
       }
       var up = dy < 0;
       menu.classList.toggle('is-shown', up);

@@ -1,0 +1,80 @@
+/* ==========================================================================
+   DAVVI – Motion (Scroll-Stacking, Header, Hero-Headline, Bildzonen-Stretch, Ken Burns)
+   Alle Kurven und Zeiten kommen als CSS-Variablen aus js/motion.js (berechnet aus js/motion.config.js).
+   Die Werte unten sind nur Rückfallwerte, falls das Script nicht läuft.
+
+   Bewegt wird ausschließlich über transform-Einzeleigenschaften (translate, scale), clip-path und
+   opacity – also ohne Layout-Neuberechnung. Vorhandene transforms aus davvi.css bleiben unberührt.
+   Alles ist an html.m-on gebunden: Bei „Bewegung reduzieren“ oder ohne JS sieht man die Seite statisch.
+   ========================================================================== */
+
+:root {
+  --m-ease-sections: cubic-bezier(.16, 1, .3, 1);  --m-dur-sections: 1.05s;
+  --m-ease-header:   cubic-bezier(.16, 1, .3, 1);  --m-dur-header:   .8s;
+  --m-ease-headline: cubic-bezier(.16, 1, .3, 1);  --m-dur-headline: 1.4s;
+  --m-ease-stretch:  cubic-bezier(.16, 1, .3, 1);  --m-dur-stretch:  1.5s;
+  --m-ease-fade: cubic-bezier(.22, 1, .36, 1);     --m-dur-fade: .7s;
+  --m-hide-ease: cubic-bezier(.4, 0, 1, 1);        --m-hide-dur: .32s;
+  --m-rise: 44px;
+  --m-hl-dist: 14vw;
+  --m-stretch: 15%;
+  --m-kb-dur: 16s;
+  --m-kb-ease: cubic-bezier(.25, .6, .3, 1);
+}
+/* Feder-Rückfallwerte als echte Federkurve, wo linear() unterstützt wird (kritisch gedämpft) */
+@supports (transition-timing-function: linear(0, 1)) {
+  :root {
+    --m-ease-sections: linear(0, .0528, .1674, .3008, .4308, .5468, .6452, .7259, .7905, .8412, .8806, .9107, .9336, .9509, .9638, .9734, .9805, .9858, .9896, .9925, .9945, .996, .9971, .9979, 1);
+    --m-ease-header: var(--m-ease-sections); --m-ease-headline: var(--m-ease-sections); --m-ease-stretch: var(--m-ease-sections);
+  }
+}
+
+/* ---- Header: Wiedereintritt von oben mit Feder, Verschwinden zügig ---------------------------- */
+.menu.is-fixed { transition: transform var(--m-hide-dur) var(--m-hide-ease); }
+.menu.is-fixed.is-shown { transition: transform var(--m-dur-header) var(--m-ease-header); }
+
+/* ---- Hero-Headline: Zeile 1 von rechts, Zeile 2 von links ------------------------------------- */
+.m-intro .hero__l1, .m-intro .hero__l2 { opacity: 0; }
+.m-intro .hero__l1 { translate: var(--m-hl-dist) 0; }
+.m-intro .hero__l2 { translate: calc(-1 * var(--m-hl-dist)) 0; }
+.m-on .hero__l1, .m-on .hero__l2 {
+  transition: translate var(--m-dur-headline) var(--m-ease-headline) var(--d, 0s),
+              opacity var(--m-dur-fade) var(--m-ease-fade) var(--d, 0s);
+}
+
+/* ---- Scroll-Stacking: Zeilen stapeln sich nacheinander von unten ein ---------------------------- */
+.m-on [data-m="rise"] {
+  transition: translate var(--m-dur-sections) var(--m-ease-sections) var(--d, 0s),
+              opacity var(--m-dur-fade) var(--m-ease-fade) var(--d, 0s);
+}
+.m-on [data-m="rise"]:not(.is-in) { opacity: 0; translate: 0 var(--m-rise); }
+
+/* Linien zeichnen sich von oben nach unten */
+.m-on [data-m="line"] { transform-origin: 50% 0; transition: scale var(--m-dur-sections) var(--m-ease-sections) var(--d, 0s); }
+.m-on [data-m="line"]:not(.is-in) { scale: 1 0; }
+
+/* ---- Bildzonen-Stretch: die letzten x % bis zur Zielbreite ------------------------------------
+   Das Bild wird per clip-path beschnitten (nicht verzerrt), die Textbox fährt mit der Bildkante mit.
+   Verankert bleibt jeweils die Seite, an der das Bild im Raster hängt. */
+.m-on [data-m-stretch] .panel__content { overflow: hidden; }
+.m-on [data-m-stretch] .panel__img { clip-path: inset(0 0% 0 0%);
+  transition: clip-path var(--m-dur-stretch) var(--m-ease-stretch); }
+.m-on [data-m-stretch] .tb { transition: translate var(--m-dur-stretch) var(--m-ease-stretch); }
+.m-on .panel--l[data-m-stretch]:not(.is-in) .panel__img { clip-path: inset(0 var(--m-stretch) 0 0%); }
+.m-on .panel--r[data-m-stretch]:not(.is-in) .panel__img { clip-path: inset(0 0% 0 var(--m-stretch)); }
+.m-on .panel--tall[data-m-stretch]:not(.is-in) .panel__img { clip-path: inset(0 calc(var(--m-stretch) / 2) 0 calc(var(--m-stretch) / 2)); }
+.m-on [data-m-stretch]:not(.is-in) .tb { translate: var(--m-shift, 0px) 0; }
+
+/* ---- Ken Burns (Zoom + Schwenk, Ease-out) ------------------------------------------------------ */
+@keyframes m-kenburns {
+  from { scale: var(--kb-z0); translate: var(--kb-x) var(--kb-y); }
+  to   { scale: var(--kb-z1); translate: 0 0; }
+}
+.m-on .m-kb { animation: m-kenburns var(--m-kb-dur) var(--m-kb-ease) both; }
+
+/* Hilfszustand: Übergänge kurz aussetzen (Zurücksetzen im Motion Lab, Sprung an tiefere Stelle) */
+.m-instant, .m-instant *, .m-instant *::before { transition: none !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  .m-on [data-m], .m-on .m-kb { transition: none !important; animation: none !important; opacity: 1 !important; translate: none !important; scale: none !important; }
+}

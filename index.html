@@ -11,7 +11,20 @@
 <link rel="stylesheet" href="https://use.typekit.net/gcq7kct.css">
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/davvi.css">
-<script>document.documentElement.classList.add('js')</script>
+<link rel="stylesheet" href="css/motion.css">
+<script>
+/* Motion vor dem ersten Paint vorbereiten (verhindert Aufblitzen); ohne motion.js nach 2,5 s statisch */
+(function (d) {
+  d.classList.add('js');
+  try {
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      d.classList.add('m-on');
+      if (matchMedia('(min-width: 600px)').matches) d.classList.add('m-intro');
+    }
+  } catch (e) {}
+  setTimeout(function () { if (!window.DAVVI_MOTION_READY) d.classList.remove('m-on', 'm-intro'); }, 2500);
+})(document.documentElement);
+</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -131,6 +144,8 @@
     </div>
   </div>
 </footer>
+<script src="js/motion.config.js"></script>
+<script src="js/motion.js"></script>
 <script src="js/davvi.js" defer></script>
 </body>
 </html>
