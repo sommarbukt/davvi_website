@@ -1,0 +1,405 @@
+/* ==========================================================================
+   DAVVI – Website nach Figma „26-8039-DVV-IN26 – R-00 DEV“
+   Alle Maße, Schriften, Abstände kommen aus tokens.css (Figma-Variablentabelle, Modi PC/TAB/PHN).
+   Hier nur Layout und Komponenten.
+
+   Responsive-System laut Figma-Kommentaren (Stand 13.10.2026):
+   - Drei Hauptzustände: PC (ab 900 px), TAB (600–899 px), PHN (unter 600 px).
+   - Fast alle Objekte folgen einem ELASTISCHEN 12-Spalten-Raster (PHN: 6 Spalten),
+     keine festen Objektgrößen je Zustand.
+   - Bis 2500 px Viewport-Breite frei skalierend, darüber wird die Gestaltungsfläche
+     fixiert und die Ränder werden schwarz.
+   ========================================================================== */
+
+:root {
+  --line: rgba(255, 255, 255, .35);
+  --menu-h: 150px;
+  --max-w: 2500px;
+  /* Elastisches Raster: eine Spalte bzw. ein Spaltenschritt (Spalte + Gutter).
+     Prozentwerte beziehen sich auf die volle Breite des jeweiligen Containers. */
+  --col: calc((100% - 2 * var(--margin) - (var(--columns) - 1) * var(--gutter)) / var(--columns));
+  --step: calc(var(--col) + var(--gutter));
+}
+@media (max-width: 599.98px) { :root { --menu-h: 130px; } }
+
+/* BASE ---------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { background: var(--schwarz); scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  max-width: var(--max-w); margin: 0 auto; overflow-x: clip;
+  background: var(--dark-grey); color: var(--weiss);
+  font-family: var(--f-body); font-weight: 200;
+  font-size: var(--t-std); line-height: var(--t-std-lh); letter-spacing: var(--t-std-ls);
+  -webkit-font-smoothing: antialiased;
+}
+img, svg { display: block; max-width: 100%; }
+h1, h2, h3, p, figure { margin: 0; }
+a { color: inherit; }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--hblau); outline-offset: 3px; }
+
+.skip { position: absolute; left: 12px; top: -60px; z-index: 200; background: var(--dark-water); color: #fff;
+  padding: 10px 16px; font: 300 var(--t-caps)/var(--t-caps-lh) var(--f-caps); text-transform: uppercase; text-decoration: none; }
+.skip:focus { top: 12px; }
+
+.hl-l, .hl-m, .hl-s { font-family: var(--f-head); text-transform: uppercase; }
+.hl-l { font-weight: 200; font-size: var(--h-l); line-height: var(--h-l-lh); letter-spacing: var(--h-l-ls); }
+.hl-m { font-weight: 200; font-size: var(--h-m); line-height: var(--h-m-lh); letter-spacing: var(--h-m-ls); }
+.hl-s { font-weight: 300; font-size: var(--h-s); line-height: var(--h-s-lh); letter-spacing: var(--h-s-ls); }
+
+/* Umschalter für Zeilenumbrüche/Wörter je Zustand */
+.phn { display: none; }
+
+/* BUTTON (BTN STD) ------------------------------------------------------
+   Pille 3 px eingerückt; Hover (laut Komponente): Fläche wächst auf volle Größe, deckend */
+.btn {
+  position: relative; display: inline-flex; align-items: center; justify-content: center; flex: none;
+  padding: 10px 20px 12px; text-decoration: none; white-space: nowrap; color: var(--schwarz);
+  font: 300 var(--t-caps)/var(--t-caps-lh) var(--f-caps); letter-spacing: var(--t-caps-ls); text-transform: uppercase;
+}
+.btn::before { content: ""; position: absolute; inset: 3px; border-radius: 30px; background: var(--weiss); opacity: .8;
+  transition: inset .2s ease, opacity .2s ease; }
+.btn > span { position: relative; }
+.btn:hover::before, .btn:focus-visible::before { inset: 0; opacity: 1; }
+.btn--dark { color: var(--weiss); }
+.btn--dark::before { background: var(--schwarz); opacity: 1; }
+.btn--dark > span { opacity: .8; transition: opacity .2s ease; }
+.btn--dark:hover > span, .btn--dark:focus-visible > span { opacity: 1; }
+
+/* Linien in Textboxen: Standard = FILL (passt sich der Boxhöhe an) */
+.line { flex: 1 1 0; width: 1px; min-height: 30px; background: var(--line); }
+.line--fix30  { flex: none; height: 30px;  min-height: 0; }
+.line--fix50  { flex: none; height: 50px;  min-height: 0; }
+.line--fix100 { flex: none; height: 100px; min-height: 0; }
+.line--fill30 { flex: 1 0 30px; min-height: 30px; }
+
+/* HERO (DVV Hero HOME) -------------------------------------------------
+   Startview passt sich nach unten an den Viewport an: Hero + Menü-Panel = Viewporthöhe (PC/TAB),
+   im PHN füllt der Hero allein den Viewport. */
+.hero { position: relative; height: calc(100vh - var(--menu-h)); height: calc(100svh - var(--menu-h));
+  min-height: 460px; overflow: hidden; color: var(--weiss); background: var(--dark-water); }
+.hero__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.hero__logo { position: absolute; left: 55px; top: 46px; width: 110px; height: auto; }
+.hero__title {
+  position: absolute; left: calc(45.83% - 309.58px); bottom: 90px;
+  font-family: var(--f-head); font-weight: 200; text-transform: uppercase; white-space: nowrap;
+  font-size: var(--h-xl); line-height: var(--h-xl-lh); letter-spacing: var(--h-xl-ls);
+}
+.hero__l1, .hero__l2 { display: block; }
+.hero__l2 { padding-left: 2.95em; }
+.hero__progress { position: absolute; bottom: 40px; left: calc(16.67% + 27.33px); right: calc(16.67% + 27.33px);
+  height: 2px; background: rgba(255, 255, 255, .4); }
+.hero__progress::after { content: ""; position: absolute; inset: 0 75% 0 0; background: #fff; }
+
+/* Hero der Unterseiten (DVV Hero SUB): 40 px Rand, 710 hoch, Headline L */
+.hero--sub { margin: 0 var(--margin); height: 710px; min-height: 0; }
+.hero--sub h1 { position: absolute; left: calc(50% - 368px); bottom: 90px; font-family: var(--f-head); font-weight: 200;
+  text-transform: uppercase; white-space: nowrap; font-size: clamp(22px, 2.9vw, var(--h-l)); line-height: 1; letter-spacing: .07em; }
+.hero--sub h1 span { display: block; }
+.hero--sub h1 span + span { margin-left: 3em; }
+.hero--sub .hero__progress { left: calc(16.67% + 1.67px); right: calc(16.67% + 1.67px); }
+
+/* MENÜ-PANEL (HM V1 Menü-Panel) -----------------------------------------
+   Läuft beim Scrollen mit aus dem Bild. Bei Umkehr der Scrollrichtung kehrt es als Header zurück,
+   ergänzt um HOME (Bildmarke). Unterseiten zeigen HOME immer, der aktive Punkt ist hervorgehoben. */
+.menu-slot { position: relative; z-index: 60; height: var(--menu-h); }
+.menu { position: relative; height: var(--menu-h); background: var(--dark-grey);
+  display: flex; align-items: center; justify-content: center; }
+.menu.is-fixed { position: fixed; top: 0; left: 0; right: 0; max-width: var(--max-w); margin: 0 auto;
+  transform: translateY(-100%); transition: transform .4s ease; box-shadow: 0 10px 30px -14px rgba(0, 0, 0, .55); }
+.menu.is-fixed.is-shown { transform: none; }
+.menu__block { display: flex; align-items: center; justify-content: center; gap: 10px; }
+.menu__list { display: contents; }
+.menu__btn {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+  height: 90px; padding: 0 15px; text-decoration: none; color: var(--weiss);
+}
+.menu__btn::before, .menu__btn::after { content: ""; flex: 1 1 0; width: 1px; background: rgba(255, 255, 255, .25); }
+.menu__btn span {
+  text-align: center; white-space: nowrap; opacity: .6; transition: opacity .2s;
+  font: 300 15px/16px var(--f-head); letter-spacing: 1.8px; text-transform: uppercase;
+}
+.menu__btn:hover span, .menu__btn:focus-visible span, .menu__btn.is-active span, .menu__btn[aria-current="page"] span {
+  opacity: 1; font-weight: 400; letter-spacing: 1.5px;
+}
+.menu__btn:hover::before, .menu__btn:hover::after,
+.menu__btn[aria-current="page"]::before, .menu__btn[aria-current="page"]::after { background: rgba(255, 255, 255, .7); }
+
+/* HOME-Button (Bildmarke kompakt): auf der Startseite nur im zurückkehrenden Header */
+.menu__home { display: none; gap: 0; }
+.menu.is-fixed .menu__home, .menu--sub .menu__home { display: flex; }
+.menu__home img { width: 80px; height: 34px; margin: 4px 0 10px; object-fit: contain; opacity: .45; transition: opacity .2s; }
+.menu__home:hover img, .menu__home:focus-visible img { opacity: 1; }
+
+/* Burger (nur PHN) */
+.menu__burger { display: none; }
+.burger { position: relative; display: block; padding: 11px 20px; opacity: .7; transition: opacity .2s; }
+.burger::before { content: ""; position: absolute; inset: 3px; border: 1px solid #fff; border-radius: 30px; opacity: .6; transition: inset .2s, opacity .2s; }
+.burger i { position: relative; display: block; width: 23px; height: 23px; }
+.burger i::before, .burger i::after, .burger i { background: linear-gradient(#fff, #fff) center / 19px 2px no-repeat; }
+.burger i::before, .burger i::after { content: ""; position: absolute; inset: 0; transition: background-size .2s, transform .2s; }
+.burger i::before { transform: translateY(-6.5px); }
+.burger i::after  { transform: translateY(6.5px); }
+.menu__burger:hover .burger, .menu__burger:focus-visible .burger { opacity: 1; }
+.menu__burger:hover .burger::before, .menu__burger:focus-visible .burger::before { inset: 0; opacity: 1; }
+.menu__burger:hover .burger i, .menu__burger:hover .burger i::before, .menu__burger:hover .burger i::after { background-size: 23px 3px; }
+.menu__burger:hover .burger i::before { transform: translateY(-8px); }
+.menu__burger:hover .burger i::after  { transform: translateY(8px); }
+
+/* BOOKING-WIDGET 01: Container für das Lodgify-Widget (Platzhaltertext wie im Figma) */
+.booking { height: 100px; padding: 0 calc(8.33% + 33.67px) 0 calc(8.33% + 34.67px); display: flex; background: var(--dark-grey);
+  scroll-margin-top: var(--menu-h); }
+.booking--spaced { height: 200px; padding-top: var(--section-o); }
+.booking__pill {
+  flex: 1; display: flex; align-items: center; justify-content: center; overflow: hidden;
+  background: var(--weiss); color: var(--schwarz); border-radius: 150px; text-align: center;
+  font: 300 var(--t-caps)/var(--t-caps-lh) var(--f-caps); letter-spacing: var(--t-caps-ls); text-transform: uppercase;
+}
+.booking--spaced .booking__pill { height: 100px; flex: 1 1 auto; }
+
+/* SECTION MAP GLOBAL ------------------------------------------------------ */
+.map { display: flex; align-items: center; justify-content: center; gap: 60px; padding: var(--section-o) var(--margin) var(--section-u); }
+.map img { flex: none; width: 240px; height: 300px; object-fit: cover; }
+.map p { text-align: center; white-space: nowrap; }
+
+/* HOME PANELS (UG-VLF Block OU + Home Panel 01–04) --------------------------- */
+.panels { position: relative; isolation: isolate; display: flex; flex-direction: column; gap: 10px; }
+/* UG-VLF Block OU: schwarze Fläche mit verlaufenden Übergängen verdichtet den 4er-Bildblock */
+.panels::before { content: ""; position: absolute; inset: 0; z-index: -1; opacity: .75;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0, #000 300px, #000 calc(100% - 300px), rgba(0, 0, 0, 0) 100%); }
+.panel { position: relative; height: 600px; scroll-margin-top: var(--menu-h); }
+.panel--tall { height: 1000px; }
+.panel__content { position: absolute; inset: 0; }
+.panel--l .panel__content { right: calc(var(--margin) + 2 * var(--step)); }   /* rechte Bildkante folgt dem Raster */
+.panel--r .panel__content { left: calc(var(--margin) + var(--step)); }
+.panel__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+/* Textbox L: Breite richtet sich nach Headline bzw. Button (überlagert nur so viel Bild wie nötig) */
+.tb {
+  position: absolute; top: 0; bottom: 0; right: 0; display: flex; flex-direction: column; align-items: center; gap: 15px;
+  width: max-content; padding: var(--box-l-pad-o) var(--box-l-pad-r) var(--box-l-pad-u) var(--box-l-pad-l);
+  text-align: center; overflow: hidden; isolation: isolate; color: var(--weiss);
+}
+.panel--r .tb { right: auto; left: 0; }
+.tb::before { content: ""; position: absolute; inset: 0; z-index: -1; }
+.tb--water::before { background: var(--dark-water); opacity: .8; }
+.tb--berry::before { background: var(--cloud-berry); opacity: .9; }
+.tb--ice::before   { background: var(--hblau); opacity: .9; }
+.tb--ice { color: var(--schwarz); }
+.tb--ice .line { background: rgba(0, 0, 0, .35); }
+.tb--free { right: auto; left: calc(75% - 17px); transform: translateX(-50%); }
+.tb--free::before { display: none; }
+.tb__hl { font-family: var(--f-head); font-weight: 200; text-transform: uppercase; white-space: nowrap;
+  font-size: var(--h-m); line-height: var(--h-m-lh); letter-spacing: var(--h-m-ls); }
+.tb__txt, .tb > p:not([class]) { width: min-content; min-width: 100%; }
+
+/* Textbox L als Überschrift-Band (ohne Fläche): „Choose your nordic home“, „Basics:“ */
+.band { display: flex; flex-direction: column; align-items: center; gap: 15px; margin: 0 var(--margin);
+  padding: var(--box-l-pad-o) var(--box-l-pad-r) var(--box-l-pad-u) var(--box-l-pad-l); text-align: center; }
+.band .hl-m { min-width: 100%; width: min-content; }
+
+/* TEXTBOXEN UNTER DEN PANELS (3er-Boxen-Panel) ----------------------------
+   Umbruch, sobald eine Box schmaler als 280 px würde; die Boxen einer Reihe sind gleich hoch,
+   die untere Linie füllt auf. */
+.facts { display: flex; flex-wrap: wrap; gap: var(--gutter);
+  margin: 200px calc(var(--margin) + var(--step)) var(--section-u); }
+.fact { flex: 1 1 280px; display: flex; flex-direction: column; align-items: center; gap: 10px;
+  padding: var(--box-l-pad-o) var(--box-l-pad-r) var(--box-l-pad-u) var(--box-l-pad-l); text-align: center;
+  background: linear-gradient(180deg, rgba(0, 0, 0, .15), rgba(0, 0, 0, 0)); }
+.fact .hl-s, .fact p { width: 100%; }
+.fact p { font-size: var(--t-s); line-height: var(--t-s-lh); letter-spacing: var(--t-s-ls); }
+
+/* CHALETS (SUB 3) ----------------------------------------------------------- */
+/* Bildcollage: Proportionen 1450 × 710 wie im Figma */
+.collage { position: relative; margin-top: 40px; aspect-ratio: 1450 / 710; }
+.collage img { position: absolute; width: 100%; height: 100%; object-fit: cover; }
+.collage > div { position: absolute; overflow: hidden; }
+.collage .c1 { left: 0; top: 0; width: calc(50% - 5px); height: 49.3%; }
+.collage .c2 { left: calc(50% + 5px); top: 0; width: calc(100% - (8.33% + 34.17px) - 50% - 5px); height: 49.3%; }
+.collage .c3 { left: calc(16.67% + 28.33px); top: 50.7%; width: calc(100% - 33.33% - 16.67px - 16.67% - 28.33px); height: 49.3%; }
+.collage .c4 { left: calc(66.67% - 6.67px); top: 50.7%; right: 0; height: 49.3%; }
+
+/* Kombipanel Chalets */
+.chalets { background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, .75) 300px, rgba(0, 0, 0, .75) calc(100% - 300px), rgba(0, 0, 0, 0) 100%); padding-bottom: 0; }
+.chalets__row { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gutter); width: 81.38%; margin-top: 10px; }
+.chalets__row + .chalets__row { margin-left: 18.62%; margin-top: 10px; grid-template-columns: repeat(3, 1fr); }
+.chalets__row:first-of-type { margin-top: 35px; }
+.chalets__row .kombi:only-child { grid-column: 1; }
+.kombi { position: relative; display: flex; flex-direction: column; scroll-margin-top: var(--menu-h); }
+.kombi__img { aspect-ratio: 300 / 200; width: 100%; object-fit: cover; }
+.kombi__body {
+  display: flex; flex-direction: column; align-items: center; gap: 10px; flex: 1;
+  padding: 30px 30px 100px; background: linear-gradient(180deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, 0));
+}
+.kombi__title { text-align: center; }
+.kombi__chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; }
+.chip { padding: 2px 8px 4px; background: rgba(0, 0, 0, .3); opacity: .6; text-align: center; white-space: nowrap;
+  font: 300 var(--t-caps)/var(--t-caps-lh) var(--f-caps); letter-spacing: var(--t-caps-ls); text-transform: uppercase; }
+.kombi .btn { position: absolute; left: 50%; bottom: 40px; transform: translateX(-50%); }
+
+/* Textbox S (Fakten-Reihen) */
+.basics { display: flex; flex-direction: column; align-items: center; gap: 5px; margin-bottom: 0; }
+.basics__row { display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; max-width: calc(100% - 2 * var(--margin)); }
+.tbs {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--box-s-gap); flex: 0 1 auto; max-width: 100%;
+  padding: var(--box-s-pad-o) var(--box-s-pad-r) var(--box-s-pad-u) var(--box-s-pad-l); text-align: center; opacity: .9;
+  background: linear-gradient(180deg, rgba(0, 0, 0, .15), rgba(0, 0, 0, 0));
+}
+.tbs p { opacity: .7; font: 300 var(--t-caps)/var(--t-caps-lh) var(--f-caps); letter-spacing: var(--t-caps-ls); text-transform: uppercase; }
+
+/* Grundrisse */
+.plans { display: flex; justify-content: center; gap: var(--gutter); margin: 40px var(--margin) 0; flex-wrap: wrap; }
+.plan { width: 440px; max-width: 100%; padding: 20px; background: linear-gradient(180deg, rgba(0, 0, 0, .15), rgba(0, 0, 0, 0)); }
+.plan img { width: 100%; height: auto; aspect-ratio: 5 / 3; object-fit: cover; margin-bottom: 10px; }
+.plan figcaption { text-align: center; }
+.plan figcaption span { display: block; font-size: var(--t-s); line-height: var(--t-s-lh); letter-spacing: var(--t-s-ls); }
+.plan figcaption strong { display: block; font: 700 var(--h-m)/var(--h-m-lh) var(--f-head); letter-spacing: 1px; text-transform: uppercase; }
+
+/* Foto-Mix mit Textbox (Frame 14) */
+.mix { position: relative; height: 600px; margin-top: 100px; }
+.mix > * { position: absolute; overflow: hidden; }
+.mix img { width: 100%; height: 100%; object-fit: cover; }
+.mix__a { left: 0; top: 0; width: 41.7%; height: 49.2%; }
+.mix__b { left: calc(8.33% + 34.17px); bottom: 0; width: 31%; height: 49.2%; }
+.mix__c { left: calc(41.67% + 10.83px); right: 0; top: 0; bottom: 0; }
+.mix__c .tb { position: absolute; }
+
+/* FOOTER (FOOTER Desktop komplett) -------------------------------------------
+   Verlauf 400 px ins Weiß, darunter die Hauptzone. Desktop: Bildbereich skaliert proportional (2 : 1),
+   Logo und Buttons in der rechten Hälfte. */
+.footer { position: relative; }
+.footer__fade { height: 400px; background: linear-gradient(180deg, rgba(255, 255, 255, 0), #fff); }
+.footer__main { position: relative; aspect-ratio: 2 / 1; overflow: hidden; background: #fff; }
+/* Bild mit Verlaufskante: oben weich ins Weiß */
+.footer__img { position: absolute; inset: 0;
+  -webkit-mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 0, #000 40%); mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 0, #000 40%); }
+.footer__img img { width: 100%; height: 100%; object-fit: cover; }
+.footer__inner { position: absolute; top: 0; bottom: 0; left: calc(50% + 5px); right: 0; display: flex; flex-direction: column; gap: 140px; }
+.footer__logo { flex: 1 1 0; min-height: 0; display: flex; align-items: center; justify-content: center; }
+.footer__logo img { width: 142px; height: auto; }
+.footer__btns { flex: 1 1 0; min-height: 0; position: relative; }
+.footer__links { position: absolute; left: 50%; bottom: 39.5px; transform: translateX(-50%); display: flex; gap: var(--gutter); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .menu.is-fixed, .btn::before, .burger, .burger::before { transition: none; }
+}
+
+/* ==========================================================================
+   TAB  (600–899 px, Figma-Frame 710)
+   ========================================================================== */
+@media (max-width: 899.98px) {
+  /* Hero */
+  .hero__title { left: calc(50% - 250px); bottom: 92px; font-size: var(--h-l); line-height: var(--h-l-lh); letter-spacing: var(--h-l-ls); }
+  .hero__l2 { padding-left: 3.1em; }
+  .hero__progress { left: calc(16.67% + 26.67px); right: calc(16.67% + 26.67px); }
+
+  /* Menü: Ausnahme im TAB – abweichende Schrift, damit das ganze Panel ohne Burger passt */
+  .menu__btn { padding: 0 clamp(6px, 1.6vw, 15px); }
+  .menu__btn span { font: 400 18px/21px var(--f-menu); letter-spacing: 1.08px; }
+  .menu__btn:hover span, .menu__btn:focus-visible span, .menu__btn.is-active span, .menu__btn[aria-current="page"] span {
+    font-weight: 400; letter-spacing: 1.08px; }
+  .menu__home img { width: 64px; }
+
+  /* Map */
+  .map { flex-direction: column; gap: 20px; }
+  .map img { width: 160px; height: 200px; }
+
+  /* Panels: andere Höhen, Bild endet eine Spalte vor dem Rand, Textbox mit Headline S + Fließtext S */
+  .panel { height: 450px; }
+  .panel--tall { height: 800px; }
+  .panel--l .panel__content { right: calc(var(--margin) + var(--step)); }
+  .tb__hl { font-weight: 300; font-size: var(--h-s); line-height: var(--h-s-lh); letter-spacing: var(--h-s-ls); }
+  .tb__txt { font-size: var(--t-s); line-height: var(--t-s-lh); letter-spacing: var(--t-s-ls); }
+
+  /* Textboxen: zwei Spalten Einzug je Seite → Boxen stehen untereinander */
+  .facts { margin: 150px calc(var(--margin) + 2 * var(--step)) var(--section-u); }
+
+  /* Footer Mobile: anderes Bild, Höhe bleibt stabil, das Bild schiebt sich nur zusammen */
+  .footer__main { aspect-ratio: auto; height: 700px; }
+  .footer__inner { left: 30px; right: 30px; }
+  .footer__logo img { width: 118px; }
+  .footer__links { bottom: 40px; }
+
+  /* Chalets (SUB 3) – bisheriger Stand, wird nach den SUB-3-Varianten im Figma neu gebaut */
+  .hero--sub { height: 480px; margin: 0 20px; }
+  .hero--sub h1 { left: 10%; }
+  .tbs, .chip { font-size: 19px; }
+  .chalets__row { width: 100%; }
+  .chalets__row + .chalets__row { margin-left: 0; }
+  .kombi__body { padding: 24px 16px 90px; }
+  .mix { height: 450px; margin-top: 70px; }
+}
+
+/* ==========================================================================
+   PHN  (unter 600 px, Figma-Frame 360)
+   ========================================================================== */
+@media (max-width: 599.98px) {
+  .phn { display: inline; }
+  .no-phn { display: none; }
+
+  /* Hero füllt den Viewport, Logo und Headline zentriert */
+  .hero { height: 100vh; height: 100svh; min-height: 520px; }
+  .hero__logo { left: 50%; transform: translateX(-50%); }
+  .hero__title { left: 50%; bottom: 80px; transform: translateX(-50%); width: min(324px, calc(100% - 36px));
+    text-align: center; white-space: normal; }
+  .hero__l2 { padding-left: 0; }
+  .hero__progress { left: calc(16.67% + 15px); right: calc(16.67% + 15px); }
+
+  /* Menü-Panel PHN: Burger, Menüpunkte klappen darunter auf */
+  .menu { justify-content: stretch; }
+  .menu__block { flex: 1; align-self: stretch; padding: 20px 10px; gap: var(--gutter);
+    background: linear-gradient(180deg, rgba(0, 0, 0, .15), rgba(0, 0, 0, 0)); }
+  .menu__burger { display: flex; }
+  .menu__home, .menu.is-fixed .menu__home, .menu--sub .menu__home { display: none; }
+  .menu__list { display: none; position: absolute; top: 100%; left: 0; right: 0; z-index: 1;
+    flex-direction: column; align-items: stretch; padding: 10px var(--margin) 30px; background: var(--dark-grey);
+    box-shadow: 0 16px 30px -18px rgba(0, 0, 0, .6); }
+  .menu.is-open .menu__list { display: flex; }
+  .menu__list .menu__btn { height: auto; padding: 14px 0; flex-direction: row; border-top: 1px solid rgba(255, 255, 255, .15); }
+  .menu__list .menu__btn::before, .menu__list .menu__btn::after { display: none; }
+  .menu__list .menu__btn br { display: none; }
+
+  .booking { padding: 0 var(--margin) 0 21px; }
+  .booking__pill { font-size: 18px; }
+
+  /* Panels: Bild oben, Textbox darunter, abwechselnd links/rechts bündig; Boxen ohne Transparenz */
+  .panels { gap: 20px; }
+  .panels::before { display: none; }
+  .panel { height: auto; scroll-margin-top: 0; }
+  .panel--l { margin-right: var(--margin); }
+  .panel--r { margin-left: var(--margin); }
+  .panel--l .panel__content, .panel--r .panel__content { position: static; display: flex; flex-direction: column; }
+  .panel--l .panel__img, .panel--r .panel__img { position: relative; height: 250px; }
+  .panel--l .tb, .panel--r .tb { position: relative; inset: auto; width: auto; gap: 10px; }
+  .tb::before { opacity: 1 !important; }
+  .panel .line { flex: none; height: 30px; min-height: 0; }
+  .tb__hl { white-space: normal; }
+  .tb__txt { width: auto; }
+
+  /* Home Panel PHN Overlay */
+  .panel--tall { height: 700px; }
+  .tb--free { left: 20px; right: 20px; width: auto; transform: none; gap: 10px; }
+  .tb--free .tb__hl { white-space: nowrap; }
+  .panel--tall .line:last-child { flex: 1 1 0; }
+
+  .facts { margin: 100px var(--margin) var(--section-u); }
+
+  /* Chalets (SUB 3) – bisheriger Stand */
+  .hero--sub { height: 420px; margin: 0; }
+  .hero--sub h1 { left: 20px; font-size: 24px; }
+  .hero--sub .hero__progress { left: 10%; right: 10%; }
+  .collage { aspect-ratio: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 20px 0 0; }
+  .collage > div, .collage .c1, .collage .c2, .collage .c3, .collage .c4 { position: relative; inset: auto; width: auto; height: 160px; }
+  .band { margin: 0 20px; padding: 30px 20px; }
+  .chalets__row, .chalets__row + .chalets__row { grid-template-columns: 1fr; width: 100%; margin-left: 0; }
+  .basics__row { max-width: calc(100% - 40px); }
+  .tbs, .chip { font-size: 17px; }
+  .plans { margin: 30px 20px 0; }
+  .mix { height: auto; margin-top: 50px; display: flex; flex-direction: column; }
+  .mix > * { position: relative; inset: auto; width: 100%; }
+  .mix__a, .mix__b { height: 240px; }
+  .mix__c { height: 520px; }
+  .mix .tb { position: relative; inset: auto; width: 100%; padding: 40px 30px; }
+  .mix .line { flex: none; height: 50px; }
+}

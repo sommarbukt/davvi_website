@@ -1,0 +1,87 @@
+/* DAVVI – Design-Tokens
+   Quelle: Figma „26-8039-DVV-IN26 – R-00 DEV“ (fileKey fEtEEeHDhnGAbf0F1qdJDn), Variablentabelle,
+   ausgelesen am 08.10.2026, Modi PC/TAB/PHN ergänzt am 13.10.2026.
+   Das Figma arbeitet mit drei Modi (PC, TAB, PHN). Jeder Modus überschreibt unten dieselben Variablen.
+   Werte nur hier ändern, nirgends sonst – davvi.css liest ausschließlich diese Variablen.
+
+   Umschaltpunkte (in CSS-Media-Queries nicht als Variable möglich, deshalb hier dokumentiert):
+     PC   ab 900 px  (Figma-Frames XL 1870 · L 1450 · M 970; frei skalierend bis 2500 px, darüber fixiert)
+     TAB  600–899 px (Figma-Frame 710)
+     PHN  unter 600 px (Figma-Frame 360) */
+
+:root {
+  /* Farben */
+  --dark-grey:    #32464B;   /* 10-dark-grey */
+  --dark-grey-d2: #283C41;   /* 31-dark-grey-d2 */
+  --dark-water:   #00374F;   /* 14-dark-water */
+  --cloud-berry:  #DB640F;   /* 16-cloud-berry */
+  --ice-grey:     #BECDD1;   /* 11-ice-grey */
+  --hblau:        #8CB9DC;   /* HBlau 01 */
+  --weiss:        #FFFFFF;   /* 21-weiss */
+  --schwarz:      #000000;   /* 20-schwarz */
+
+  /* Schriften (Adobe Fonts, Kit gcq7kct – siehe Font Codes Adobe.txt) */
+  --f-head: "tussilago", sans-serif;                 /* Headlines */
+  --f-body: "field-gothic-wide", sans-serif;         /* Fließtext */
+  --f-caps: "field-gothic-xcondensed", sans-serif;   /* Buttons, Caps */
+  --f-menu: "politica", sans-serif;                  /* Hauptmenü im TAB-Modus */
+
+  /* ---- Modus PC ---------------------------------------------------- */
+  /* Typografie: Größe / Zeilenhöhe / Laufweite (px) */
+  --h-xl: 54px;  --h-xl-lh: 54px;  --h-xl-ls: 3px;    /* Tussilago ExtraLight */
+  --h-l:  42px;  --h-l-lh:  42px;  --h-l-ls:  3px;    /* Tussilago ExtraLight */
+  --h-m:  24px;  --h-m-lh:  25px;  --h-m-ls:  3px;    /* Tussilago ExtraLight */
+  --h-s:  18px;  --h-s-lh:  20px;  --h-s-ls:  2px;    /* Tussilago Light */
+  --t-std: 19px; --t-std-lh: 23px; --t-std-ls: .5px;  --t-std-para: 12px;  /* Field Gothic No.70 XLight Wide */
+  --t-s:   16px; --t-s-lh:   20px; --t-s-ls:   .5px;  --t-s-para:   12px;  /* Field Gothic No.70 XLight Wide */
+  --t-caps: 22px; --t-caps-lh: 23px; --t-caps-ls: 1px;                      /* Field Gothic No.31 Light XCond */
+
+  /* Layoutfläche (elastisches Spaltenraster) */
+  --columns: 12;
+  --margin: 40px;
+  --gutter: 10px;
+
+  /* Sektionen */
+  --section-o: 100px;
+  --section-u: 80px;
+
+  /* Boxen */
+  --box-l-pad-o: 30px; --box-l-pad-u: 30px; --box-l-pad-l: 50px; --box-l-pad-r: 50px; --box-l-radius: 0;
+  --box-s-pad-o: 18px; --box-s-pad-u: 18px; --box-s-pad-l: 20px; --box-s-pad-r: 20px; --box-s-gap: 5px; --box-s-radius: 0;
+}
+
+/* ---- Modus TAB --------------------------------------------------------- */
+@media (max-width: 899.98px) {
+  :root {
+    --h-l:  36px;  --h-l-lh:  36px;  --h-l-ls:  3px;
+    --h-m:  20px;  --h-m-lh:  22px;  --h-m-ls:  3px;
+    --h-s:  16px;  --h-s-lh:  18px;  --h-s-ls:  2px;
+    --t-s:  16px;  --t-s-lh:  20px;  --t-s-ls:  .5px; --t-s-para: 12px;
+
+    --columns: 12;
+    --margin: 30px;
+
+    --section-o: 80px;
+    --section-u: 70px;
+
+    --box-l-pad-o: 30px; --box-l-pad-u: 25px; --box-l-pad-l: 40px; --box-l-pad-r: 40px;
+  }
+}
+
+/* ---- Modus PHN --------------------------------------------------------- */
+@media (max-width: 599.98px) {
+  :root {
+    --h-l:  28px;  --h-l-lh:  28px;  --h-l-ls:  3px;
+    --h-m:  18px;  --h-m-lh:  20px;  --h-m-ls:  3px;
+    --h-s:  18px;  --h-s-lh:  20px;  --h-s-ls:  2px;
+    --t-s:  15px;  --t-s-lh:  19px;  --t-s-ls:  .5px; --t-s-para: 10px;
+
+    --columns: 6;
+    --margin: 20px;
+
+    --section-o: 60px;
+    --section-u: 50px;
+
+    --box-l-pad-o: 20px; --box-l-pad-u: 20px; --box-l-pad-l: 30px; --box-l-pad-r: 30px;
+  }
+}
