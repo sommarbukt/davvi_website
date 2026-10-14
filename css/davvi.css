@@ -89,7 +89,20 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .hero__l2 { padding-left: 2.95em; }
 .hero__progress { position: absolute; bottom: 40px; left: calc(16.67% + 27.33px); right: calc(16.67% + 27.33px);
   height: 2px; background: rgba(255, 255, 255, .4); }
-.hero__progress::after { content: ""; position: absolute; inset: 0 75% 0 0; background: #fff; }
+.hero__progress::after { content: ""; position: absolute; inset: 0; background: #fff;
+  transform-origin: left; transform: scaleX(var(--hero-p, .25)); }
+
+/* Hero-Slider (Engine: vendor/davvi-slider). Die Ebenen liegen unter Logo, Headline und Balken. */
+.hero .layers, .hero .slide-layer { position: absolute; inset: 0; }
+.hero .slide-layer { overflow: hidden; opacity: 0; }
+.hero .slide-layer img { position: absolute; max-width: none; transform-origin: 0 0; will-change: transform;
+  user-select: none; pointer-events: none; }
+.hero__logo, .hero__title, .hero__progress { z-index: 2; }
+/* Pause-Taste (Barrierefreiheit): unsichtbar, erscheint bei Tastaturfokus über dem Balken */
+.hero__pause { position: absolute; z-index: 3; right: 24px; bottom: 26px; padding: 6px 12px; border: 1px solid rgba(255,255,255,.7);
+  background: transparent; color: #fff; font: inherit; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; cursor: pointer;
+  opacity: 0; pointer-events: none; }
+.hero__pause:focus-visible { opacity: 1; pointer-events: auto; outline: 2px solid #fff; outline-offset: 3px; }
 
 /* Hero der Unterseiten (DVV Hero SUB): 40 px Rand, 710 hoch, Headline L */
 .hero--sub { margin: 0 var(--margin); height: 710px; min-height: 0; }

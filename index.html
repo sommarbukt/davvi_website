@@ -29,12 +29,17 @@
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
-<!-- DVV Hero HOME (später: Multiresponsive Slider, Datenpaket folgt) -->
-<header class="hero" id="top">
-  <img class="hero__img" src="img/hero-home-1400.webp" srcset="img/hero-home-800.webp 800w, img/hero-home-1400.webp 1400w, img/hero-home-2100.webp 2100w" sizes="100vw" alt="Northern lights above the fjord">
+<!-- DVV Hero HOME: Multiresponsive Slider (Engine vendor/davvi-slider, Daten js/slider-config.js, Anbindung js/hero.js).
+     Ohne JS bzw. bei Config-Fehler bleibt das statische Bild aus <noscript> stehen. -->
+<header class="hero" id="top" data-slider>
+  <div class="layers" aria-hidden="true"></div>
+  <noscript><img class="hero__img" src="img/hero-home-1400.webp" srcset="img/hero-home-800.webp 800w, img/hero-home-1400.webp 1400w, img/hero-home-2100.webp 2100w" sizes="100vw" alt="Northern lights above the fjord"></noscript>
   <img class="hero__logo" src="logo/davvi_logo_weiss.svg" alt="DAVVI" width="110" height="65">
   <h1 class="hero__title"><span class="hero__l1">North of<span class="phn"> the</span></span> <span class="hero__l2"><span class="no-phn">the </span>ordinary</span></h1>
-  <div class="hero__progress" aria-hidden="true"></div>
+  <div class="hero-bottom">
+    <div class="hero__progress" aria-hidden="true"></div>
+    <button class="hero__pause" type="button" aria-label="Pause slideshow">Pause</button>
+  </div>
 </header>
 
 <!-- HM V1 Menü-Panel: läuft mit aus dem Bild, kommt beim Hochscrollen als Header zurück (dann mit HOME) -->
@@ -144,6 +149,11 @@
     </div>
   </div>
 </footer>
+<script src="vendor/davvi-slider-1.0.0/easings.js"></script>
+<script src="vendor/davvi-slider-1.0.0/config-validation.js"></script>
+<script src="vendor/davvi-slider-1.0.0/slider.js"></script>
+<script src="js/slider-config.js"></script>
+<script src="js/hero.js"></script>
 <script src="js/motion.config.js"></script>
 <script src="js/motion.js"></script>
 <script src="js/davvi.js" defer></script>

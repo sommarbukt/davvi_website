@@ -72,7 +72,7 @@
 }
 .m-on .m-kb { animation: m-kenburns var(--m-kb-dur) var(--m-kb-ease) both; }
 
-/* Hilfszustand: Übergänge kurz aussetzen (Zurücksetzen im Motion Lab, Sprung an tiefere Stelle) */
+/* Hilfszustand: Übergänge kurz aussetzen (Sprung an tiefere Stelle) */
 .m-instant, .m-instant *, .m-instant *::before { transition: none !important; }
 
 @media (prefers-reduced-motion: reduce) {
