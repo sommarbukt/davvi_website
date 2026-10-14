@@ -10,6 +10,10 @@ HTML, CSS und JS werden direkt ausgeliefert (Vercel, Framework „Other“, ohne
 - Schriften: Adobe Fonts, Kit `gcq7kct` (Domain muss im Kit freigegeben sein)
 - Motion (Scroll-Stacking, Header-Feder, Hero-Headline, Bildzonen-Stretch, Ken Burns):
   `js/motion.config.js` (nur Daten, CMS-tauglich) + `js/motion.js` (Logik) + `css/motion.css`
+- **Motion Lab:** Seite mit `?lab` aufrufen (z. B. `index.html?lab`) → alle Kurven und Werte live einstellen,
+  Zeitlupe, Vergleich mit klassischem Ease-in-out, „Config kopieren“ liefert den Block für `motion.config.js`.
+  Federn werden aus `response`/`bounce` physikalisch berechnet und als CSS `linear()` ausgegeben, ohne Bibliothek.
+  Bei „Bewegung reduzieren“ (Systemeinstellung) bleibt die Seite statisch.
 - **Hero-Slider (Startseite):** Engine aus der Lieferung des Designs (`vendor/davvi-slider-1.0.0/`, unverändert –
   bei Updates einfach den Ordner ersetzen), Daten in `js/slider-config.js` (reines JSON, CMS-tauglich),
   Anbindung an das Figma-Layout in `js/hero.js` (Höhe/Rand aus `css/davvi.css`, Figma-Fortschrittsbalken,

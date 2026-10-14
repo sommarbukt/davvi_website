@@ -1,6 +1,7 @@
 /* DAVVI – Motion-Config
    Nur Daten, keine Logik: Der Inhalt von DAVVI_MOTION ist reines JSON und kann 1:1 aus einem CMS kommen.
-   Die Logik steckt in motion.js. Werte werden direkt hier gepflegt.
+   Die Logik steckt in motion.js. Werte lassen sich live im Motion Lab einstellen (Seite mit ?lab aufrufen)
+   und von dort als fertiger Block hierher kopieren.
 
    Federn (springs): physikalisch gerechnet, nicht als Bézierkurve angenähert.
      response  Grundtempo der Feder in Sekunden (Periode der ungedämpften Schwingung). Kleiner = schneller.
