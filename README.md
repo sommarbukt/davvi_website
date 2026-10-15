@@ -19,6 +19,10 @@ HTML, CSS und JS werden direkt ausgeliefert (Vercel, Framework „Other“, ohne
   Anbindung an das Figma-Layout in `js/hero.js` (Höhe/Rand aus `css/davvi.css`, Figma-Fortschrittsbalken,
   Pause-Taste bei Tastaturfokus, Stillstand außerhalb des Viewports, Fallback-Bild ohne JS).
   Bilder: `img/hero/` (derzeit Demo-Bilder, Kandidaten liefert das Design).
+- **Chalets-Seite (`chalets.html`):** Unterseite SUB 3 „My private Panorama“ nach den Figma-Frames SUB 3 – PC XL/L/M,
+  TAB und PHN (Stand 15.10.2026). Auf TAB/PHN laufen Kombipanels und Faktenblock als Swiper (`js/swiper.js`,
+  Pfeile in `img/icons/`). Buchungswidget und „Book a stay“ sind Platzhalter wie im Figma, Lodgify ist nicht eingebunden.
+  Inhalte der Kombipanels (3× Skaret, gleiches Bild) und Grundrisse (nur Tind) sind Figma-Platzhalter.
 - **Slider Lab:** `slider-lab.html` öffnen → Dev-Mode des Sliders im selben Bildrahmen wie auf der Startseite.
   „Konfiguration exportieren“ → heruntergeladene `slider-config.js` nach `js/` kopieren. Original-Lieferung
   (inkl. Demo-JPGs und Readme): `../00_Doku/Lieferungen/slider-minimal-1.0.0/`.

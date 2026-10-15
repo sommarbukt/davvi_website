@@ -104,14 +104,6 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   opacity: 0; pointer-events: none; }
 .hero__pause:focus-visible { opacity: 1; pointer-events: auto; outline: 2px solid #fff; outline-offset: 3px; }
 
-/* Hero der Unterseiten (DVV Hero SUB): 40 px Rand, 710 hoch, Headline L */
-.hero--sub { margin: 0 var(--margin); height: 710px; min-height: 0; }
-.hero--sub h1 { position: absolute; left: calc(50% - 368px); bottom: 90px; font-family: var(--f-head); font-weight: 200;
-  text-transform: uppercase; white-space: nowrap; font-size: clamp(22px, 2.9vw, var(--h-l)); line-height: 1; letter-spacing: .07em; }
-.hero--sub h1 span { display: block; }
-.hero--sub h1 span + span { margin-left: 3em; }
-.hero--sub .hero__progress { left: calc(16.67% + 1.67px); right: calc(16.67% + 1.67px); }
-
 /* MENÜ-PANEL (HM V1 Menü-Panel) -----------------------------------------
    Läuft beim Scrollen mit aus dem Bild. Bei Umkehr der Scrollrichtung kehrt es als Header zurück,
    ergänzt um HOME (Bildmarke). Unterseiten zeigen HOME immer, der aktive Punkt ist hervorgehoben. */
@@ -206,11 +198,6 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   font-size: var(--h-m); line-height: var(--h-m-lh); letter-spacing: var(--h-m-ls); }
 .tb__txt, .tb > p:not([class]) { width: min-content; min-width: 100%; }
 
-/* Textbox L als Überschrift-Band (ohne Fläche): „Choose your nordic home“, „Basics:“ */
-.band { display: flex; flex-direction: column; align-items: center; gap: 15px; margin: 0 var(--margin);
-  padding: var(--box-l-pad-o) var(--box-l-pad-r) var(--box-l-pad-u) var(--box-l-pad-l); text-align: center; }
-.band .hl-m { min-width: 100%; width: min-content; }
-
 /* TEXTBOXEN UNTER DEN PANELS (3er-Boxen-Panel) ----------------------------
    Umbruch, sobald eine Box schmaler als 280 px würde; die Boxen einer Reihe sind gleich hoch,
    die untere Linie füllt auf. */
@@ -221,61 +208,6 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   background: linear-gradient(180deg, rgba(0, 0, 0, .15), rgba(0, 0, 0, 0)); }
 .fact .hl-s, .fact p { width: 100%; }
 .fact p { font-size: var(--t-s); line-height: var(--t-s-lh); letter-spacing: var(--t-s-ls); }
-
-/* CHALETS (SUB 3) ----------------------------------------------------------- */
-/* Bildcollage: Proportionen 1450 × 710 wie im Figma */
-.collage { position: relative; margin-top: 40px; aspect-ratio: 1450 / 710; }
-.collage img { position: absolute; width: 100%; height: 100%; object-fit: cover; }
-.collage > div { position: absolute; overflow: hidden; }
-.collage .c1 { left: 0; top: 0; width: calc(50% - 5px); height: 49.3%; }
-.collage .c2 { left: calc(50% + 5px); top: 0; width: calc(100% - (8.33% + 34.17px) - 50% - 5px); height: 49.3%; }
-.collage .c3 { left: calc(16.67% + 28.33px); top: 50.7%; width: calc(100% - 33.33% - 16.67px - 16.67% - 28.33px); height: 49.3%; }
-.collage .c4 { left: calc(66.67% - 6.67px); top: 50.7%; right: 0; height: 49.3%; }
-
-/* Kombipanel Chalets */
-.chalets { background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, .75) 300px, rgba(0, 0, 0, .75) calc(100% - 300px), rgba(0, 0, 0, 0) 100%); padding-bottom: 0; }
-.chalets__row { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gutter); width: 81.38%; margin-top: 10px; }
-.chalets__row + .chalets__row { margin-left: 18.62%; margin-top: 10px; grid-template-columns: repeat(3, 1fr); }
-.chalets__row:first-of-type { margin-top: 35px; }
-.chalets__row .kombi:only-child { grid-column: 1; }
-.kombi { position: relative; display: flex; flex-direction: column; scroll-margin-top: var(--menu-h); }
-.kombi__img { aspect-ratio: 300 / 200; width: 100%; object-fit: cover; }
-.kombi__body {
-  display: flex; flex-direction: column; align-items: center; gap: 10px; flex: 1;
-  padding: 30px 30px 100px; background: linear-gradient(180deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, 0));
-}
-.kombi__title { text-align: center; }
-.kombi__chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; }
-.chip { padding: 2px 8px 4px; background: rgba(0, 0, 0, .3); opacity: .6; text-align: center; white-space: nowrap;
-  font: 300 var(--t-caps)/var(--t-caps-lh) var(--f-caps); letter-spacing: var(--t-caps-ls); text-transform: uppercase; }
-.kombi .btn { position: absolute; left: 50%; bottom: 40px; transform: translateX(-50%); }
-
-/* Textbox S (Fakten-Reihen) */
-.basics { display: flex; flex-direction: column; align-items: center; gap: 5px; margin-bottom: 0; }
-.basics__row { display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; max-width: calc(100% - 2 * var(--margin)); }
-.tbs {
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--box-s-gap); flex: 0 1 auto; max-width: 100%;
-  padding: var(--box-s-pad-o) var(--box-s-pad-r) var(--box-s-pad-u) var(--box-s-pad-l); text-align: center; opacity: .9;
-  background: linear-gradient(180deg, rgba(0, 0, 0, .15), rgba(0, 0, 0, 0));
-}
-.tbs p { opacity: .7; font: 300 var(--t-caps)/var(--t-caps-lh) var(--f-caps); letter-spacing: var(--t-caps-ls); text-transform: uppercase; }
-
-/* Grundrisse */
-.plans { display: flex; justify-content: center; gap: var(--gutter); margin: 40px var(--margin) 0; flex-wrap: wrap; }
-.plan { width: 440px; max-width: 100%; padding: 20px; background: linear-gradient(180deg, rgba(0, 0, 0, .15), rgba(0, 0, 0, 0)); }
-.plan img { width: 100%; height: auto; aspect-ratio: 5 / 3; object-fit: cover; margin-bottom: 10px; }
-.plan figcaption { text-align: center; }
-.plan figcaption span { display: block; font-size: var(--t-s); line-height: var(--t-s-lh); letter-spacing: var(--t-s-ls); }
-.plan figcaption strong { display: block; font: 700 var(--h-m)/var(--h-m-lh) var(--f-head); letter-spacing: 1px; text-transform: uppercase; }
-
-/* Foto-Mix mit Textbox (Frame 14) */
-.mix { position: relative; height: 600px; margin-top: 100px; }
-.mix > * { position: absolute; overflow: hidden; }
-.mix img { width: 100%; height: 100%; object-fit: cover; }
-.mix__a { left: 0; top: 0; width: 41.7%; height: 49.2%; }
-.mix__b { left: calc(8.33% + 34.17px); bottom: 0; width: 31%; height: 49.2%; }
-.mix__c { left: calc(41.67% + 10.83px); right: 0; top: 0; bottom: 0; }
-.mix__c .tb { position: absolute; }
 
 /* FOOTER (FOOTER Desktop komplett) -------------------------------------------
    Verlauf 400 px ins Weiß, darunter die Hauptzone. Desktop: Bildbereich skaliert proportional (2 : 1),
@@ -334,14 +266,6 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   .footer__logo img { width: 118px; }
   .footer__links { bottom: 40px; }
 
-  /* Chalets (SUB 3) – bisheriger Stand, wird nach den SUB-3-Varianten im Figma neu gebaut */
-  .hero--sub { height: 480px; margin: 0 20px; }
-  .hero--sub h1 { left: 10%; }
-  .tbs, .chip { font-size: 19px; }
-  .chalets__row { width: 100%; }
-  .chalets__row + .chalets__row { margin-left: 0; }
-  .kombi__body { padding: 24px 16px 90px; }
-  .mix { height: 450px; margin-top: 70px; }
 }
 
 /* ==========================================================================
@@ -398,21 +322,189 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 
   .facts { margin: 100px var(--margin) var(--section-u); }
 
-  /* Chalets (SUB 3) – bisheriger Stand */
-  .hero--sub { height: 420px; margin: 0; }
-  .hero--sub h1 { left: 20px; font-size: 24px; }
-  .hero--sub .hero__progress { left: 10%; right: 10%; }
-  .collage { aspect-ratio: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 20px 0 0; }
-  .collage > div, .collage .c1, .collage .c2, .collage .c3, .collage .c4 { position: relative; inset: auto; width: auto; height: 160px; }
-  .band { margin: 0 20px; padding: 30px 20px; }
-  .chalets__row, .chalets__row + .chalets__row { grid-template-columns: 1fr; width: 100%; margin-left: 0; }
-  .basics__row { max-width: calc(100% - 40px); }
-  .tbs, .chip { font-size: 17px; }
-  .plans { margin: 30px 20px 0; }
-  .mix { height: auto; margin-top: 50px; display: flex; flex-direction: column; }
-  .mix > * { position: relative; inset: auto; width: 100%; }
-  .mix__a, .mix__b { height: 240px; }
-  .mix__c { height: 520px; }
-  .mix .tb { position: relative; inset: auto; width: 100%; padding: 40px 30px; }
-  .mix .line { flex: none; height: 50px; }
+}
+
+/* ==========================================================================
+   UNTERSEITE SUB 3 „My private Panorama“ (chalets.html)
+   Figma-Frames SUB 3 – PC XL / PC L / PC M, SUB 3 – TAB, SUB 3 – PHN (Stand 15.10.2026).
+
+   .grid14: Rand + 12 (PHN 6) elastische Spalten + Rand als Grid-Spuren. Die Randspuren sind um den
+   Gutter schmaler, damit Spalte 1 genau bei --margin beginnt. Linie 1 = linker Seitenrand,
+   Linie n+1 = Ende von Spalte n, Linie -1 = rechter Seitenrand.
+   ========================================================================== */
+.grid14 { display: grid; gap: var(--gutter);
+  grid-template-columns: calc(var(--margin) - var(--gutter)) repeat(var(--columns), minmax(0, 1fr)) calc(var(--margin) - var(--gutter)); }
+
+/* DVV Hero SUB: Randabstand, Unterkante = Viewport-Grenze (Hero + Menü + Rand = Viewporthöhe) */
+.hero--sub { margin: 0 var(--margin) var(--margin); min-height: 420px;
+  height: calc(100vh - var(--menu-h) - var(--margin)); height: calc(100svh - var(--menu-h) - var(--margin)); }
+.hero--sub .hero__logo { display: none; }
+.hero--sub .hero__progress { left: calc(16.67% + 1.67px); right: calc(16.67% + 1.67px); }
+/* Headline L, zweite Zeile im Figma mit 13 Leerzeichen eingerückt */
+.sh { position: absolute; z-index: 2; left: calc(50% - 368px); bottom: 92px; margin: 0; white-space: pre;
+  font-family: var(--f-head); font-weight: 200; text-transform: uppercase;
+  font-size: var(--h-l); line-height: var(--h-l-lh); letter-spacing: var(--h-l-ls); }
+.sh__l1, .sh__l2 { display: block; }
+.sh__br { display: none; }
+
+/* SUB 3 Panel 01: Collage */
+.collage { row-gap: var(--gutter); }
+.collage__i { position: relative; overflow: hidden; }
+.collage__i img, .mix img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.collage .c1 { grid-column: 1 / 8;  grid-row: 1; aspect-ratio: 720 / 375; }
+.collage .c2 { grid-column: 8 / 13; grid-row: 1; }
+.collage .c3 { grid-column: 4 / 10; grid-row: 2; aspect-ratio: 680 / 375; }
+.collage .c4 { grid-column: 10 / -1; grid-row: 2; }
+
+/* Menü-Panel PHN der Unterseiten: aktive Seite neben dem Burger (nur PHN sichtbar) */
+.menu__current { display: none; }
+
+/* UG-VLF Block OU hinter „Choose …“ bis „Basics:“ */
+.chalets { position: relative; isolation: isolate; }
+.chalets::before { content: ""; position: absolute; inset: 0; z-index: -1; opacity: .75;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0, #000 300px, #000 calc(100% - 300px), rgba(0, 0, 0, 0) 100%); }
+
+/* Textbox L ohne Fläche: Linien oben und unten füllen die feste Boxhöhe auf */
+.band { display: flex; flex-direction: column; align-items: center; gap: 15px; margin: 0 var(--margin); text-align: center;
+  padding: var(--box-l-pad-o) var(--box-l-pad-r) var(--box-l-pad-u) var(--box-l-pad-l); }
+.band--choose { height: 265px; }
+.band--basics { height: 215px; }
+.band .line { min-height: 0; }
+
+/* Kombipanels Chalets – PC: Reihe 1 vom linken Rand bis Ende Spalte 10, Reihe 2 ab Spalte 3 bis zum rechten Rand */
+.chalets__list { row-gap: var(--gutter); }
+.chalets__row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gutter); }
+.chalets__row.r1 { grid-column: 1 / 12; }
+.chalets__row.r2 { grid-column: 4 / -1; }
+.kombi { display: flex; flex-direction: column; }
+.kombi__img { width: 100%; aspect-ratio: 300 / 200; object-fit: cover; }
+.kombi__body { position: relative; flex: 1; display: flex; flex-direction: column; align-items: center; gap: 10px;
+  padding: 30px 30px 100px; background: linear-gradient(180deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, 0)); }
+.kombi__title { width: 100%; text-align: center; }
+.kombi__chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; }
+/* Textbox XS */
+.chip { padding: 2px 8px 4px; background: rgba(0, 0, 0, .3); color: rgba(255, 255, 255, .6); text-align: center; white-space: nowrap;
+  font: 300 var(--t-caps)/var(--t-caps-lh) var(--f-caps); letter-spacing: var(--t-caps-ls); text-transform: uppercase; }
+.kombi .btn { position: absolute; left: 50%; bottom: 40px; transform: translateX(-50%); }
+
+/* Faktenblock umbrechend (PC): zwei Zeilen à zwei Vierergruppen, Gruppen brechen als Ganzes um */
+.fakten { display: flex; flex-direction: column; align-items: center; gap: 5px; padding: 0 var(--margin); }
+.fakten__row { display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; width: 100%; }
+.fakten__grp { display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; max-width: 100%; }
+/* Textbox S */
+.tbs { flex: none; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--box-s-gap);
+  height: 105px; padding: var(--box-s-pad-o) var(--box-s-pad-r) var(--box-s-pad-u) var(--box-s-pad-l);
+  background: linear-gradient(180deg, rgba(0, 0, 0, .15), rgba(0, 0, 0, 0)); }
+.tbs p { opacity: .7; text-align: center; white-space: nowrap;
+  font: 300 var(--t-caps)/var(--t-caps-lh) var(--f-caps); letter-spacing: var(--t-caps-ls); text-transform: uppercase; }
+
+/* Swiper-Steuerung (nur TAB/PHN) */
+.swiper-ctl { display: none; padding: 20px calc(8.33% + 25.92px + var(--margin)); }
+.swiper-ctl__in { display: flex; align-items: center; gap: 10px; padding: 5px; border-radius: 60px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, .3), rgba(0, 0, 0, 0)); }
+.swiper-ctl__btn { position: relative; flex: none; display: flex; padding: 11px 20px; }
+.swiper-ctl__btn::before { content: ""; position: absolute; inset: 3px; border-radius: 30px; background: #000; opacity: .6;
+  transition: inset .2s ease, opacity .2s ease; }
+.swiper-ctl__btn img { position: relative; width: 19px; height: 23px; }
+.swiper-ctl__btn .is-hover { display: none; }
+.swiper-ctl__btn:hover::before, .swiper-ctl__btn:focus-visible::before { inset: 0; opacity: 1; }
+.swiper-ctl__btn:hover img, .swiper-ctl__btn:focus-visible img { display: none; }
+.swiper-ctl__btn:hover .is-hover, .swiper-ctl__btn:focus-visible .is-hover { display: block; }
+.swiper-ctl__bar { position: relative; flex: 1; height: 3px; overflow: hidden; border-radius: 4px; background: #000; }
+.swiper-ctl__thumb { position: absolute; top: 0; bottom: 0; left: 0; width: 25%; min-width: 15px; background: #fff; }
+
+/* Section Grundrisse */
+.plans { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: var(--gutter);
+  padding: var(--section-o) calc(var(--margin) + var(--step)) var(--section-u); }
+.plan { display: flex; flex-direction: column; align-items: center; gap: 10px; width: 440px; max-width: 100%; padding: 20px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, .15), rgba(0, 0, 0, 0)); }
+.plan img { width: 100%; height: auto; aspect-ratio: 2000 / 1200; object-fit: cover; }
+.plan figcaption { width: 100%; text-align: center; }
+.plan figcaption span { display: block; font-size: var(--t-s); line-height: var(--t-s-lh); letter-spacing: var(--t-s-ls); }
+.plan figcaption strong { display: block; font: 700 var(--h-m)/var(--h-m-lh) var(--f-head); letter-spacing: 1px; text-transform: uppercase; }
+
+/* SUB 3 Panel unten: zwei Bilder links (Rand–Spalte 5, Spalte 2–5), Bild mit Textbox ab Spalte 6 bis zum Rand */
+.mix { grid-template-rows: 1fr 1fr; margin-bottom: var(--section-u); }
+.mix > div { position: relative; overflow: hidden; }
+.mix__a { grid-column: 1 / 7; grid-row: 1; }
+.mix__b { grid-column: 3 / 7; grid-row: 2; }
+.mix__c { grid-column: 7 / -1; grid-row: 1 / 3; aspect-ratio: 835 / 600; }
+.tb--ice80::before { opacity: .8; }
+
+/* ---- SUB 3 · TAB (600–899 px, Frame 710) ------------------------------------------------------- */
+@media (max-width: 899.98px) {
+  /* DVV Hero HOME TAB: Headline zentriert, ohne Einrückung */
+  .hero--sub .hero__progress { left: calc(16.67% + 26.67px); right: calc(16.67% + 26.67px); }
+  .sh { left: 50%; transform: translateX(-50%); text-align: center; white-space: nowrap; }
+  .sh__ind { display: none; }
+
+  .collage .c1 { grid-column: 1 / 12; grid-row: 1; aspect-ratio: 570 / 285; }
+  .collage .c2 { grid-column: 1 / 9;  grid-row: 2; aspect-ratio: 405 / 225; }
+  .collage .c4 { grid-column: 9 / -1; grid-row: 2; }
+  .collage .c3 { grid-column: 4 / -1; grid-row: 3; aspect-ratio: 570 / 285; }
+
+  /* Booking-Widget: im Figma TAB/PHN nicht vorhanden */
+  .booking--spaced { display: none; }
+
+  /* Swiper: Kombipanels und Faktenblock laufen einzeilig, Steuerung darunter */
+  [data-swiper-track] { display: flex; flex-direction: row; align-items: stretch; justify-content: flex-start; gap: var(--gutter);
+    overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scroll-padding-inline: var(--margin);
+    padding: 0 var(--margin); scrollbar-width: none; }
+  [data-swiper-track]::-webkit-scrollbar { display: none; }
+  .chalets__row, .fakten__row, .fakten__grp { display: contents; }
+  .kombi { flex: 0 0 320px; scroll-snap-align: start; }
+  .fakten { gap: 5px; }
+  .tbs { scroll-snap-align: start; }
+  .swiper-ctl { display: block; }
+
+  /* Grundrisse untereinander (Section bleibt eingerückt) */
+  /* Panel unten: Bild mit Textbox ab Rand, darunter Seeadler und Steg */
+  .mix { grid-template-columns: 24fr 43fr; grid-template-rows: auto auto; padding-left: var(--margin); }
+  .mix__c { grid-column: 1 / -1; grid-row: 1; aspect-ratio: 680 / 500; }
+  .mix__b { grid-column: 1; grid-row: 2; }
+  .mix__a { grid-column: 2; grid-row: 2; aspect-ratio: 430 / 200; }
+  .mix .tb__hl { font-weight: 200; font-size: var(--h-m); line-height: var(--h-m-lh); letter-spacing: var(--h-m-ls); }
+  .mix .tb__txt { font-size: var(--t-std); line-height: var(--t-std-lh); letter-spacing: var(--t-std-ls); }
+}
+
+/* ---- SUB 3 · PHN (unter 600 px, Frame 360) ----------------------------------------------------- */
+@media (max-width: 599.98px) {
+  /* Menü-Panel PHN: Burger links, aktive Seite rechts daneben */
+  .menu--sub .menu__block { flex: none; }
+  .menu--sub .menu__current { display: flex; }
+  .menu__current { flex: 1; align-self: stretch; align-items: center; justify-content: center; padding: 20px 10px; }
+  .menu__current .menu__btn::before, .menu__current .menu__btn::after { background: rgba(255, 255, 255, .7); }
+  .menu__current .menu__btn span { opacity: 1; font-weight: 400; letter-spacing: 1.5px; }
+
+  /* DVV Hero HOME PHN: Logo oben, Headline vierzeilig zentriert */
+  .hero--sub { min-height: 460px; }
+  .hero--sub .hero__logo { display: block; }
+  .hero--sub .hero__progress { left: calc(16.67% + 15px); right: calc(16.67% + 15px); }
+  .sh { bottom: 80px; width: min(324px, 100%); }
+  .sh__br { display: inline; }
+
+  .collage .c1 { grid-column: 1 / 8;  grid-row: 1; aspect-ratio: 340 / 240; }
+  .collage .c2 { grid-column: 1 / -1; grid-row: 2; aspect-ratio: 360 / 240; }
+  .collage .c3 { grid-column: 1 / -1; grid-row: 3; aspect-ratio: 360 / 240; }
+  .collage .c4 { grid-column: 2 / -1; grid-row: 4; aspect-ratio: 340 / 240; }
+
+  /* Kombipanels: eine Karte mittig, Nachbarn schauen am Rand herein */
+  .chalets__list { padding: 0 calc(var(--margin) + var(--gutter)); scroll-padding-inline: calc(var(--margin) + var(--gutter)); }
+  .kombi { flex: 0 0 100%; scroll-snap-align: center; }
+  .swiper-ctl { padding: 20px calc(2 * var(--margin)); }
+
+  .plans { padding-left: var(--margin); padding-right: var(--margin); }
+  .plan { width: 100%; }
+
+  /* Panel unten: Textbox über dem Bild, darunter Steg und Seeadler, alles rechtsbündig */
+  .mix { display: flex; flex-direction: column; align-items: flex-end; gap: var(--gutter); padding-left: var(--margin); }
+  .mix > div { width: 100%; }
+  .mix__c { order: 1; aspect-ratio: auto; display: flex; flex-direction: column; overflow: visible; }
+  .mix__c img { position: relative; inset: auto; aspect-ratio: 340 / 260; height: auto; }
+  .mix__c .tb { order: -1; position: relative; inset: auto; width: 100%; gap: 10px; }
+  .mix__c .tb .line { flex: none; height: 30px; min-height: 0; }
+  .mix .tb__hl { white-space: nowrap; font-weight: 300; font-size: var(--h-s); line-height: var(--h-s-lh); letter-spacing: var(--h-s-ls); }
+  .mix .tb__txt { width: auto; font-size: var(--t-s); line-height: var(--t-s-lh); letter-spacing: var(--t-s-ls); }
+  .mix__a { order: 2; aspect-ratio: 340 / 200; }
+  .mix > .mix__b { order: 3; width: 67.35%; aspect-ratio: 229 / 180; }
 }

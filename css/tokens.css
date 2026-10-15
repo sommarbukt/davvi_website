@@ -1,6 +1,7 @@
 /* DAVVI – Design-Tokens
    Quelle: Figma „26-8039-DVV-IN26 – R-00 DEV“ (fileKey fEtEEeHDhnGAbf0F1qdJDn), Variablentabelle,
-   ausgelesen am 08.10.2026, Modi PC/TAB/PHN ergänzt am 13.10.2026.
+   ausgelesen am 08.10.2026, Modi PC/TAB/PHN ergänzt am 13.10.2026,
+   Fließtext STD (TAB) und Box S (PHN) ergänzt am 15.10.2026.
    Das Figma arbeitet mit drei Modi (PC, TAB, PHN). Jeder Modus überschreibt unten dieselben Variablen.
    Werte nur hier ändern, nirgends sonst – davvi.css liest ausschließlich diese Variablen.
 
@@ -56,6 +57,7 @@
     --h-l:  36px;  --h-l-lh:  36px;  --h-l-ls:  3px;
     --h-m:  20px;  --h-m-lh:  22px;  --h-m-ls:  3px;
     --h-s:  16px;  --h-s-lh:  18px;  --h-s-ls:  2px;
+    --t-std: 18px; --t-std-lh: 22px; --t-std-ls: .5px;  --t-std-para: 12px;
     --t-s:  16px;  --t-s-lh:  20px;  --t-s-ls:  .5px; --t-s-para: 12px;
 
     --columns: 12;
@@ -83,5 +85,6 @@
     --section-u: 50px;
 
     --box-l-pad-o: 20px; --box-l-pad-u: 20px; --box-l-pad-l: 30px; --box-l-pad-r: 30px;
+    --box-s-pad-o: 13px; --box-s-pad-u: 13px; --box-s-pad-l: 15px; --box-s-pad-r: 15px;
   }
 }

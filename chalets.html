@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Chalets – DAVVI</title>
-<meta name="description" content="Chalet Tind, Nordlys, Bjørka and Skaret: four private chalets with unobstructed fjord views in Sjursnes.">
+<title>My private Panorama – DAVVI</title>
+<meta name="description" content="Chalet Tind, Nordlys, Bjørka and Skaret: private chalets with unobstructed fjord views at the Ullsfjord.">
 <meta name="theme-color" content="#32464B">
 <link rel="icon" type="image/png" sizes="32x32" href="logo/davvi_icon_32.png">
 <link rel="apple-touch-icon" href="logo/davvi_icon_180.png">
@@ -14,7 +14,11 @@
 <script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
+<!-- Unterseite SUB 3 „My private Panorama“ – gebaut nach Figma „26-8039-DVV-IN26 – R-00 DEV“
+     (Frames SUB 3 – PC XL / PC L / PC M / TAB / PHN, Stand 15.10.2026). Inhalte 1:1 aus dem Figma. -->
 <a class="skip" href="#main">Skip to content</a>
+
+<!-- HM V1 Menü-Panel (Unterseite: HOME immer sichtbar, aktueller Punkt hervorgehoben; PHN: Burger + aktive Seite) -->
 <div class="menu-slot" id="menu-slot">
 <nav class="menu menu--sub" aria-label="Main" id="menu">
   <div class="menu__block">
@@ -27,68 +31,139 @@
       <a class="menu__btn" href="index.html#days"><span>365 <br>Days</span></a>
     </div>
   </div>
+  <div class="menu__current" aria-hidden="true"><span class="menu__btn"><span>My private<br>panorama</span></span></div>
 </nav>
 </div>
+
 <main id="main">
+<!-- DVV Hero SUB (PC) / DVV Hero HOME TAB / DVV Hero HOME PHN: mit Randabstand, unten bis zur Viewport-Grenze -->
 <header class="hero hero--sub" id="top">
-  <img class="hero__img" src="img/hero-chalets-1400.webp" srcset="img/hero-chalets-800.webp 800w, img/hero-chalets-1400.webp 1400w, img/hero-chalets-2100.webp 2100w" sizes="(min-width:801px) 95vw, 100vw" alt="Chalet at the fjord under the northern lights">
-  <h1><span>Boundless nature,</span><span>a steady home</span></h1>
+  <img class="hero__img" src="img/hero-chalets-1400.webp" srcset="img/hero-chalets-800.webp 800w, img/hero-chalets-1400.webp 1400w, img/hero-chalets-2100.webp 2100w" sizes="100vw" alt="Chalet with green roof above the fjord in autumn">
+  <img class="hero__logo" src="logo/davvi_logo_weiss.svg" alt="" width="110" height="65">
+  <h1 class="sh"><span class="sh__l1">Boundless<br class="sh__br"> nature,</span><span class="sh__l2"><span class="sh__ind">             </span>a steady<br class="sh__br"> home</span></h1>
   <div class="hero__progress" aria-hidden="true"></div>
 </header>
-<div class="collage" aria-hidden="true">
-  <div class="c1"><img class="" src="img/living-window-1400.webp" srcset="img/living-window-800.webp 800w, img/living-window-1400.webp 1400w, img/living-window-2100.webp 2100w" sizes="50vw" alt="" loading="lazy" decoding="async"></div><div class="c2"><img class="" src="img/aurora-window-1400.webp" srcset="img/aurora-window-800.webp 800w, img/aurora-window-1400.webp 1400w" sizes="50vw" alt="" loading="lazy" decoding="async"></div><div class="c3"><img class="" src="img/gallery-1400.webp" srcset="img/gallery-800.webp 800w, img/gallery-1400.webp 1400w, img/gallery-2100.webp 2100w" sizes="33vw" alt="" loading="lazy" decoding="async"></div><div class="c4"><img class="" src="img/bathroom-1400.webp" srcset="img/bathroom-800.webp 800w, img/bathroom-1400.webp 1400w, img/bathroom-2100.webp 2100w" sizes="33vw" alt="" loading="lazy" decoding="async"></div>
+
+<!-- SUB 3 Panel 01: Bildcollage im Raster -->
+<div class="collage grid14" aria-hidden="true">
+  <div class="collage__i c1"><img src="img/living-window-1400.webp" srcset="img/living-window-800.webp 800w, img/living-window-1400.webp 1400w, img/living-window-2100.webp 2100w" sizes="(min-width:900px) 50vw, 95vw" alt="" loading="lazy" decoding="async"></div>
+  <div class="collage__i c2"><img src="img/aurora-window-1400.webp" srcset="img/aurora-window-800.webp 800w, img/aurora-window-1400.webp 1400w" sizes="(min-width:900px) 40vw, 95vw" alt="" loading="lazy" decoding="async"></div>
+  <div class="collage__i c3"><img src="img/gallery-1400.webp" srcset="img/gallery-800.webp 800w, img/gallery-1400.webp 1400w, img/gallery-2100.webp 2100w" sizes="(min-width:900px) 50vw, 95vw" alt="" loading="lazy" decoding="async"></div>
+  <div class="collage__i c4"><img src="img/bathroom-1400.webp" srcset="img/bathroom-800.webp 800w, img/bathroom-1400.webp 1400w, img/bathroom-2100.webp 2100w" sizes="(min-width:900px) 35vw, 95vw" alt="" loading="lazy" decoding="async"></div>
 </div>
+
+<!-- Booking-Widget 01 (im Figma nur in den PC-Zuständen) – Platzhalter wie im Figma -->
 <section class="booking booking--spaced" id="booking" aria-label="Booking">
-  <div class="booking__pill"><!-- Lodgify-Widget (DAVVI-Account) hier einbetten -->(Booking widget from Lodgify)</div>
+  <div class="booking__pill">(Booking widget from Lodgify)</div>
 </section>
+
+<!-- UG-VLF Block OU + Textbox L „Choose …“ + Kombipanels Chalets + Textbox L „Basics:“ -->
 <div class="chalets">
-  <div class="band"><h2 class="hl-m">Choose<br>your nordic<br>home</h2></div>
-  <div class="chalets__row">
-    <article class="kombi" id="tind">
-      <img class="kombi__img" src="img/living-window-800.webp" srcset="img/living-window-800.webp 800w, img/living-window-1400.webp 1400w" sizes="(min-width:801px) 27vw, 100vw" alt="Living room of chalet Tind" loading="lazy" decoding="async">
-      <div class="kombi__body"><div class="line line--fix50"></div><h3 class="hl-m kombi__title">Tind</h3><div class="kombi__chips"><span class="chip">127 m²</span><span class="chip">3 Bedrooms</span></div></div>
-      <a class="btn" href="#booking"><span>Book a stay</span></a>
-    </article>
-    <article class="kombi" id="nordlys">
-      <img class="kombi__img" src="img/living-window-800.webp" srcset="img/living-window-800.webp 800w, img/living-window-1400.webp 1400w" sizes="(min-width:801px) 27vw, 100vw" alt="Living room of chalet Nordlys" loading="lazy" decoding="async">
-      <div class="kombi__body"><div class="line line--fix50"></div><h3 class="hl-m kombi__title">Nordlys</h3><div class="kombi__chips"><span class="chip">127 m²</span><span class="chip">3 Bedrooms</span><span class="chip">Jacuzzi</span><span class="chip">Sauna</span></div></div>
-      <a class="btn" href="#booking"><span>Book a stay</span></a>
-    </article>
-    <article class="kombi" id="bjorka">
-      <img class="kombi__img" src="img/living-window-800.webp" srcset="img/living-window-800.webp 800w, img/living-window-1400.webp 1400w" sizes="(min-width:801px) 27vw, 100vw" alt="Living room of chalet Bjørka" loading="lazy" decoding="async">
-      <div class="kombi__body"><div class="line line--fix50"></div><h3 class="hl-m kombi__title">Bjørka</h3><div class="kombi__chips"><span class="chip">127 m²</span><span class="chip">3 Bedrooms</span><span class="chip">Sauna</span></div></div>
-      <a class="btn" href="#booking"><span>Book a stay</span></a>
-    </article>
+  <div class="band band--choose"><div class="line"></div><h2 class="hl-m">Choose<br>your nordic<br>home</h2><div class="line"></div></div>
+
+  <!-- PC: zwei versetzte Dreierreihen im Raster · TAB/PHN: Swiper -->
+  <div class="chalets__list grid14" id="chalet-list" data-swiper-track aria-label="Chalets">
+    <div class="chalets__row r1">
+      <article class="kombi" data-swiper-item>
+        <img class="kombi__img" src="img/living-window-800.webp" srcset="img/living-window-800.webp 800w, img/living-window-1400.webp 1400w" sizes="(min-width:900px) 27vw, 320px" alt="" loading="lazy" decoding="async">
+        <div class="kombi__body">
+          <h3 class="hl-s kombi__title">Tind</h3>
+          <div class="kombi__chips"><span class="chip">127 m²</span><span class="chip">3 Bedrooms</span></div>
+          <a class="btn" href="#"><span>Book a stay</span></a>
+        </div>
+      </article>
+      <article class="kombi" data-swiper-item>
+        <img class="kombi__img" src="img/living-window-800.webp" srcset="img/living-window-800.webp 800w, img/living-window-1400.webp 1400w" sizes="(min-width:900px) 27vw, 320px" alt="" loading="lazy" decoding="async">
+        <div class="kombi__body">
+          <h3 class="hl-s kombi__title">Nordlys</h3>
+          <div class="kombi__chips"><span class="chip">127 m²</span><span class="chip">3 Bedrooms</span><span class="chip">Jacuzzi</span><span class="chip">Sauna</span></div>
+          <a class="btn" href="#"><span>Book a stay</span></a>
+        </div>
+      </article>
+      <article class="kombi" data-swiper-item>
+        <img class="kombi__img" src="img/living-window-800.webp" srcset="img/living-window-800.webp 800w, img/living-window-1400.webp 1400w" sizes="(min-width:900px) 27vw, 320px" alt="" loading="lazy" decoding="async">
+        <div class="kombi__body">
+          <h3 class="hl-s kombi__title">Bjørka</h3>
+          <div class="kombi__chips"><span class="chip">127 m²</span><span class="chip">3 Bedrooms</span><span class="chip">Sauna</span></div>
+          <a class="btn" href="#"><span>Book a stay</span></a>
+        </div>
+      </article>
+    </div>
+    <div class="chalets__row r2">
+      <article class="kombi" data-swiper-item>
+        <img class="kombi__img" src="img/living-window-800.webp" srcset="img/living-window-800.webp 800w, img/living-window-1400.webp 1400w" sizes="(min-width:900px) 27vw, 320px" alt="" loading="lazy" decoding="async">
+        <div class="kombi__body">
+          <h3 class="hl-s kombi__title">Skaret</h3>
+          <div class="kombi__chips"><span class="chip">127 m²</span><span class="chip">3 Bedrooms</span></div>
+          <a class="btn" href="#"><span>Book a stay</span></a>
+        </div>
+      </article>
+      <article class="kombi" data-swiper-item>
+        <img class="kombi__img" src="img/living-window-800.webp" srcset="img/living-window-800.webp 800w, img/living-window-1400.webp 1400w" sizes="(min-width:900px) 27vw, 320px" alt="" loading="lazy" decoding="async">
+        <div class="kombi__body">
+          <h3 class="hl-s kombi__title">Skaret</h3>
+          <div class="kombi__chips"><span class="chip">127 m²</span><span class="chip">3 Bedrooms</span></div>
+          <a class="btn" href="#"><span>Book a stay</span></a>
+        </div>
+      </article>
+      <article class="kombi" data-swiper-item>
+        <img class="kombi__img" src="img/living-window-800.webp" srcset="img/living-window-800.webp 800w, img/living-window-1400.webp 1400w" sizes="(min-width:900px) 27vw, 320px" alt="" loading="lazy" decoding="async">
+        <div class="kombi__body">
+          <h3 class="hl-s kombi__title">Skaret</h3>
+          <div class="kombi__chips"><span class="chip">127 m²</span><span class="chip">3 Bedrooms</span></div>
+          <a class="btn" href="#"><span>Book a stay</span></a>
+        </div>
+      </article>
+    </div>
   </div>
-  <div class="chalets__row">
-    <article class="kombi" id="skaret">
-      <img class="kombi__img" src="img/living-window-800.webp" srcset="img/living-window-800.webp 800w, img/living-window-1400.webp 1400w" sizes="(min-width:801px) 27vw, 100vw" alt="Living room of chalet Skaret" loading="lazy" decoding="async">
-      <div class="kombi__body"><div class="line line--fix50"></div><h3 class="hl-m kombi__title">Skaret</h3><div class="kombi__chips"><span class="chip">2 Bedrooms</span></div></div>
-      <a class="btn" href="#booking"><span>Book a stay</span></a>
-    </article>
+  <div class="swiper-ctl" data-swiper-ctl="chalet-list">
+    <div class="swiper-ctl__in">
+      <button class="swiper-ctl__btn" type="button" data-dir="-1" aria-controls="chalet-list" aria-label="Previous"><img src="img/icons/arrow-l.svg" alt="" width="19" height="23"><img class="is-hover" src="img/icons/arrow-l-hover.svg" alt="" width="19" height="23"></button>
+      <div class="swiper-ctl__bar" aria-hidden="true"><i class="swiper-ctl__thumb"></i></div>
+      <button class="swiper-ctl__btn" type="button" data-dir="1" aria-controls="chalet-list" aria-label="Next"><img src="img/icons/arrow-r.svg" alt="" width="19" height="23"><img class="is-hover" src="img/icons/arrow-r-hover.svg" alt="" width="19" height="23"></button>
+    </div>
   </div>
-  <div class="band"><h2 class="hl-m">Basics:</h2></div>
-  <div class="basics">
-    <div class="basics__row"><div class="tbs"><p>Chalet Base Area: 80 m²</p></div><div class="tbs"><p>Unobstructed Fjord view</p></div><div class="tbs"><p>Open-concept living area over 2 floors</p></div><div class="tbs"><p>2–3 bedrooms with full-size double beds</p></div><div class="tbs"><p>Main room: 41 m²</p></div><div class="tbs"><p>Gallery floor: 26 m²</p></div><div class="tbs"><p>Panoramic window front: 12 m</p></div><div class="tbs"><p>Balcony: 4.5 m²</p></div></div>
-    <div class="basics__row"><div class="tbs"><p>Dining seating for up to 8 guests</p></div><div class="tbs"><p>Fully equipped kitchen</p></div><div class="tbs"><p>Bathroom with walk-in shower, washing machine, and dryer</p></div><div class="tbs"><p>Parking space &amp; e-charging point</p></div><div class="tbs"><p>Underfloor heating</p></div><div class="tbs"><p>Wood-burning Stove</p></div><div class="tbs"><p>High-speed Wi-Fi</p></div><div class="tbs"><p>Flat TV with Video Streaming</p></div></div>
-  </div>
-  <div class="plans">
-    <figure class="plan"><img src="img/floorplan-eg.webp" alt="Floor plan ground floor, chalet Tind" width="1200" height="720" loading="lazy"><figcaption><span>Chalet</span><strong>»Tind«</strong><span>Ground floor</span></figcaption></figure>
-    <figure class="plan"><img src="img/floorplan-og.webp" alt="Floor plan top floor, chalet Tind" width="1200" height="720" loading="lazy"><figcaption><span>Chalet</span><strong>»Tind«</strong><span>Top floor</span></figcaption></figure>
-  </div>
+
+  <div class="band band--basics"><div class="line"></div><h2 class="hl-m">Basics:</h2><div class="line"></div></div>
 </div>
-<section class="mix" aria-label="Experiences">
-  <div class="mix__a"><img class="" src="img/jetty-1400.webp" srcset="img/jetty-800.webp 800w, img/jetty-1400.webp 1400w, img/jetty-2100.webp 2100w" sizes="40vw" alt="" loading="lazy" decoding="async"></div>
-  <div class="mix__b"><img class="" src="img/eagle-1400.webp" srcset="img/eagle-800.webp 800w, img/eagle-1400.webp 1400w, img/eagle-2100.webp 2100w" sizes="30vw" alt="" loading="lazy" decoding="async"></div>
-  <div class="mix__c"><img class="" src="img/photographer-1400.webp" srcset="img/photographer-800.webp 800w, img/photographer-1400.webp 1400w, img/photographer-2100.webp 2100w" sizes="60vw" alt="" loading="lazy" decoding="async">
-    <div class="tb tb--ice" style="left:50%;right:auto;transform:translateX(-50%)">
-      <div class="line"></div><h2 class="hl-m">365 Days<br>of arctic<br>experience</h2>
-      <p>Additional services and stirring moments for your stay</p>
-      <a class="btn btn--dark" href="#"><span>See more</span></a><div class="line"></div>
+
+<!-- Faktenblock: PC umbrechend (Textbox S) · TAB/PHN einzeilig als Swiper -->
+<div class="fakten" id="fakten" aria-label="Basics" data-swiper-track>
+    <div class="fakten__row"><div class="fakten__grp"><div class="tbs"><p>Chalet <br>Base Area:<br>80 m²</p></div><div class="tbs"><p>Unobstructed <br>Fjord view</p></div><div class="tbs"><p>Open-concept <br>living area <br>over 2 floors</p></div><div class="tbs"><p>2–3 bedrooms<br>with full-size<br>double beds</p></div></div><div class="fakten__grp"><div class="tbs"><p>Dining seating <br>for up to <br>8 guests</p></div><div class="tbs"><p>Fully <br>equipped <br>kitchen</p></div><div class="tbs"><p>Bathroom with walk-in<br>shower, washing<br>machine, and dryer</p></div><div class="tbs"><p>Parking space &amp; <br>e-charging<br>point</p></div></div></div>
+    <div class="fakten__row"><div class="fakten__grp"><div class="tbs"><p>Main <br>room: <br>41 m²</p></div><div class="tbs"><p>Gallery <br>floor: <br>26 m²</p></div><div class="tbs"><p>Panoramic<br>window front:<br>12 m</p></div><div class="tbs"><p>Balcony: <br>4.5 m²</p></div></div><div class="fakten__grp"><div class="tbs"><p>Underfloor<br>heating</p></div><div class="tbs"><p>Wood-<br>Burning<br>Stove</p></div><div class="tbs"><p>High-<br>speed <br>Wi-Fi</p></div><div class="tbs"><p>Flat TV <br>with Video <br>Streaming</p></div></div></div>
+</div>
+  <div class="swiper-ctl" data-swiper-ctl="fakten">
+    <div class="swiper-ctl__in">
+      <button class="swiper-ctl__btn" type="button" data-dir="-1" aria-controls="fakten" aria-label="Previous"><img src="img/icons/arrow-l.svg" alt="" width="19" height="23"><img class="is-hover" src="img/icons/arrow-l-hover.svg" alt="" width="19" height="23"></button>
+      <div class="swiper-ctl__bar" aria-hidden="true"><i class="swiper-ctl__thumb"></i></div>
+      <button class="swiper-ctl__btn" type="button" data-dir="1" aria-controls="fakten" aria-label="Next"><img src="img/icons/arrow-r.svg" alt="" width="19" height="23"><img class="is-hover" src="img/icons/arrow-r-hover.svg" alt="" width="19" height="23"></button>
+    </div>
+  </div>
+
+<!-- Section Grundrisse -->
+<section class="plans" aria-label="Floor plans">
+  <figure class="plan"><img src="img/floorplan-eg.webp" alt="Floor plan ground floor, chalet Tind" width="1200" height="720" loading="lazy"><figcaption><span>Chalet</span><strong>»Tind«</strong><span>Ground floor</span></figcaption></figure>
+  <figure class="plan"><img src="img/floorplan-og.webp" alt="Floor plan top floor, chalet Tind" width="1200" height="720" loading="lazy"><figcaption><span>Chalet</span><strong>»Tind«</strong><span>Top floor</span></figcaption></figure>
+</section>
+
+<!-- SUB 3 Panel unten -->
+<section class="mix grid14" aria-label="365 days of arctic experience">
+  <div class="mix__a"><img src="img/jetty-1400.webp" srcset="img/jetty-800.webp 800w, img/jetty-1400.webp 1400w, img/jetty-2100.webp 2100w" sizes="(min-width:900px) 42vw, 95vw" alt="" loading="lazy" decoding="async"></div>
+  <div class="mix__b"><img src="img/eagle-1400.webp" srcset="img/eagle-800.webp 800w, img/eagle-1400.webp 1400w, img/eagle-2100.webp 2100w" sizes="(min-width:900px) 32vw, 65vw" alt="" loading="lazy" decoding="async"></div>
+  <div class="mix__c">
+    <img src="img/photographer-1400.webp" srcset="img/photographer-800.webp 800w, img/photographer-1400.webp 1400w, img/photographer-2100.webp 2100w" sizes="(min-width:900px) 58vw, 95vw" alt="" loading="lazy" decoding="async">
+    <div class="tb tb--ice tb--ice80">
+      <div class="line"></div>
+      <h2 class="tb__hl">365 Days<br>of arctic<br>experience</h2>
+      <p class="tb__txt">Additional services and stirring moments for your stay</p>
+      <a class="btn btn--dark" href="#"><span>See more</span></a>
+      <div class="line"></div>
     </div>
   </div>
 </section>
 </main>
+
+<!-- FOOTER Desktop komplett / Mobile komplett -->
 <footer class="footer">
   <div class="footer__fade" aria-hidden="true"></div>
   <div class="footer__main">
@@ -108,5 +183,6 @@
   </div>
 </footer>
 <script src="js/davvi.js" defer></script>
+<script src="js/swiper.js" defer></script>
 </body>
 </html>
