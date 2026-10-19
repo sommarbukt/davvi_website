@@ -23,6 +23,18 @@ HTML, CSS und JS werden direkt ausgeliefert (Vercel, Framework „Other“, ohne
   TAB und PHN (Stand 15.10.2026). Auf TAB/PHN laufen Kombipanels und Faktenblock als Swiper (`js/swiper.js`,
   Pfeile in `img/icons/`). Buchungswidget und „Book a stay“ sind Platzhalter wie im Figma, Lodgify ist nicht eingebunden.
   Inhalte der Kombipanels (3× Skaret, gleiches Bild) und Grundrisse (nur Tind) sind Figma-Platzhalter.
+- **Unterseiten SUB 1, SUB 2, SUB 4 (Stand 19.10.2026)** nach den Figma-Frames PC XL/L/M, TAB, PHN:
+  - `vibrant-arctic.html` (SUB 1 „Vibrant Arctic“): Collage auf Ice-Grey-Band, Textbox-Reihe als Swiper (auch auf PC),
+    Block Link Chalets, Panel unten wie Chalets-Seite, Section ABOUT + CONTACT.
+  - `the-place.html` (SUB 2 „A distinct Place“): Bildstreifen, Gletscher-Reihe, Tiere, Ridge-Karte, Block Link Chalets 2.
+    Die Karte (`img/ridge-map-*.webp`) ist ein 1×-Render aus Figma – Originalgrafik (SVG/PNG mit Transparenz) fehlt noch.
+  - `experiences.html` (SUB 4 „365 Days“): Faktenblock, Kombipanels Activities (Hero XL, Zweierreihe, Swiper),
+    Block Chalets + Booking (Lodgify-Platzhalter). Im Figma sind nur die PC-Zustände fertig; TAB/PHN sind abgeleitet.
+  - Gemeinsame neue Komponenten am Ende von `css/davvi.css` (`.vlf`, `.band--*`, `.hrow`/`.tbox`, `.blc`, `.contact`, `.act`, `.bcb` …).
+    Hero-Headline je Seite über `--sh-left` (inline am Hero).
+  - Platzhalter wie im Figma: Blindtexte (SUB 1 Textbox-Reihe, SUB 2 Textbox unter der Karte), alle Aktivitäten-Panels
+    (Orca, „Whale watching“). `img/cloudberry-740.webp` ist nur ein Figma-Render (Original fehlt im Bildpool).
+- Menü: alle vier Punkte verlinken jetzt auf die Unterseiten (auch auf der Startseite), „See more“-Buttons ebenso.
 - **Slider Lab:** `slider-lab.html` öffnen → Dev-Mode des Sliders im selben Bildrahmen wie auf der Startseite.
   „Konfiguration exportieren“ → heruntergeladene `slider-config.js` nach `js/` kopieren. Original-Lieferung
   (inkl. Demo-JPGs und Readme): `../00_Doku/Lieferungen/slider-minimal-1.0.0/`.

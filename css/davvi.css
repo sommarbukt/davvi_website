@@ -341,7 +341,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .hero--sub .hero__logo { display: none; }
 .hero--sub .hero__progress { left: calc(16.67% + 1.67px); right: calc(16.67% + 1.67px); }
 /* Headline L, zweite Zeile im Figma mit 13 Leerzeichen eingerückt */
-.sh { position: absolute; z-index: 2; left: calc(50% - 368px); bottom: 92px; margin: 0; white-space: pre;
+.sh { position: absolute; z-index: 2; left: var(--sh-left, calc(50% - 368px)); bottom: 92px; margin: 0; white-space: pre;
   font-family: var(--f-head); font-weight: 200; text-transform: uppercase;
   font-size: var(--h-l); line-height: var(--h-l-lh); letter-spacing: var(--h-l-ls); }
 .sh__l1, .sh__l2 { display: block; }
@@ -507,4 +507,239 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   .mix .tb__txt { width: auto; font-size: var(--t-s); line-height: var(--t-s-lh); letter-spacing: var(--t-s-ls); }
   .mix__a { order: 2; aspect-ratio: 340 / 200; }
   .mix > .mix__b { order: 3; width: 67.35%; aspect-ratio: 229 / 180; }
+}
+
+/* ==========================================================================
+   UNTERSEITEN SUB 1 „Vibrant Arctic“ (vibrant-arctic.html), SUB 2 „A distinct Place“ (the-place.html),
+   SUB 4 „365 Days“ (experiences.html) – Figma-Frames SUB 1/2/4 – PC XL / L / M, TAB, PHN (Stand 19.10.2026).
+   Gemeinsame neue Komponenten zuerst, danach seitenspezifische Blöcke.
+   Headline im Hero: .sh mit --sh-left je Seite (inline am Hero gesetzt), Einrückung über .sh__ind.
+   ========================================================================== */
+
+/* Zeilenumbruch der Hero-Headline schon im TAB (SUB 4: vierzeilig ab TAB) */
+.sh__br--tab { display: none; }
+/* Umbrüche nur in bestimmten Zuständen: .br-l nur PC XL/L (ab 1200 px), .br-tab nur TAB */
+.br-tab { display: none; }
+@media (max-width: 1199.98px) { .br-l { display: none; } }
+@media (min-width: 600px) and (max-width: 899.98px) { .br-tab { display: inline; } }
+
+/* UG-VLF Block OU als Hintergrund eines Abschnitts: Fläche mit 300 px Verlauf oben und unten */
+.vlf { position: relative; isolation: isolate; }
+.vlf::before { content: ""; position: absolute; inset: 0; z-index: -1; opacity: var(--vlf-o, .75);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0, var(--vlf-c, #000) 300px, var(--vlf-c, #000) calc(100% - 300px), rgba(0, 0, 0, 0) 100%); }
+.vlf--ice { --vlf-c: var(--ice-grey); --vlf-o: .3; }
+.vlf--b50 { --vlf-o: .5; }
+
+/* Textbox L als Band – Varianten zu .band (ohne Fläche) */
+.band--r  { margin-left: calc(var(--margin) + 6 * var(--step)); }        /* Spalte 7 bis 12 */
+.band--l6 { margin-right: calc(var(--margin) + 6 * var(--step)); }       /* Spalte 1 bis 6 */
+.band--to11 { margin-left: 0; margin-right: calc(var(--margin) + var(--step)); }   /* linker Seitenrand bis Ende Spalte 11 */
+.band--full { margin-left: 0; margin-right: 0; }
+.band--h265 { height: 265px; }
+.band--h290 { height: 290px; }
+.band--hug { height: auto; }
+.band--hug .line, .band--hug50 .line { flex: none; height: 50px; }
+.band--txt { width: 600px; max-width: calc(100% - 2 * var(--margin)); margin-left: auto; margin-right: auto; }
+.band--txt p { white-space: normal; }
+.band--dark .line { background: rgba(0, 0, 0, .35); }
+
+/* Textbox-L-Reihe und Kombipanel-Reihe als Swiper (alle Zustände): Spur mit Rand, Boxen 4 Spalten (TAB 6) */
+.hrow { display: flex; align-items: flex-start; gap: var(--gutter); padding: 0 var(--margin);
+  overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scroll-padding-inline: var(--margin);
+  scrollbar-width: none; --tcol: calc((100% - 11 * var(--gutter)) / 12); }
+.hrow::-webkit-scrollbar { display: none; }
+.hrow > * { flex: 0 0 calc(4 * var(--tcol) + 3 * var(--gutter)); scroll-snap-align: start; }
+.swiper-ctl--all { display: block; }
+
+/* Textbox L mit Verlauf (Box in der Reihe): feste 30-px-Linien, Headline S + Fließtext S */
+.tbox { display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center;
+  padding: var(--box-l-pad-o) var(--box-l-pad-r) var(--box-l-pad-u) var(--box-l-pad-l);
+  background: linear-gradient(180deg, rgba(0, 0, 0, .3), rgba(0, 0, 0, 0)); }
+.tbox .line { flex: none; height: 30px; min-height: 0; }
+.tbox .hl-s, .tbox p { width: 100%; }
+.tbox p { font-size: var(--t-s); line-height: var(--t-s-lh); letter-spacing: var(--t-s-ls); }
+
+/* Block Link Chalets: Bild randabfallend, Textbox ohne Fläche über der linken Hälfte */
+.blc { position: relative; overflow: hidden; aspect-ratio: 1870 / 1090; margin-top: 60px; margin-bottom: var(--gutter); }
+.blc > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.blc .tb { left: 0; right: calc(50% + 5px); width: auto; }
+.blc .tb::before { display: none; }
+/* Block Link Chalets 2 (SUB 2): im Rand, feste Höhe, Headline schwarz, BTN Dark */
+.blc--dark { aspect-ratio: auto; height: 700px; margin: 0 var(--margin); }
+.blc--dark .tb { color: var(--schwarz); }
+.blc--dark .line { background: rgba(0, 0, 0, .35); }
+
+/* Section ABOUT + CONTACT */
+.contact { position: relative; isolation: isolate; display: flex; flex-direction: column; align-items: center; gap: 15px; text-align: center;
+  padding: var(--box-l-pad-o) var(--box-l-pad-r) var(--box-l-pad-u) var(--box-l-pad-l); }
+.contact .line { flex: none; height: 200px; min-height: 0; }
+.contact__btns { display: flex; justify-content: center; gap: var(--gutter); }
+/* VLF U (SUB 4): Verlauf schwarz → transparent, 400 px, hinter dem Kontaktblock */
+.contact--vlf::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 400px; z-index: -1;
+  background: linear-gradient(180deg, #000, rgba(0, 0, 0, 0)); }
+
+/* SUB 3 Panel unten ohne Abstand nach unten (Kontaktblock folgt direkt) */
+.mix--flush { margin-bottom: 0; }
+
+/* ---- SUB 1: Collage „Vibrant“ ------------------------------------------------------------------ */
+.vcol { row-gap: var(--gutter); }
+.vcol > * { position: relative; overflow: hidden; }
+.vcol img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.vcol .va { grid-column: 1 / 13; grid-row: 1; aspect-ratio: 2 / 1; }
+.vcol .vt { grid-column: 2 / 6;  grid-row: 2; overflow: visible; }
+.vcol .vb { grid-column: 6 / -1; grid-row: 2; aspect-ratio: 5 / 3; }
+.vcol .vc1 { grid-column: 3 / 8;  grid-row: 3; aspect-ratio: 5 / 3; }
+.vcol .vc2 { grid-column: 8 / 13; grid-row: 3; aspect-ratio: 5 / 3; }
+.vcol .tb { position: relative; inset: auto; width: auto; height: 100%; }
+.vcol .tb::before { display: none; }
+.vcol .tb__hl { white-space: normal; }
+
+/* ---- SUB 2: Bildstreifen, Gletscher-Reihe, Tiere, Ridge-Karte ---------------------------------- */
+.strip { position: relative; overflow: hidden; aspect-ratio: 3 / 1; }
+.strip img, .glacier__img img, .animals img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.glacier { display: flex; align-items: stretch; gap: var(--gutter); margin: var(--gutter) var(--margin); }
+.glacier .tb { position: static; flex: none; width: max-content; }
+.glacier .tb::before { display: none; }
+.glacier__img { position: relative; overflow: hidden; flex: 1 1 0; min-width: 0; aspect-ratio: 210 / 100; }
+.glacier__band { display: none; }
+.animals { row-gap: var(--gutter); }
+.animals > div { position: relative; overflow: hidden; aspect-ratio: 590 / 338; }
+.animals .an1 { grid-column: 2 / 6; } .animals .an2 { grid-column: 6 / 10; } .animals .an3 { grid-column: 10 / 14; }
+/* Ridge-Karte: Grafik bleibt gleich groß, Land (links) und Fjord (rechts) laufen seitlich aus */
+.ridge { position: relative; height: 450px; overflow: hidden; display: flex; justify-content: center; }
+.ridge picture { display: contents; }
+.ridge img { flex: none; width: auto; height: 100%; max-width: none; }
+
+/* ---- SUB 4: Faktenblock, Kombipanels Activities, Block Chalets + Booking ----------------------- */
+.fakten--days { padding: 0 calc(var(--margin) + var(--step)); }
+.fakten--days .fakten__brk { display: none; }
+@media (min-width: 900px) and (max-width: 1199.98px) {
+  .fakten--days { padding: 0; }
+  .fakten--days .fakten__brk { display: block; flex: 0 0 100%; height: 0; }
+}
+/* Kombipanel Activities: Bild 3:2 (Hero XL 2:1), darunter Fläche mit Verlauf, Headline S und Chips */
+.act { display: flex; flex-direction: column; }
+.act__img { position: relative; overflow: hidden; aspect-ratio: 3 / 2; }
+.act__img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.act--hero .act__img { aspect-ratio: 2 / 1; }
+.act__body { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 30px; text-align: center;
+  background: linear-gradient(180deg, rgba(0, 0, 0, .3), rgba(0, 0, 0, 0)); }
+.act__title { width: 100%; }
+.act__chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; width: 100%; }
+/* PC: Hero XL ab Spalte 3 bis zum rechten Rand, darunter zwei Panels vom linken Rand bis Spalte 11 */
+.acts { row-gap: 0; }
+.acts .a1 { grid-column: 4 / -1; grid-row: 1; }
+.acts .act-pair { grid-column: 1 / 13; grid-row: 2; display: grid; grid-template-columns: 1fr 1fr; gap: var(--gutter); }
+/* Block Chalets + Booking: Bild 900 hoch, Buchungs-Widget darüber */
+.bcb { position: relative; height: 900px; overflow: hidden; }
+.bcb > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; }
+.bcb .booking { position: absolute; left: 0; right: 0; top: 127px; background: none; }
+/* VLF O: Verlauf transparent → schwarz hinter „Choose your season …“ */
+.band--vlfo { background: linear-gradient(180deg, rgba(0, 0, 0, 0), #000); }
+
+/* ---- SUB 1/2/4 · TAB (600–899 px) ---------------------------------------------------------------- */
+@media (max-width: 899.98px) {
+  .sh__br--tab { display: inline; }
+  .band--r, .band--l6 { margin-left: var(--margin); margin-right: var(--margin); }
+  .band--to11 { margin-right: calc(var(--margin) + 2 * var(--step)); }
+  .band--h265 { height: 251px; }
+  .band--h290 { height: 273px; }
+  .band--hug .line { height: 50px; }
+  .band--txt { width: 450px; }
+
+  .hrow > * { flex-basis: calc(6 * var(--tcol) + 5 * var(--gutter)); }
+  .blc { aspect-ratio: auto; height: 700px; margin: 40px 0 var(--gutter) var(--margin); }
+  .blc .tb { right: calc(50% + 4.5px); }
+  .blc--dark { margin: 0 var(--margin); }
+  /* neue Komponenten behalten im TAB Headline M / Fließtext STD (die TAB-Regel für .tb__hl gilt nur den Home-Panels) */
+  .vcol .tb__hl, .blc .tb__hl, .contact .tb__hl, .band .tb__hl, .glacier .tb__hl {
+    font-weight: 200; font-size: var(--h-m); line-height: var(--h-m-lh); letter-spacing: var(--h-m-ls); }
+  .vcol .tb__txt, .band .tb__txt { font-size: var(--t-std); line-height: var(--t-std-lh); letter-spacing: var(--t-std-ls); }
+
+  /* SUB 1 Collage: Textbox Spalte 1–5, Bild B füllt die Zeilenhöhe */
+  .vcol .va { aspect-ratio: 626 / 312; }
+  .vcol .vt { grid-column: 2 / 7; }
+  .vcol .vb { grid-column: 7 / -1; aspect-ratio: 405 / 320; }
+
+  /* SUB 2 */
+  .strip { aspect-ratio: auto; height: 400px; }
+  .glacier { height: 260px; }
+  .glacier__img { aspect-ratio: auto; }
+  .animals > div { aspect-ratio: 210 / 160; }
+  .ridge { height: 340px; margin: 0 var(--margin);
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 22%, #000 78%, transparent);
+            mask-image: linear-gradient(90deg, transparent, #000 22%, #000 78%, transparent); }
+
+  /* SUB 4: Fakten in drei Dreiergruppen, kein Swiper */
+  .fakten--days .fakten__row { display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; }
+  .fakten--days .tbs { flex: 0 0 calc((100% - 10px) / 3); }
+  /* Panels untereinander, abwechselnd bündig: A linker Rand bis Spalte 12 (3:2), B ab Spalte 2 (2:1), C bis Spalte 10 (2:1) */
+  .acts .act-pair { display: contents; }
+  .acts .a2 { grid-column: 1 / 14; grid-row: 1; }
+  .acts .a1 { grid-column: 3 / -1; grid-row: 2; }
+  .acts .a3 { grid-column: 1 / 12; grid-row: 3; }
+  .acts .a3 .act__img { aspect-ratio: 2 / 1; }
+  .act__body { padding: 30px; }
+}
+
+/* ---- SUB 1/2/4 · PHN (unter 600 px) -------------------------------------------------------------- */
+@media (max-width: 599.98px) {
+  .band--hug50 .line, .band--phn50 .line { flex: none; height: 50px; }
+  .band--phn50 { height: auto; }
+  .band--h265, .band--h290 { height: 250px; }
+  .band--txt { width: auto; max-width: none; margin: 0 var(--margin); }
+  .band--txt .tb__txt { font-size: var(--t-s); line-height: var(--t-s-lh); letter-spacing: var(--t-s-ls); }
+
+  .hrow { padding: 0 calc(var(--margin) + var(--gutter)); scroll-padding-inline: calc(var(--margin) + var(--gutter)); }
+  .hrow > * { flex-basis: 100%; scroll-snap-align: center; }
+
+  .blc { height: 635px; margin-top: 40px; }
+  .blc .tb { top: 0; right: 0; bottom: auto; gap: 10px; }
+  .blc .tb::before { display: block; background: var(--gruen); opacity: .9; }
+  .blc .tb .line { flex: none; height: 30px; min-height: 0; }
+  .blc .tb__hl { font-weight: 300; font-size: var(--h-s); line-height: var(--h-s-lh); letter-spacing: var(--h-s-ls); }
+  .blc--dark { height: 600px; margin: 0 var(--margin); }
+  .blc--dark .tb { bottom: 0; gap: 15px; }
+  .blc--dark .tb::before { display: none; }
+  .blc--dark .tb .line { flex: 1 1 0; height: auto; }
+  .blc--dark .tb .line:first-child { flex: none; height: 50px; }
+  .blc--dark .tb__hl { font-weight: 200; font-size: var(--h-m); line-height: var(--h-m-lh); letter-spacing: var(--h-m-ls); }
+
+  .contact__btns { flex-direction: column; align-items: center; }
+
+  /* SUB 1 Collage einspaltig */
+  .vcol .va { grid-column: 1 / -1; aspect-ratio: 3 / 2; }
+  .vcol .vt { grid-column: 2 / -2; grid-row: 2; }
+  .vcol .vt .tb { gap: 10px; }
+  .vcol .vt .line { flex: none; height: 30px; min-height: 0; }
+  .vcol .vt .tb__hl { font-weight: 300; font-size: var(--h-s); line-height: var(--h-s-lh); letter-spacing: var(--h-s-ls); }
+  .vcol .vt .tb__txt { width: auto; font-size: var(--t-s); line-height: var(--t-s-lh); letter-spacing: var(--t-s-ls); }
+  .vcol .vb { grid-column: 2 / -1; grid-row: 3; aspect-ratio: 3 / 2; }
+  .vcol .vc1 { grid-column: 3 / -1; grid-row: 4; aspect-ratio: 3 / 2; }
+  .vcol .vc2 { grid-column: 3 / -1; grid-row: 5; aspect-ratio: 3 / 2; }
+
+  /* SUB 2 */
+  .strip { height: 250px; }
+  .glacier { display: block; height: auto; margin: 0; }
+  .glacier > .tb { display: none; }
+  .glacier__band { display: flex; }
+  .glacier__img { display: block; margin: 0 var(--margin) var(--gutter); height: 200px; }
+  .animals { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); grid-template-rows: 120px 120px; gap: var(--gutter);
+    margin: 0 var(--margin); }
+  .animals > div { aspect-ratio: auto; }
+  .animals .an1 { grid-column: 1 / 3; grid-row: 1; }
+  .animals .an1 img { object-position: left center; }
+  .animals .an3 { grid-column: 3 / 6; grid-row: 1; }
+  .animals .an2 { grid-column: 3 / 6; grid-row: 2; }
+  .ridge { height: auto; margin: 0; padding: 0 40px; -webkit-mask-image: none; mask-image: none; }
+  .ridge img { width: 100%; max-width: 280px; height: auto; }
+
+  /* SUB 4 (PHN im Figma noch nicht gestaltet – abgeleitet aus TAB und den anderen Unterseiten) */
+  .fakten--days { padding: 0 var(--margin); }
+  .fakten--days .tbs { flex-basis: calc((100% - 5px) / 2); }
+  .acts .a2 { grid-column: 1 / -1; }
+  .acts .a1 { grid-column: 2 / -1; }
+  .acts .a3 { grid-column: 1 / 7; }
+  .bcb { height: 635px; }
+  .bcb .booking { top: 60px; }
 }
