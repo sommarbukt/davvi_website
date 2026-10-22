@@ -36,12 +36,16 @@
 </div>
 
 <main id="main">
-<!-- DVV Hero SUB (PC) / DVV Hero HOME TAB / DVV Hero HOME PHN: mit Randabstand, unten bis zur Viewport-Grenze -->
-<header class="hero hero--sub" id="top">
-  <img class="hero__img" src="img/hero-chalets-1400.webp" srcset="img/hero-chalets-800.webp 800w, img/hero-chalets-1400.webp 1400w, img/hero-chalets-2100.webp 2100w" sizes="100vw" alt="Chalet with green roof above the fjord in autumn">
+<!-- DVV Hero SUB: Multiresponsive Slider (Engine vendor/davvi-slider, Daten js/slider-config-chalets.js, Anbindung js/hero.js) -->
+<header class="hero hero--sub" id="top" data-slider>
+  <div class="layers" aria-hidden="true"></div>
+  <noscript><img class="hero__img" src="img/hero/chalets/01-img-2026-05-08-3387.webp" alt="Arctic landscape at the Ullsfjord"></noscript>
   <img class="hero__logo" src="logo/davvi_logo_weiss.svg" alt="" width="110" height="65">
   <h1 class="sh"><span class="sh__l1">Boundless<br class="sh__br"> nature,</span><span class="sh__l2"><span class="sh__ind">             </span>a steady<br class="sh__br"> home</span></h1>
-  <div class="hero__progress" aria-hidden="true"></div>
+  <div class="hero-bottom">
+    <div class="hero__progress" aria-hidden="true"></div>
+    <button class="hero__pause" type="button" aria-label="Pause slideshow">Pause</button>
+  </div>
 </header>
 
 <!-- SUB 3 Panel 01: Bildcollage im Raster -->
@@ -161,6 +165,15 @@
     </div>
   </div>
 </section>
+<!-- Section ABOUT + CONTACT (Figma SUB 3, Texte R01-03) -->
+<section class="contact" aria-label="Contact">
+  <div class="line"></div>
+  <h2 class="tb__hl">Want to get<br>in touch?</h2>
+  <div class="contact__btns">
+    <a class="btn" href="#"><span>Personal mail</span></a>
+  </div>
+  <div class="line"></div>
+</section>
 </main>
 
 <!-- FOOTER Desktop komplett / Mobile komplett -->
@@ -182,6 +195,11 @@
     </div>
   </div>
 </footer>
+<script src="vendor/davvi-slider-1.0.0/easings.js"></script>
+<script src="vendor/davvi-slider-1.0.0/config-validation.js"></script>
+<script src="vendor/davvi-slider-1.0.0/slider.js"></script>
+<script src="js/slider-config-chalets.js"></script>
+<script src="js/hero.js"></script>
 <script src="js/davvi.js" defer></script>
 <script src="js/swiper.js" defer></script>
 </body>

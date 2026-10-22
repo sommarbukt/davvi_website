@@ -15,7 +15,7 @@
 </head>
 <body>
 <!-- Unterseite SUB 2 „A distinct Place“ – gebaut nach Figma „26-8039-DVV-IN26 – R-00 DEV“
-     (Frames SUB 2 – PC XL / PC L / PC M / TAB / PHN, Stand 19.10.2026). Inhalte 1:1 aus dem Figma (Blindtext wie im Figma). -->
+     (Frames SUB 2 – PC XL / PC L / PC M / TAB / PHN, Stand 19.10.2026). Inhalte aus dem Figma, Texte nach Tabelle R01-03 (22.10.2026). -->
 <a class="skip" href="#main">Skip to content</a>
 
 <!-- HM V1 Menü-Panel (Unterseite) -->
@@ -36,12 +36,16 @@
 </div>
 
 <main id="main">
-<!-- DVV Hero SUB -->
-<header class="hero hero--sub" id="top" style="--sh-left: calc(50% - 256px)">
-  <img class="hero__img" src="img/hero-place-1400.webp" srcset="img/hero-place-800.webp 800w, img/hero-place-1400.webp 1400w, img/hero-place-2100.webp 2100w" sizes="100vw" alt="Aerial view of the ridge above the Ullsfjord">
+<!-- DVV Hero SUB: Multiresponsive Slider (Engine vendor/davvi-slider, Daten js/slider-config-the-place.js, Anbindung js/hero.js) -->
+<header class="hero hero--sub" id="top" data-slider style="--sh-left: calc(50% - 256px)">
+  <div class="layers" aria-hidden="true"></div>
+  <noscript><img class="hero__img" src="img/hero/the-place/01-dji_20260915113044_0146_d.webp" alt="Arctic landscape at the Ullsfjord"></noscript>
   <img class="hero__logo" src="logo/davvi_logo_weiss.svg" alt="" width="110" height="65">
   <h1 class="sh"><span class="sh__l1">Wide<br class="sh__br"> above,</span><span class="sh__l2"><span class="sh__ind">       </span>deep<br class="sh__br"> within</span></h1>
-  <div class="hero__progress" aria-hidden="true"></div>
+  <div class="hero-bottom">
+    <div class="hero__progress" aria-hidden="true"></div>
+    <button class="hero__pause" type="button" aria-label="Pause slideshow">Pause</button>
+  </div>
 </header>
 
 <!-- Textbox L „A natural mountain ridge …“ (PC Spalte 7–12) -->
@@ -77,7 +81,7 @@
 
 <!-- UG-VLF Block OU (Schwarz 75 %): Textbox, Block Link Chalets 2, ABOUT + CONTACT -->
 <div class="vlf">
-  <div class="band band--hug band--txt"><div class="line"></div><p class="tb__txt">Das hier ist Blindtext, der später durch richtigen Text ersetzt wird. Das hier ist Blindtext, der später durch richtigen Text ersetzt wird. Das hier ist Blindtext, der später durch richtigen Text ersetzt wird. Das hier ist Blindtext, der später durch richtigen Text ersetzt wird. Das hier ist Blindtext, der später durch richtigen Text ersetzt wird.</p><div class="line"></div></div>
+  <div class="band band--hug band--txt"><div class="line"></div><p class="tb__txt">Above Ullsfjord, a natural ridge of rocks, moss, and scattered groups of trees stretches out—offering a magnificent panoramic view of the Lyngen Alps, with peaks reaching up to 1,800 meters. The idea to build a series of exclusive panoramic chalets here and turn this location into a destination for international guests came from investor Norman Vogel. He started visiting the region every year in 2015 and has been spending half of each year in Sjursnes since 2022. Davvi Ridge currently consists of six chalets and has additional space for future growth.</p><div class="line"></div></div>
 
   <section class="blc blc--dark" aria-label="The chalets">
     <img src="img/cabin-moss-1400.webp" srcset="img/cabin-moss-800.webp 800w, img/cabin-moss-1400.webp 1400w, img/cabin-moss-2100.webp 2100w" sizes="100vw" alt="Chalet with turf roof on the mossy slope above the fjord" loading="lazy" decoding="async">
@@ -120,6 +124,11 @@
     </div>
   </div>
 </footer>
+<script src="vendor/davvi-slider-1.0.0/easings.js"></script>
+<script src="vendor/davvi-slider-1.0.0/config-validation.js"></script>
+<script src="vendor/davvi-slider-1.0.0/slider.js"></script>
+<script src="js/slider-config-the-place.js"></script>
+<script src="js/hero.js"></script>
 <script src="js/davvi.js" defer></script>
 <script src="js/swiper.js" defer></script>
 </body>

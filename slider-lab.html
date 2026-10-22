@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="robots" content="noindex,nofollow" />
     <title>DAVVI – Slider Lab</title>
-    <!-- Slider Lab: Andreas' Dev-Mode aus slider-minimal 1.0.0, angebunden an js/slider-config.js der Website.
-         Werte einstellen → „Konfiguration exportieren“ → heruntergeladene slider-config.js nach js/ kopieren.
+    <!-- Slider Lab: Andreas' Dev-Mode aus slider-minimal 1.0.0, angebunden an die Slider-Configs der Website (js/slider-config.js = Startseite, js/slider-config-<seite>.js = Unterseiten; Auswahl über ?page=<seite>).
+         Werte einstellen → „Konfiguration exportieren“ → heruntergeladene slider-config.js nach js/ kopieren (bei Unterseiten in slider-config-<seite>.js umbenennen).
          Der Bildrahmen entspricht dem Figma-Hero der Startseite (Viewport minus Menü; PHN volle Höhe),
          damit Zoom und Schwenk genauso wirken wie auf der Website. -->
     <link rel="stylesheet" href="vendor/davvi-slider-1.0.0/preview.css" />
@@ -68,7 +68,13 @@
     <script src="vendor/davvi-slider-1.0.0/config-validation.js"></script>
     <script src="vendor/davvi-slider-1.0.0/slider.js"></script>
     <script src="vendor/davvi-slider-1.0.0/easing-controls.js"></script>
-    <script src="js/slider-config.js"></script>
+    <script>
+      // Seite wählen: slider-lab.html (Startseite) oder slider-lab.html?page=vibrant-arctic | the-place | chalets | experiences
+      (function () {
+        var m = location.search.match(/[?&]page=([a-z-]+)/), page = m && m[1] !== 'home' ? m[1] : '';
+        document.write('<script src="js/slider-config' + (page ? '-' + page : '') + '.js"><\/script>');
+      })();
+    </script>
     <script>window.DAVVI_CONFIG.devMode = true;</script>
     <script src="vendor/davvi-slider-1.0.0/preview.js"></script>
   </body>

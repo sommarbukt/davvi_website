@@ -1,7 +1,8 @@
-// Davvi Slider – Konfiguration des Startseiten-Heros (reine Daten, CMS-tauglich).
-// Werte stammen aus der Lieferung „slider-minimal 1.0.0“ (Andreas, 14.10.2026); Breakpoints an das Figma angepasst
-// (PHN bis 599 px, TAB bis 899 px). Feintuning: slider-lab.html öffnen, „Konfiguration exportieren“ und
-// die heruntergeladene slider-config.js hier 1:1 ersetzen. Bildpfade relativ zur HTML-Seite.
+// Davvi Slider – Hero Startseite (HOME) (reine Daten, CMS-tauglich).
+// Bilder und Startpunkte: Design-Lieferung „Hero Sliders“ (Andreas, Tabelle „Bilder und Startpunkte“ vom 19.10.2026),
+// exportiert nach img/hero/home/ (WebP, max. 1400 px hoch). Startpunkt = Ausgangsecke des Schwenks.
+// Feintuning: slider-lab.html öffnen, „Konfiguration exportieren“ und die heruntergeladene
+// Datei hier 1:1 ersetzen (Dateiname slider-config.js beibehalten). Bildpfade relativ zur HTML-Seite.
 // Hinweis: height/margin wirken nur im Lab-Standalone-Modus; auf der Website bestimmt das Figma-Layout
 // (css/davvi.css) Höhe und Rand des Heros.
 window.DAVVI_CONFIG = {
@@ -24,11 +25,11 @@ window.DAVVI_CONFIG = {
     "phone":   { "height": 72, "margin": 12, "duration": 14 }
   },
   "slides": [
-    { "desktop": "img/hero/dji_20260915113044_0146_d.webp", "tablet": "", "phone": "", "horizontal": "left",  "vertical": "top",    "panning": true },
-    { "desktop": "img/hero/l1000068.webp",                  "tablet": "", "phone": "", "horizontal": "right", "vertical": "bottom", "panning": true },
-    { "desktop": "img/hero/l1000113.webp",                  "tablet": "", "phone": "", "horizontal": "left",  "vertical": "top",    "panning": true },
-    { "desktop": "img/hero/l1000205.webp",                  "tablet": "", "phone": "", "horizontal": "right", "vertical": "bottom", "panning": true },
-    { "desktop": "img/hero/l1000310.webp",                  "tablet": "", "phone": "", "horizontal": "left",  "vertical": "top",    "panning": true },
-    { "desktop": "img/hero/l1000368.webp",                  "tablet": "", "phone": "", "horizontal": "right", "vertical": "bottom", "panning": true }
+    { "desktop": "img/hero/home/01-3376.webp",                              "tablet": "", "phone": "", "horizontal": "right", "vertical": "top",    "panning": true },
+    { "desktop": "img/hero/home/02-107.webp",                               "tablet": "", "phone": "", "horizontal": "left",  "vertical": "top",    "panning": true },
+    { "desktop": "img/hero/home/03-l1000310.webp",                          "tablet": "", "phone": "", "horizontal": "right", "vertical": "bottom", "panning": true },
+    { "desktop": "img/hero/home/04-3526.webp",                              "tablet": "", "phone": "", "horizontal": "left",  "vertical": "bottom", "panning": true },
+    { "desktop": "img/hero/home/05-l1000113.webp",                          "tablet": "", "phone": "", "horizontal": "left",  "vertical": "top",    "panning": true },
+    { "desktop": "img/hero/home/06-img-2026-05-09-3415.webp",               "tablet": "", "phone": "", "horizontal": "right", "vertical": "bottom", "panning": true }
   ]
 };

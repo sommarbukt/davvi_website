@@ -743,3 +743,43 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   .bcb { height: 635px; }
   .bcb .booking { top: 60px; }
 }
+
+/* ---- SUB 4 · Nachtrag 22.10.2026: Figma SUB 4 TAB/PHN fertig gestaltet, Kommentare Andreas (#49–#62) ---------- */
+/* Faktenblock: gruppenbasierter Umbruch – PC L/XL eine Zeile, PC M 5+4, TAB 3+3+3, PHN Swiper (natürliche Boxbreiten) */
+.fakten--days .fakten__brk { display: none; flex: 0 0 100%; height: 0; }
+.swiper-ctl--phn { display: none; }
+@media (min-width: 900px) and (max-width: 1199.98px) {
+  .fakten--days .fakten__brk--pc { display: block; }
+}
+@media (max-width: 899.98px) {
+  .fakten--days[data-swiper-track] { flex-direction: column; overflow: visible; scroll-snap-type: none; }
+  .fakten--days .fakten__row { display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; }
+  .fakten--days .tbs { flex: none; }
+  .fakten--days .fakten__brk--tab { display: block; }
+  .swiper-ctl--phn { display: none; }
+  /* Activities TAB: AKT 01 vom linken Rand (3:2), AKT 02 bis zum rechten Rand (2:1), AKT 03 vom linken Rand (2:1) */
+  .acts .a1 { grid-column: 1 / 14; grid-row: 1; }
+  .acts .a2 { grid-column: 3 / -1; grid-row: 2; }
+  .acts .a3 { grid-column: 1 / 12; grid-row: 3; }
+  .acts .a1 .act__img { aspect-ratio: 3 / 2; }
+  .acts .a2 .act__img, .acts .a3 .act__img { aspect-ratio: 2 / 1; }
+  /* Block Chalets + Booking: feste Höhe, im TAB 800 px (Kommentar #61) */
+  .bcb { height: 800px; }
+}
+@media (max-width: 599.98px) {
+  .fakten--days[data-swiper-track] { flex-direction: row; overflow-x: auto; scroll-snap-type: x mandatory; }
+  .fakten--days .fakten__row { display: contents; }
+  .fakten--days .fakten__brk { display: none; }
+  .swiper-ctl--phn { display: block; }
+  /* Activities PHN: drei Panels 340 breit, abwechselnd bündig, alle Bilder 3:2 (Kommentar #60) */
+  .acts { display: flex; flex-direction: column; }
+  .acts .a1, .acts .a3 { margin-right: 20px; }
+  .acts .a2 { margin-left: 20px; }
+  .acts .a1 .act__img, .acts .a2 .act__img, .acts .a3 .act__img { aspect-ratio: 3 / 2; }
+  /* Swiper der übrigen Aktivitäten: Panels 300 breit ab x = 30 */
+  .hrow--acts { padding: 0 30px; scroll-padding-inline: 30px; }
+  .hrow--acts > * { flex-basis: 300px; scroll-snap-align: start; }
+  /* Block Chalets + Booking: feste Höhe 600 px (Kommentar #62), Widget 30 px unter der Oberkante */
+  .bcb { height: 600px; }
+  .bcb .booking { top: 30px; }
+}

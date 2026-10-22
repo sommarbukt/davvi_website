@@ -15,7 +15,7 @@
 </head>
 <body>
 <!-- Unterseite SUB 4 „365 Days“ – gebaut nach Figma „26-8039-DVV-IN26 – R-00 DEV“
-     (Frames SUB 4 – PC XL / PC L / PC M, Stand 19.10.2026; TAB im Figma unfertig, PHN noch nicht gestaltet – beides abgeleitet). Inhalte 1:1 aus dem Figma (alle Aktivitäten-Panels sind dort noch Platzhalter). -->
+     (Frames SUB 4 – PC XL / PC L / PC M / TAB / PHN, Stand 22.10.2026). Aktivitäten (15) mit Texten und Bildern nach Tabelle R01-03 bzw. Design-Lieferung „Aktivitäten“. -->
 <a class="skip" href="#main">Skip to content</a>
 
 <!-- HM V1 Menü-Panel (Unterseite) -->
@@ -36,42 +36,59 @@
 </div>
 
 <main id="main">
-<!-- DVV Hero SUB -->
-<header class="hero hero--sub" id="top" style="--sh-left: calc(50% - 377px)">
-  <img class="hero__img" src="img/jetty-1400.webp" srcset="img/jetty-800.webp 800w, img/jetty-1400.webp 1400w, img/jetty-2100.webp 2100w" sizes="100vw" alt="Motor boat at the jetty in autumn, mountains mirrored in the fjord">
+<!-- DVV Hero SUB: Multiresponsive Slider (Engine vendor/davvi-slider, Daten js/slider-config-experiences.js, Anbindung js/hero.js) -->
+<header class="hero hero--sub" id="top" data-slider style="--sh-left: calc(50% - 377px)">
+  <div class="layers" aria-hidden="true"></div>
+  <noscript><img class="hero__img" src="img/hero/experiences/01-img_9875.webp" alt="Arctic landscape at the Ullsfjord"></noscript>
   <img class="hero__logo" src="logo/davvi_logo_weiss.svg" alt="" width="110" height="65">
   <h1 class="sh"><span class="sh__l1">Intense<br class="sh__br sh__br--tab"> Stillness,</span><span class="sh__l2"><span class="sh__ind">        </span>stirring<br class="sh__br sh__br--tab"> Moments</span></h1>
-  <div class="hero__progress" aria-hidden="true"></div>
+  <div class="hero-bottom">
+    <div class="hero__progress" aria-hidden="true"></div>
+    <button class="hero__pause" type="button" aria-label="Pause slideshow">Pause</button>
+  </div>
 </header>
 
-<!-- Textbox L „Additional services …“ (PC Spalte 1–6) + Faktenblock (Textbox S, umbrechend, kein Swiper) -->
+<!-- Textbox L „Additional services …“ (PC Spalte 1–6) + Faktenblock (Textbox S): PC Gruppen 5+4, TAB 3+3+3, PHN Swiper -->
 <div class="band band--l6 band--h265"><div class="line"></div><h2 class="tb__hl">Additional<br>services<br>for your stay</h2><div class="line"></div></div>
-<div class="fakten fakten--days" aria-label="Additional services">
-  <div class="fakten__row"><div class="tbs"><p>Rental<br>Car &amp; e-car<br>service</p></div><div class="tbs"><p>Private<br>ev charging<br>station</p></div><div class="tbs"><p>Shuttle<br>&amp; Driver<br>services</p></div><div class="tbs"><p>Helicopter<br>airport<br>shuttle</p></div><div class="tbs"><p>Motor<br>boat<br>rental</p></div><i class="fakten__brk" aria-hidden="true"></i><div class="tbs"><p>Fishing gear<br>&amp; filleting<br>house</p></div><div class="tbs"><p>Home bar<br>stocking<br>service</p></div><div class="tbs"><p>Bread<br>roll<br>service</p></div><div class="tbs"><p>Local<br>grocery<br>store</p></div></div>
+<div class="fakten fakten--days" id="days-fakten" aria-label="Additional services" data-swiper-track>
+  <div class="fakten__row"><div class="tbs"><p>Rental<br>Car &amp; e-car<br>service</p></div><div class="tbs"><p>Private<br>ev charging<br>station</p></div><div class="tbs"><p>Shuttle<br>&amp; Driver<br>services</p></div><i class="fakten__brk fakten__brk--tab" aria-hidden="true"></i><div class="tbs"><p>Helicopter<br>airport<br>shuttle</p></div><div class="tbs"><p>Motor<br>boat<br>rental</p></div><i class="fakten__brk fakten__brk--pc" aria-hidden="true"></i><div class="tbs"><p>Fishing gear<br>&amp; filleting<br>house</p></div><i class="fakten__brk fakten__brk--tab" aria-hidden="true"></i><div class="tbs"><p>Home bar<br>stocking<br>service</p></div><div class="tbs"><p>Bread<br>roll<br>service</p></div><div class="tbs"><p>Local<br>grocery<br>store</p></div></div>
+</div>
+<div class="swiper-ctl swiper-ctl--phn" data-swiper-ctl="days-fakten">
+  <div class="swiper-ctl__in">
+    <button class="swiper-ctl__btn" type="button" data-dir="-1" aria-controls="days-fakten" aria-label="Previous"><img src="img/icons/arrow-l.svg" alt="" width="19" height="23"><img class="is-hover" src="img/icons/arrow-l-hover.svg" alt="" width="19" height="23"></button>
+    <div class="swiper-ctl__bar" aria-hidden="true"><i class="swiper-ctl__thumb"></i></div>
+    <button class="swiper-ctl__btn" type="button" data-dir="1" aria-controls="days-fakten" aria-label="Next"><img src="img/icons/arrow-r.svg" alt="" width="19" height="23"><img class="is-hover" src="img/icons/arrow-r-hover.svg" alt="" width="19" height="23"></button>
+  </div>
 </div>
 
 <!-- UG-VLF Block OU (Schwarz 50 %): Kombipanels Activities + Swiper -->
 <div class="vlf vlf--b50">
   <div class="band band--h265"><div class="line"></div><h2 class="tb__hl">Private<br>arctic<br>experiences</h2><div class="line"></div></div>
 
-  <!-- PC: Hero XL ab Spalte 3, darunter zwei Panels · TAB/PHN: drei Panels untereinander, abwechselnd bündig -->
+  <!-- AKT 01–03 („Hero“): PC Hero XL ab Spalte 3, darunter zwei Panels · TAB/PHN: drei Panels untereinander, abwechselnd bündig · AKT 04–15 im Swiper -->
   <div class="acts grid14">
-    <article class="act act--hero a1"><div class="act__img"><img src="img/orca-800.webp" srcset="img/orca-800.webp 800w, img/orca-1400.webp 1400w, img/orca-2100.webp 2100w" sizes="(min-width:900px) 80vw, 95vw" alt="Two orcas surfacing in the fjord" loading="lazy" decoding="async"></div><div class="act__body"><h3 class="hl-s act__title">Whale watching</h3><div class="act__chips"><span class="chip">January–March</span><span class="chip">On request</span></div></div></article>
+    <article class="act act--hero a1"><div class="act__img"><img src="img/act/fishing-and-ice-fishing-800.webp" srcset="img/act/fishing-and-ice-fishing-800.webp 800w, img/act/fishing-and-ice-fishing-1400.webp 1400w, img/act/fishing-and-ice-fishing-2100.webp 2100w" sizes="(min-width:900px) 80vw, 95vw" alt="Fishing &amp; Ice Fishing" loading="lazy" decoding="async"></div><div class="act__body"><h3 class="hl-s act__title">Fishing &amp; Ice Fishing</h3><div class="act__chips"><span class="chip">Fjord: year-round</span><span class="chip">Ice: December–March</span><span class="chip">On Request</span></div></div></article>
     <div class="act-pair">
-      <article class="act a2"><div class="act__img"><img src="img/orca-800.webp" srcset="img/orca-800.webp 800w, img/orca-1400.webp 1400w, img/orca-2100.webp 2100w" sizes="(min-width:900px) 45vw, 95vw" alt="Two orcas surfacing in the fjord" loading="lazy" decoding="async"></div><div class="act__body"><h3 class="hl-s act__title">Whale watching</h3><div class="act__chips"><span class="chip">January–March</span><span class="chip">On request</span></div></div></article>
-      <article class="act a3"><div class="act__img"><img src="img/orca-800.webp" srcset="img/orca-800.webp 800w, img/orca-1400.webp 1400w, img/orca-2100.webp 2100w" sizes="(min-width:900px) 45vw, 85vw" alt="Two orcas surfacing in the fjord" loading="lazy" decoding="async"></div><div class="act__body"><h3 class="hl-s act__title">Whale watching</h3><div class="act__chips"><span class="chip">January–March</span><span class="chip">On request</span></div></div></article>
+      <article class="act a2"><div class="act__img"><img src="img/act/whale-watching-800.webp" srcset="img/act/whale-watching-800.webp 800w, img/act/whale-watching-1400.webp 1400w, img/act/whale-watching-2100.webp 2100w" sizes="(min-width:900px) 45vw, 95vw" alt="Whale Watching" loading="lazy" decoding="async"></div><div class="act__body"><h3 class="hl-s act__title">Whale Watching</h3><div class="act__chips"><span class="chip">November–January</span><span class="chip">On Request</span></div></div></article>
+      <article class="act a3"><div class="act__img"><img src="img/act/guided-photo-tours-800.webp" srcset="img/act/guided-photo-tours-800.webp 800w, img/act/guided-photo-tours-1400.webp 1400w, img/act/guided-photo-tours-2100.webp 2100w" sizes="(min-width:900px) 45vw, 85vw" alt="Guided Photo Tours" loading="lazy" decoding="async"></div><div class="act__body"><h3 class="hl-s act__title">Guided Photo Tours</h3><div class="act__chips"><span class="chip">Year-round</span><span class="chip">On Request</span></div></div></article>
     </div>
   </div>
 
   <div class="band band--to11 band--h265"><div class="line"></div><h2 class="tb__hl">... and&nbsp;&nbsp;&nbsp;<br>much<br>more:</h2><div class="line"></div></div>
 
-  <div class="hrow" id="act-row" data-swiper-track aria-label="More arctic experiences">
-    <article class="act" data-swiper-item><div class="act__img"><img src="img/orca-800.webp" srcset="img/orca-800.webp 800w, img/orca-1400.webp 1400w, img/orca-2100.webp 2100w" sizes="(min-width:900px) 32vw, (min-width:600px) 46vw, 90vw" alt="Two orcas surfacing in the fjord" loading="lazy" decoding="async"></div><div class="act__body"><h3 class="hl-s act__title">Whale watching</h3><div class="act__chips"><span class="chip">January–March</span><span class="chip">On request</span></div></div></article>
-    <article class="act" data-swiper-item><div class="act__img"><img src="img/orca-800.webp" srcset="img/orca-800.webp 800w, img/orca-1400.webp 1400w, img/orca-2100.webp 2100w" sizes="(min-width:900px) 32vw, (min-width:600px) 46vw, 90vw" alt="Two orcas surfacing in the fjord" loading="lazy" decoding="async"></div><div class="act__body"><h3 class="hl-s act__title">Whale watching</h3><div class="act__chips"><span class="chip">January–March</span><span class="chip">On request</span></div></div></article>
-    <article class="act" data-swiper-item><div class="act__img"><img src="img/orca-800.webp" srcset="img/orca-800.webp 800w, img/orca-1400.webp 1400w, img/orca-2100.webp 2100w" sizes="(min-width:900px) 32vw, (min-width:600px) 46vw, 90vw" alt="Two orcas surfacing in the fjord" loading="lazy" decoding="async"></div><div class="act__body"><h3 class="hl-s act__title">Whale watching</h3><div class="act__chips"><span class="chip">January–March</span><span class="chip">On request</span></div></div></article>
-    <article class="act" data-swiper-item><div class="act__img"><img src="img/orca-800.webp" srcset="img/orca-800.webp 800w, img/orca-1400.webp 1400w, img/orca-2100.webp 2100w" sizes="(min-width:900px) 32vw, (min-width:600px) 46vw, 90vw" alt="Two orcas surfacing in the fjord" loading="lazy" decoding="async"></div><div class="act__body"><h3 class="hl-s act__title">Whale watching</h3><div class="act__chips"><span class="chip">January–March</span><span class="chip">On request</span></div></div></article>
-    <article class="act" data-swiper-item><div class="act__img"><img src="img/orca-800.webp" srcset="img/orca-800.webp 800w, img/orca-1400.webp 1400w, img/orca-2100.webp 2100w" sizes="(min-width:900px) 32vw, (min-width:600px) 46vw, 90vw" alt="Two orcas surfacing in the fjord" loading="lazy" decoding="async"></div><div class="act__body"><h3 class="hl-s act__title">Whale watching</h3><div class="act__chips"><span class="chip">January–March</span><span class="chip">On request</span></div></div></article>
-    <article class="act" data-swiper-item><div class="act__img"><img src="img/orca-800.webp" srcset="img/orca-800.webp 800w, img/orca-1400.webp 1400w, img/orca-2100.webp 2100w" sizes="(min-width:900px) 32vw, (min-width:600px) 46vw, 90vw" alt="Two orcas surfacing in the fjord" loading="lazy" decoding="async"></div><div class="act__body"><h3 class="hl-s act__title">Whale watching</h3><div class="act__chips"><span class="chip">January–March</span><span class="chip">On request</span></div></div></article>
+  <div class="hrow hrow--acts" id="act-row" data-swiper-track aria-label="More arctic experiences">
+    <article class="act" data-swiper-item><div class="act__img"><img src="img/act/private-reindeer-encounter-800.webp" srcset="img/act/private-reindeer-encounter-800.webp 800w, img/act/private-reindeer-encounter-1400.webp 1400w, img/act/private-reindeer-encounter-2100.webp 2100w" sizes="(min-width:900px) 32vw, (min-width:600px) 46vw, 85vw" alt="Private Reindeer Encounter" loading="lazy" decoding="async"></div><div class="act__body"><h3 class="hl-s act__title">Private Reindeer Encounter</h3><div class="act__chips"><span class="chip">October–April</span><span class="chip">On Request</span></div></div></article>
+    <article class="act" data-swiper-item><div class="act__img"><img src="img/act/snow-mobile-tours-800.webp" srcset="img/act/snow-mobile-tours-800.webp 800w, img/act/snow-mobile-tours-1400.webp 1400w, img/act/snow-mobile-tours-2100.webp 2100w" sizes="(min-width:900px) 32vw, (min-width:600px) 46vw, 85vw" alt="Snow Mobile Tours" loading="lazy" decoding="async"></div><div class="act__body"><h3 class="hl-s act__title">Snow Mobile Tours</h3><div class="act__chips"><span class="chip">December–May</span><span class="chip">On Request</span></div></div></article>
+    <article class="act" data-swiper-item><div class="act__img"><img src="img/act/snow-shoe-hiking-800.webp" srcset="img/act/snow-shoe-hiking-800.webp 800w, img/act/snow-shoe-hiking-1400.webp 1400w, img/act/snow-shoe-hiking-2100.webp 2100w" sizes="(min-width:900px) 32vw, (min-width:600px) 46vw, 85vw" alt="Snow Shoe Hiking" loading="lazy" decoding="async"></div><div class="act__body"><h3 class="hl-s act__title">Snow Shoe Hiking</h3><div class="act__chips"><span class="chip">December–April</span><span class="chip">On Request</span></div></div></article>
+    <article class="act" data-swiper-item><div class="act__img"><img src="img/act/guided-fjord-tours-800.webp" srcset="img/act/guided-fjord-tours-800.webp 800w, img/act/guided-fjord-tours-1400.webp 1400w, img/act/guided-fjord-tours-2100.webp 2100w" sizes="(min-width:900px) 32vw, (min-width:600px) 46vw, 85vw" alt="Guided Fjord Tours" loading="lazy" decoding="async"></div><div class="act__body"><h3 class="hl-s act__title">Guided Fjord Tours</h3><div class="act__chips"><span class="chip">May–September</span><span class="chip">On Request</span></div></div></article>
+    <article class="act" data-swiper-item><div class="act__img"><img src="img/act/sami-culture-800.webp" srcset="img/act/sami-culture-800.webp 800w, img/act/sami-culture-1400.webp 1400w, img/act/sami-culture-2100.webp 2100w" sizes="(min-width:900px) 32vw, (min-width:600px) 46vw, 85vw" alt="Sami Culture" loading="lazy" decoding="async"></div><div class="act__body"><h3 class="hl-s act__title">Sami Culture</h3><div class="act__chips"><span class="chip">Year-round</span><span class="chip">On Request</span></div></div></article>
+    <article class="act" data-swiper-item><div class="act__img"><img src="img/act/discovering-tromso-800.webp" srcset="img/act/discovering-tromso-800.webp 800w, img/act/discovering-tromso-1400.webp 1400w, img/act/discovering-tromso-2100.webp 2100w" sizes="(min-width:900px) 32vw, (min-width:600px) 46vw, 85vw" alt="Discovering Tromsø" loading="lazy" decoding="async"></div><div class="act__body"><h3 class="hl-s act__title">Discovering Tromsø</h3><div class="act__chips"><span class="chip">Year-round</span><span class="chip">On Request</span></div></div></article>
+    <article class="act" data-swiper-item><div class="act__img"><img src="img/act/northern-lights-800.webp" srcset="img/act/northern-lights-800.webp 800w, img/act/northern-lights-1400.webp 1400w, img/act/northern-lights-2100.webp 2100w" sizes="(min-width:900px) 32vw, (min-width:600px) 46vw, 85vw" alt="Northern Lights" loading="lazy" decoding="async"></div><div class="act__body"><h3 class="hl-s act__title">Northern Lights</h3><div class="act__chips"><span class="chip">August–April</span><span class="chip">Right outside your window</span></div></div></article>
+    <article class="act" data-swiper-item><div class="act__img"><img src="img/act/dog-sled-rides-800.webp" srcset="img/act/dog-sled-rides-800.webp 800w, img/act/dog-sled-rides-1400.webp 1400w, img/act/dog-sled-rides-2100.webp 2100w" sizes="(min-width:900px) 32vw, (min-width:600px) 46vw, 85vw" alt="Dog Sled Rides" loading="lazy" decoding="async"></div><div class="act__body"><h3 class="hl-s act__title">Dog Sled Rides</h3><div class="act__chips"><span class="chip">December–March</span><span class="chip">On Request</span></div></div></article>
+    <article class="act" data-swiper-item><div class="act__img"><img src="img/act/fjord-barbecue-800.webp" srcset="img/act/fjord-barbecue-800.webp 800w, img/act/fjord-barbecue-1400.webp 1400w, img/act/fjord-barbecue-2100.webp 2100w" sizes="(min-width:900px) 32vw, (min-width:600px) 46vw, 85vw" alt="Fjord Barbecue" loading="lazy" decoding="async"></div><div class="act__body"><h3 class="hl-s act__title">Fjord Barbecue</h3><div class="act__chips"><span class="chip">May–September</span><span class="chip">On Request</span></div></div></article>
+    <article class="act" data-swiper-item><div class="act__img"><img src="img/act/hiking-and-climbing-800.webp" srcset="img/act/hiking-and-climbing-800.webp 800w, img/act/hiking-and-climbing-1400.webp 1400w, img/act/hiking-and-climbing-2100.webp 2100w" sizes="(min-width:900px) 32vw, (min-width:600px) 46vw, 85vw" alt="Hiking &amp; Climbing" loading="lazy" decoding="async"></div><div class="act__body"><h3 class="hl-s act__title">Hiking &amp; Climbing</h3><div class="act__chips"><span class="chip">May–October</span><span class="chip">On Request</span></div></div></article>
+    <article class="act" data-swiper-item><div class="act__img"><img src="img/act/wildlife-photography-800.webp" srcset="img/act/wildlife-photography-800.webp 800w, img/act/wildlife-photography-1400.webp 1400w, img/act/wildlife-photography-2100.webp 2100w" sizes="(min-width:900px) 32vw, (min-width:600px) 46vw, 85vw" alt="Wildlife Photography" loading="lazy" decoding="async"></div><div class="act__body"><h3 class="hl-s act__title">Wildlife Photography</h3><div class="act__chips"><span class="chip">Year-round</span><span class="chip">Independent</span></div></div></article>
+    <article class="act" data-swiper-item><div class="act__img"><img src="img/act/winter-sports-800.webp" srcset="img/act/winter-sports-800.webp 800w, img/act/winter-sports-1400.webp 1400w, img/act/winter-sports-2100.webp 2100w" sizes="(min-width:900px) 32vw, (min-width:600px) 46vw, 85vw" alt="Winter Sports" loading="lazy" decoding="async"></div><div class="act__body"><h3 class="hl-s act__title">Winter Sports</h3><div class="act__chips"><span class="chip">November–May</span><span class="chip">Independent</span></div></div></article>
   </div>
   <div class="swiper-ctl swiper-ctl--all" data-swiper-ctl="act-row">
     <div class="swiper-ctl__in">
@@ -123,6 +140,11 @@
     </div>
   </div>
 </footer>
+<script src="vendor/davvi-slider-1.0.0/easings.js"></script>
+<script src="vendor/davvi-slider-1.0.0/config-validation.js"></script>
+<script src="vendor/davvi-slider-1.0.0/slider.js"></script>
+<script src="js/slider-config-experiences.js"></script>
+<script src="js/hero.js"></script>
 <script src="js/davvi.js" defer></script>
 <script src="js/swiper.js" defer></script>
 </body>
