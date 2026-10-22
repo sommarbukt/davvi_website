@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/davvi.css">
 <link rel="stylesheet" href="css/motion.css">
+<link rel="stylesheet" href="css/lodgify.css">
 <script>
 /* Motion vor dem ersten Paint vorbereiten (verhindert Aufblitzen); ohne motion.js nach 2,5 s statisch */
 (function (d) {
@@ -61,7 +62,35 @@
 <main id="main">
 <!-- Booking-Widget 01 -->
 <section class="booking" id="booking" aria-label="Booking">
-  <div class="booking__pill"><!-- Lodgify-Widget (DAVVI-Account) hier einbetten -->(Booking widget from Lodgify)</div>
+  <div class="booking__pill"><!-- Lodgify-Suchleiste (DAVVI-Account), Look: css/lodgify.css -->
+    <div id="lodgify-search-bar"
+      data-website-id="682380"
+      data-language-code="en"
+      data-search-page-url="https://davvi-ridge.com/en/all-properties"
+      data-dates-check-in-label="Check-in"
+      data-dates-check-out-label="Check-out"
+      data-guests-counter-label="Guests"
+      data-guests-input-singular-label="{{NumberOfGuests}} guest"
+      data-guests-input-plural-label="{{NumberOfGuests}} guests"
+      data-location-input-label="Location"
+      data-search-button-label="Search"
+      data-dates-input-min-stay-tooltip-text='{"one":"Minimum {minStay} night","other":"Minimum {minStay} nights"}'
+      data-guests-breakdown-label="Guests"
+      data-adults-label='{"one":"adult","other":"adults"}'
+      data-adults-description="Ages {minAge} or above"
+      data-children-label='{"one":"child","other":"children"}'
+      data-children-description="Ages {minAge}-{maxAge}"
+      data-children-not-allowed-label="Not suitable for children"
+      data-infants-label='{"one":"infant","other":"infants"}'
+      data-infants-description="Under {maxAge}"
+      data-infants-not-allowed-label="Not suitable for infants"
+      data-pets-label='{"one":"pet","other":"pets"}'
+      data-pets-not-allowed-label="Not allowed"
+      data-done-label="Done"
+      data-new-tab="true"
+      data-version="stable"
+      data-hide-location></div><a class="booking__fallback" href="https://davvi-ridge.com/en/all-properties">Check availability</a>
+  </div>
 </section>
 
 <!-- Section Map global -->
@@ -169,5 +198,6 @@
 <script src="js/motion.config.js"></script>
 <script src="js/motion.js"></script>
 <script src="js/davvi.js" defer></script>
+<script src="https://app.lodgify.com/portable-search-bar/stable/renderPortableSearchBar.js" defer></script>
 </body>
 </html>

@@ -3,6 +3,10 @@
 Statische Website für DAVVI (vier Chalets in Sjursnes am Ullsfjord). Kein Build-Schritt:
 HTML, CSS und JS werden direkt ausgeliefert (Vercel, Framework „Other“, ohne Build-Command).
 
+- **Lokal starten:** im Ordner `website` ein Terminal öffnen (Explorer → Adresszeile `cmd` eintippen) und
+  `python -m http.server 8000` ausführen, dann im Browser http://localhost:8000 öffnen. Alternative ohne Python: `npx serve`.
+  Nicht per Doppelklick auf die HTML-Datei öffnen (file://), sonst laden Slider-Configs und Lodgify nicht sauber.
+  Beenden mit Strg+C.
 - Design-Quelle: Figma „26-8039-DVV-IN26 – R-00 DEV“
 - Design-Tokens (Figma-Variablen, Modi PC/TAB/PHN): `css/tokens.css`
 - Layout und Komponenten: `css/davvi.css`
@@ -22,7 +26,7 @@ HTML, CSS und JS werden direkt ausgeliefert (Vercel, Framework „Other“, ohne
   exportiert nach `img/hero/<seite>/` (WebP, max. 1400 px hoch).
 - **Chalets-Seite (`chalets.html`):** Unterseite SUB 3 „My private Panorama“ nach den Figma-Frames SUB 3 – PC XL/L/M,
   TAB und PHN (Stand 15.10.2026). Auf TAB/PHN laufen Kombipanels und Faktenblock als Swiper (`js/swiper.js`,
-  Pfeile in `img/icons/`). Buchungswidget und „Book a stay“ sind Platzhalter wie im Figma, Lodgify ist nicht eingebunden.
+  Pfeile in `img/icons/`). Buchungswidget = Lodgify-Suchleiste (siehe unten).
   Inhalte der Kombipanels (3× Skaret, gleiches Bild) sind Figma-Platzhalter – Hausfotos aus dem Sommarbukt-Pool fehlen noch.
   Grundrisse Tind seit 22.10.2026 aus den transparenten Originalen; Kontakt-Section unten (neu im Figma).
 - **Unterseiten SUB 1, SUB 2, SUB 4 (Stand 19.10.2026)** nach den Figma-Frames PC XL/L/M, TAB, PHN:
@@ -31,7 +35,7 @@ HTML, CSS und JS werden direkt ausgeliefert (Vercel, Framework „Other“, ohne
   - `the-place.html` (SUB 2 „A distinct Place“): Bildstreifen, Gletscher-Reihe, Tiere, Ridge-Karte, Block Link Chalets 2.
     Die Karte (`img/ridge-map-*.webp`) ist seit 22.10.2026 aus den Originalgrafiken gebaut (PC 2×, PHN aus der Fassung „schmal“).
   - `experiences.html` (SUB 4 „365 Days“): Faktenblock, Kombipanels Activities (Hero XL, Zweierreihe, Swiper),
-    Block Chalets + Booking (Lodgify-Platzhalter). Im Figma sind nur die PC-Zustände fertig; TAB/PHN sind abgeleitet.
+    Block Chalets + Booking (Lodgify-Suchleiste). Im Figma sind nur die PC-Zustände fertig; TAB/PHN sind abgeleitet.
   - Gemeinsame neue Komponenten am Ende von `css/davvi.css` (`.vlf`, `.band--*`, `.hrow`/`.tbox`, `.blc`, `.contact`, `.act`, `.bcb` …).
     Hero-Headline je Seite über `--sh-left` (inline am Hero).
   - `img/cloudberry-740.webp` ist nur ein Figma-Render (Original fehlt im Bildpool).
@@ -47,3 +51,16 @@ HTML, CSS und JS werden direkt ausgeliefert (Vercel, Framework „Other“, ohne
   TAB/PHN nach dem inzwischen fertigen Figma: Fakten PC 5+4 / TAB 3+3+3 / PHN Swiper, Activities PHN alle 3:2,
   Block Chalets + Booking TAB 800 px / PHN 600 px fest (Nachtrag am Ende von `css/davvi.css`).
 - Slider Lab: `slider-lab.html?page=<seite>` lädt die Config der Unterseite.
+
+### Lodgify-Suchleiste (22.10.2026)
+- Das „Booking-Widget 01“ aus dem Figma ist jetzt die Lodgify „Portable Search Bar“ des DAVVI-Accounts (Website-ID 682380):
+  Startseite, Chalets (nur PC, wie im Figma) und 365 Days (über dem Nordlicht-Bild). Suche öffnet
+  `https://davvi-ridge.com/en/all-properties` in neuem Tab.
+- Markup (`#lodgify-search-bar` mit allen `data-…`-Texten) in der `.booking__pill`, Script
+  `app.lodgify.com/portable-search-bar/stable/renderPortableSearchBar.js` am Seitenende.
+- Look in `css/lodgify.css` (nur Tokens aus `tokens.css`): weiße Pille 100 px, Felder mit Caps-Label + Wert, Trennlinien,
+  Gäste-Zähler mit runden ± , „Search“ als schwarze BTN-STD-Pille; Kalender eckig, Monatsnamen in Tussilago,
+  Zeitraum schwarz/Ice-Grey. TAB kompakter, PHN als zweizeilige Karte (Daten oben, Gäste + Search unten), Kalender einspaltig.
+- Lodgify-Klassen (`css-xxxx`) ändern sich bei Updates → angesprochen wird nur über IDs, `data-testid` und `role`.
+  Texte „Guests“/„Add date“ kommen aus CSS-Variablen (`--psb-txt-…`), für DE dort überschreiben.
+- Ohne JS oder wenn Lodgify nicht lädt, ist die Pille ein Link „Check availability“ zur Lodgify-Suchseite.

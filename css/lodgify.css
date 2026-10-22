@@ -1,0 +1,186 @@
+/* ==========================================================================
+   DAVVI – Lodgify-Suchleiste („Portable Search Bar“, Website-ID 682380) im DAVVI-Look
+   Stand 22.10.2026. Markup in index.html, chalets.html, experiences.html (.booking__pill),
+   Script: https://app.lodgify.com/portable-search-bar/stable/renderPortableSearchBar.js
+
+   Lodgify rendert mit Emotion-Klassen (css-xxxx, ändern sich bei Updates). Deshalb hier nur
+   über stabile Haken: #lodgify-search-bar, #portable-search-bar, data-testid, role.
+   Der Kalender hängt als Popover direkt am <body> → seine Variablen stehen auf :root.
+   Farben/Schriften ausschließlich aus tokens.css.
+   ========================================================================== */
+
+:root {
+  /* Texte, die Lodgify nicht als Attribut anbietet (für DE einfach per :lang(de) überschreiben) */
+  --psb-txt-guests: "Guests";
+  --psb-txt-add-date: "Add date";
+
+  /* Lodgify-Variablen (aus dem Original-Snippet, auf DAVVI umgestellt) */
+  --ldg-psb-background: transparent;
+  --ldg-psb-border-radius: 0;
+  --ldg-psb-box-shadow: none;
+  --ldg-psb-padding: 0;
+  --ldg-psb-input-background: transparent;
+  --ldg-psb-button-border-radius: 150px;
+  --ldg-psb-color-primary: var(--schwarz);
+  --ldg-psb-color-primary-lighter: var(--ice-grey);
+  --ldg-psb-color-primary-darker: var(--dark-grey-d2);
+  --ldg-psb-color-primary-contrast: var(--weiss);
+  --ldg-psb-font-family: var(--f-body);
+  --ldg-semantic-color-primary: var(--schwarz);
+  --ldg-semantic-color-primary-lighter: var(--ice-grey);
+  --ldg-semantic-color-primary-darker: var(--dark-grey-d2);
+  --ldg-semantic-color-primary-contrast: var(--weiss);
+  --ldg-component-modal-z-index: 999;
+  --lodgify-ui-body-font: var(--f-body);
+
+  /* Kalender-Popover */
+  --ldg-component-popover-font: var(--f-body);
+  --ldg-component-popover-font-weight: 200;
+  --ldg-component-popover-color: var(--schwarz);
+  --ldg-component-popover-border-radius: 0;
+  --ldg-component-popover-shadow: 0 24px 54px rgba(0, 0, 0, .28);
+  --ldg-component-calendar-border-radius: 0;
+  --ldg-component-calendar-padding: 30px 40px 24px;
+  --ldg-component-calendar-header-color: var(--schwarz);
+  --ldg-component-calendar-button-color: var(--dark-grey);
+  --ldg-component-calendar-button-border-radius: 30px;
+  --ldg-component-calendar-button-outline: 2px solid var(--hblau);
+  --ldg-component-calendar-day-name-color: var(--dark-grey);
+  --ldg-component-calendar-cell-border-radius: 150px;
+  --ldg-component-calendar-cell-selected-color: var(--schwarz);
+  --ldg-component-calendar-cell-outline: 2px solid var(--hblau);
+  --ldg-component-search-bar-calendar-z-index: 1000;
+}
+
+/* ---- Pille (Booking-Widget 01 aus dem Figma: weiß, 100 hoch, voll gerundet) ---------------- */
+.booking__pill:has(#lodgify-search-bar) {
+  display: block; position: relative; overflow: visible; text-align: left; text-transform: none;
+  font: 200 var(--t-std)/var(--t-std-lh) var(--f-body); letter-spacing: var(--t-std-ls);
+  padding: 14px 14px 14px 26px;
+}
+#lodgify-search-bar { width: 100%; height: 100%; }
+#lodgify-search-bar:empty { display: none; }
+#lodgify-search-bar > div { width: 100%; height: 100%; }
+
+/* Fallback ohne JS oder wenn Lodgify nicht lädt: ganze Pille wird zum Link */
+.booking__fallback { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; border-radius: inherit;
+  color: var(--schwarz); text-decoration: none;
+  font: 300 var(--t-caps)/var(--t-caps-lh) var(--f-caps); letter-spacing: var(--t-caps-ls); text-transform: uppercase; }
+#lodgify-search-bar:not(:empty) + .booking__fallback { display: none; }
+
+/* Leiste: immer einzeilig (Lodgify bricht sonst unter 1240 px in eine Spalte um) */
+#lodgify-search-bar #portable-search-bar {
+  flex-direction: row; align-items: stretch; gap: 0; width: 100%; max-width: none; height: 100%;
+  padding: 0; margin: 0; background: none; box-shadow: none; border-radius: 0; color: var(--schwarz);
+}
+
+/* ---- Felder Check-in / Check-out ----------------------------------------------------------- */
+#lodgify-search-bar #portable-search-bar > button { flex: 2 1 0; min-height: 0; border-radius: 0; box-shadow: none; }
+#lodgify-search-bar [data-testid$="-date-button"] {
+  justify-content: center; gap: 3px; min-width: 0; min-height: 0; height: 100%;
+  padding: 0 44px 0 22px; background: none; outline: 0; box-shadow: none; border-radius: 150px; color: var(--schwarz);
+  transition: background-color .2s ease;
+}
+#lodgify-search-bar [data-testid="end-date-button"] { position: relative; }
+#lodgify-search-bar [data-testid="end-date-button"]::before,
+#lodgify-search-bar #portable-search-bar > div:has([data-testid="counter-input"])::before {
+  content: ""; position: absolute; left: 0; top: 50%; height: 42px; margin-top: -21px; width: 1px; background: rgba(50, 70, 75, .25);
+}
+#lodgify-search-bar [data-testid$="-date-button"]:hover,
+#lodgify-search-bar [data-testid$="-date-button"].active { background: rgba(190, 205, 209, .45); }
+#lodgify-search-bar [data-testid$="-date-button"].active::before,
+#lodgify-search-bar [data-testid$="-date-button"]:hover::before,
+#lodgify-search-bar [data-testid$="-date-button"].active + [data-testid$="-date-button"]::before,
+#lodgify-search-bar [data-testid$="-date-button"]:hover + [data-testid$="-date-button"]::before { opacity: 0; }
+#lodgify-search-bar #portable-search-bar > button:focus-visible { outline: 2px solid var(--hblau); outline-offset: 2px; border-radius: 150px; }
+/* Label klein in Caps oben, Wert darunter (Lodgify zeigt das Label sonst als Platzhalter) */
+#lodgify-search-bar [data-testid$="-date-button"] label,
+#lodgify-search-bar #portable-search-bar > div:has([data-testid="counter-input"])::after {
+  position: static; color: var(--dark-grey); opacity: .75;
+  font: 300 16px/18px var(--f-caps); letter-spacing: var(--t-caps-ls); text-transform: uppercase;
+}
+#lodgify-search-bar [data-testid$="-date-button"] .date {
+  display: block; margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%;
+  color: var(--schwarz); font: 200 var(--t-std)/var(--t-std-lh) var(--f-body); letter-spacing: var(--t-std-ls);
+}
+#lodgify-search-bar [data-testid$="-date-button"] .date:empty::before { content: var(--psb-txt-add-date); opacity: .45; }
+/* Löschen-Kreuz der Daten */
+#lodgify-search-bar [data-testid="date-picker-clear-cta"] { right: 16px; color: var(--dark-grey); }
+
+/* ---- Gäste ------------------------------------------------------------------------------------ */
+#lodgify-search-bar #portable-search-bar > div:has([data-testid="counter-input"]) {
+  position: relative; flex: 1.25 1 0; min-width: 0; display: grid; grid-template-columns: auto auto auto; grid-template-rows: 18px 23px;
+  align-content: center; justify-content: start; align-items: center; column-gap: 12px; row-gap: 3px;
+  padding: 0 26px 0 24px; border: 0; border-radius: 0; background: none;
+}
+#lodgify-search-bar #portable-search-bar > div:has([data-testid="counter-input"])::after {
+  content: var(--psb-txt-guests); grid-column: 1 / -1; grid-row: 1;
+}
+#lodgify-search-bar [data-testid^="counter-"][data-testid$="-button"] {
+  grid-row: 2; width: 28px; height: 28px; padding: 0; border-radius: 50%; border: 1px solid rgba(50, 70, 75, .35);
+  background: none; color: var(--dark-grey); transition: background-color .2s ease, border-color .2s ease;
+}
+#lodgify-search-bar [data-testid^="counter-"][data-testid$="-button"] svg { width: 16px; height: 16px; }
+#lodgify-search-bar [data-testid^="counter-"][data-testid$="-button"]:hover:not(:disabled) { background: var(--ice-grey); border-color: var(--ice-grey); }
+#lodgify-search-bar [data-testid^="counter-"][data-testid$="-button"]:disabled { opacity: .3; }
+#lodgify-search-bar [data-testid^="counter-"][data-testid$="-button"]:focus-visible { outline: 2px solid var(--hblau); outline-offset: 2px; }
+#lodgify-search-bar #portable-search-bar > div:has([data-testid="counter-input"]) > div {
+  grid-row: 2; justify-content: center; color: var(--schwarz); white-space: nowrap;
+  font: 200 var(--t-std)/var(--t-std-lh) var(--f-body); letter-spacing: var(--t-std-ls);
+}
+#lodgify-search-bar [data-testid="counter-input"] {
+  width: 1.4em; margin: 0; padding: 0; background: none; color: var(--schwarz); -webkit-text-fill-color: var(--schwarz);
+  font: inherit; letter-spacing: inherit;
+}
+
+/* ---- Suchen (wie BTN STD dunkel: schwarze Pille, Caps; Hover: Fläche wächst um 3 px) -------- */
+#lodgify-search-bar a[data-testid="button"] {
+  flex: none; align-self: stretch; gap: 10px; padding: 0 46px; border: 3px solid var(--weiss); border-radius: 150px;
+  background: var(--schwarz) padding-box; color: var(--weiss); box-shadow: none;
+  font: 300 var(--t-caps)/var(--t-caps-lh) var(--f-caps); letter-spacing: var(--t-caps-ls); text-transform: uppercase;
+  transition: border-color .2s ease;
+}
+#lodgify-search-bar a[data-testid="button"]:hover,
+#lodgify-search-bar a[data-testid="button"]:focus-visible { background: var(--schwarz) padding-box; color: var(--weiss); border-color: var(--schwarz); }
+#lodgify-search-bar a[data-testid="button"]:focus-visible { outline: 2px solid var(--hblau); outline-offset: 2px; }
+#lodgify-search-bar a[data-testid="button"] svg { display: none; }
+
+/* ---- Kalender-Popover -------------------------------------------------------------------------- */
+[data-testid="calendar-range-calendar"] [data-testid="calendar-header-title"] > span {
+  font: 300 var(--h-s)/var(--h-s-lh) var(--f-head); letter-spacing: var(--h-s-ls); text-transform: uppercase; color: var(--schwarz);
+}
+[data-testid="calendar-range-calendar"] thead * {
+  font-family: var(--f-caps); font-weight: 300; font-size: 15px; letter-spacing: var(--t-caps-ls); text-transform: uppercase;
+}
+[data-testid="calendar-range-calendar"] td > div { font-weight: 200; transition: background-color .15s ease; }
+[data-testid="calendar-range-calendar"] td > div:not(.selected):not(.disabled):not(.unavailable):hover { background: rgba(190, 205, 209, .55); }
+[data-testid="calendar-range-calendar"] td > div.today:not(.selected) { box-shadow: inset 0 0 0 1px var(--dark-grey); }
+[data-testid="calendar-range-calendar"] [data-testid$="-button"]:hover:not(:disabled) { background: rgba(190, 205, 209, .55); }
+
+/* ---- TAB (600–899 px) -------------------------------------------------------------------------- */
+@media (max-width: 899.98px) {
+  .booking__pill:has(#lodgify-search-bar) { padding: 12px 12px 12px 14px; }
+  #lodgify-search-bar [data-testid$="-date-button"] { padding: 0 30px 0 14px; }
+  #lodgify-search-bar [data-testid="date-picker-clear-cta"] { right: 8px; }
+  #lodgify-search-bar #portable-search-bar > div:has([data-testid="counter-input"]) { padding: 0 14px; column-gap: 6px; }
+  #lodgify-search-bar a[data-testid="button"] { padding: 0 24px; }
+  :root { --ldg-component-calendar-padding: 24px 20px 18px; }
+}
+
+/* ---- PHN (unter 600 px): zweizeilige Karte – Daten oben, Gäste + Suchen unten ----------------- */
+@media (max-width: 599.98px) {
+  .booking:has(#lodgify-search-bar) { height: auto; padding-top: 20px; padding-bottom: 20px; }
+  .bcb .booking:has(#lodgify-search-bar) { padding-top: 0; padding-bottom: 0; }
+  .booking__pill:has(#lodgify-search-bar) { border-radius: 38px; padding: 8px; }
+  #lodgify-search-bar #portable-search-bar { flex-wrap: wrap; row-gap: 8px; }
+  #lodgify-search-bar #portable-search-bar > button { flex: 1 1 100%; height: 64px; }
+  #lodgify-search-bar [data-testid$="-date-button"] { padding: 0 30px 0 18px; }
+  #lodgify-search-bar #portable-search-bar > div:has([data-testid="counter-input"]) { flex: 1 1 auto; padding: 0 8px 0 18px; }
+  #lodgify-search-bar #portable-search-bar > div:has([data-testid="counter-input"])::before { display: none; }
+  #lodgify-search-bar a[data-testid="button"] { height: 60px; padding: 0 24px; }
+  #lodgify-search-bar [data-testid$="-date-button"] .date { font-size: 16px; }
+  /* Kalender: ein Monat, muss in 360 px passen */
+  :root { --ldg-component-calendar-padding: 18px 10px 12px; --ldg-component-calendar-cell-padding: .62em .1em;
+    --ldg-component-calendar-cell-font-size: 15px; --ldg-component-calendar-width: 100%; }
+  [data-testid="calendar-range-calendar"] table { width: 100%; }
+}
