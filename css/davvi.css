@@ -556,6 +556,8 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   scrollbar-width: none; --tcol: calc((100% - 11 * var(--gutter)) / 12); }
 .hrow::-webkit-scrollbar { display: none; }
 .hrow > * { flex: 0 0 calc(4 * var(--tcol) + 3 * var(--gutter)); scroll-snap-align: start; }
+/* Mindestbreite der Kacheln (Andreas 22.10.): im PC M (900–1199) schon zwei Kacheln wie im TAB, sonst werden die Texte zu schmal */
+@media (min-width: 900px) and (max-width: 1199.98px) { .hrow > * { flex-basis: calc(6 * var(--tcol) + 5 * var(--gutter)); } }
 .swiper-ctl--all { display: block; }
 
 /* Textbox L mit Verlauf (Box in der Reihe): feste 30-px-Linien, Headline S + Fließtext S */
@@ -605,9 +607,13 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .strip { position: relative; overflow: hidden; aspect-ratio: 3 / 1; }
 .strip img, .glacier__img img, .animals img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .glacier { display: flex; align-items: stretch; gap: var(--gutter); margin: var(--gutter) var(--margin); }
-.glacier .tb { position: static; flex: none; width: max-content; }
+.glacier .tb { position: static; flex: 0 0 330px; width: 330px; }   /* Figma: Textbox L 330 breit (PC M/L/XL) */
 .glacier .tb::before { display: none; }
-.glacier__img { position: relative; overflow: hidden; flex: 1 1 0; min-width: 0; aspect-ratio: 210 / 100; }
+.glacier__img { position: relative; overflow: hidden; flex: 1 1 0; min-width: 0; }
+/* PC: Bild skaliert in der Höhe mit (Figma 2,1 : 1), die Textbox daneben streckt sich mit.
+   Höhe über Padding-Platzhalter statt aspect-ratio – Safari überträgt aspect-ratio bei Flex-Elementen mit
+   flex-basis 0 nicht zuverlässig in die Höhe (Bild blieb dort auf Textbox-Höhe stehen). */
+@media (min-width: 900px) { .glacier__img::before { content: ""; display: block; padding-top: calc(100% / 2.1); } }
 .glacier__band { display: none; }
 .animals { row-gap: var(--gutter); }
 .animals > div { position: relative; overflow: hidden; aspect-ratio: 590 / 338; }
