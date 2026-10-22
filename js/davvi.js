@@ -1,7 +1,8 @@
 /* DAVVI – Menü-Panel und kleine Helfer
    - Das Menü-Panel läuft beim Scrollen mit aus dem Bild. Scrollt man wieder nach oben, kehrt es als
      fixierter Header zurück (mit HOME-Bildmarke); beim Weiterscrollen nach unten verschwindet es wieder.
-   - PHN: Burger klappt die Menüpunkte auf.
+   - PHN: Burger klappt die Menüpunkte auf und wieder zu; Tipp außerhalb des Menüs schließt es.
+   - Hover-Schnitt der Menüschrift vorladen (sonst springt das Menü beim ersten Überfahren).
    - Startseite: aktiver Menüpunkt je nach sichtbarer Section. */
 (function () {
   var menu = document.getElementById('menu');
@@ -52,6 +53,18 @@
     });
     menu.addEventListener('click', function (e) { if (e.target.closest('.menu__list a')) close(); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+    // Tipp/Klick außerhalb des Menüs schließt die aufgeklappte Liste
+    document.addEventListener('click', function (e) {
+      if (menu.classList.contains('is-open') && !menu.contains(e.target)) close();
+    });
+  }
+
+  // --- Schrift-Schnitte der Hover-Zustände vorladen ---------------------------
+  // Typekit lädt einen Schnitt erst, wenn er zum ersten Mal gebraucht wird. Der Hover der
+  // Menüpunkte nutzt Tussilago 400 – ohne Vorladen springt das Menü beim ersten Überfahren.
+  if (document.fonts && document.fonts.load) {
+    var head = getComputedStyle(document.documentElement).getPropertyValue('--f-head').trim() || 'tussilago';
+    document.fonts.load('400 15px ' + head).catch(function () {});
   }
 
   // --- Aktiver Menüpunkt (nur Anker-Links der Startseite) ----------------------

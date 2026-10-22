@@ -77,13 +77,16 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
    Startview passt sich nach unten an den Viewport an: Hero + Menü-Panel = Viewporthöhe (PC/TAB),
    im PHN füllt der Hero allein den Viewport. */
 .hero { position: relative; height: calc(100vh - var(--menu-h)); height: calc(100svh - var(--menu-h));
-  min-height: 460px; overflow: hidden; color: var(--weiss); background: var(--dark-water); }
+  min-height: 460px; overflow: hidden; color: var(--weiss); background: var(--schwarz); }
 .hero__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.hero__logo { position: absolute; left: 55px; top: 46px; width: 110px; height: auto; }
+.hero__logo { position: absolute; left: 55px; top: 46px; display: block; width: 110px; height: auto;
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, .2)); }   /* Schatten: Lesbarkeit auf hellen Bildern */
+.hero__logo img { display: block; width: 100%; height: auto; }
 .hero__title {
   position: absolute; left: calc(45.83% - 309.58px); bottom: 90px;
   font-family: var(--f-head); font-weight: 200; text-transform: uppercase; white-space: nowrap;
   font-size: var(--h-xl); line-height: var(--h-xl-lh); letter-spacing: var(--h-xl-ls);
+  text-shadow: 0 0 10px rgba(0, 0, 0, .2);
 }
 .hero__l1, .hero__l2 { display: block; }
 .hero__l2 { padding-left: 2.95em; }
@@ -133,6 +136,8 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 /* HOME-Button (Bildmarke kompakt): auf der Startseite nur im zurückkehrenden Header */
 .menu__home { display: none; gap: 0; }
 .menu.is-fixed .menu__home, .menu--sub .menu__home { display: flex; }
+/* HOME als Textpunkt nur in der aufgeklappten PHN-Liste */
+.menu__btn.menu__list-home { display: none; }
 .menu__home img { width: 80px; height: 34px; margin: 4px 0 10px; object-fit: contain; opacity: .45; transition: opacity .2s; }
 .menu__home:hover img, .menu__home:focus-visible img { opacity: 1; }
 
@@ -296,6 +301,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   .menu__list .menu__btn { height: auto; padding: 14px 0; flex-direction: row; border-top: 1px solid rgba(255, 255, 255, .15); }
   .menu__list .menu__btn::before, .menu__list .menu__btn::after { display: none; }
   .menu__list .menu__btn br { display: none; }
+  .menu__list .menu__btn.menu__list-home { display: flex; }
 
   .booking { padding: 0 var(--margin) 0 21px; }
   .booking__pill { font-size: 18px; }
@@ -343,7 +349,8 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 /* Headline L, zweite Zeile im Figma mit 13 Leerzeichen eingerückt */
 .sh { position: absolute; z-index: 2; left: var(--sh-left, calc(50% - 368px)); bottom: 92px; margin: 0; white-space: pre;
   font-family: var(--f-head); font-weight: 200; text-transform: uppercase;
-  font-size: var(--h-l); line-height: var(--h-l-lh); letter-spacing: var(--h-l-ls); }
+  font-size: var(--h-l); line-height: var(--h-l-lh); letter-spacing: var(--h-l-ls);
+  text-shadow: 0 0 10px rgba(0, 0, 0, .2); }
 .sh__l1, .sh__l2 { display: block; }
 .sh__br { display: none; }
 
