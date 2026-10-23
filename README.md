@@ -83,3 +83,7 @@ HTML, CSS und JS werden direkt ausgeliefert (Vercel, Framework „Other“, ohne
 ### Bilder für das Lodgify-Buchungsportal (23.10.2026)
 - `img/booking/start-dsc00956-*.webp` = Hintergrund von davvi-ridge.com/en/choose-your-chalet, `img/booking/inquiry-dji-0146-*.webp` = für eine
   spätere Seite „Individual Inquiry“. Werden vom Lodgify-Custom-CSS (`../04_Lodgify_Bloecke/00_custom_css_head.css`) per absoluter URL geladen – nicht umbenennen.
+
+### Domains (23.10.2026)
+- Homepage (dieses Repo, Vercel): **davvi-ridge.com** (+ www). DNS bei United Domains: A `@` und A `www` → 216.198.79.1 (Vercel). MX/autodiscover (Microsoft 365) unverändert.
+- Buchungsportal (Lodgify): **davvi.de** – alle Buchungslinks, Suchleiste und Hausseiten zeigen auf `https://davvi.de/en/…`.
