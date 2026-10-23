@@ -7,6 +7,8 @@
    über stabile Haken: #lodgify-search-bar, #portable-search-bar, data-testid, role.
    Der Kalender hängt als Popover direkt am <body> → seine Variablen stehen auf :root.
    Farben/Schriften ausschließlich aus tokens.css.
+   23.10.2026 (Andreas, Prio B): Werte in den Feldern („Add date“, Datum, Gästezahl) in der schmalen
+   Caps-Schrift (Field Gothic XCond, Versalien) statt der breiten Field Gothic Wide.
    ========================================================================== */
 
 :root {
@@ -25,7 +27,7 @@
   --ldg-psb-color-primary-lighter: var(--ice-grey);
   --ldg-psb-color-primary-darker: var(--dark-grey-d2);
   --ldg-psb-color-primary-contrast: var(--weiss);
-  --ldg-psb-font-family: var(--f-body);
+  --ldg-psb-font-family: var(--f-caps);
   --ldg-semantic-color-primary: var(--schwarz);
   --ldg-semantic-color-primary-lighter: var(--ice-grey);
   --ldg-semantic-color-primary-darker: var(--dark-grey-d2);
@@ -55,7 +57,7 @@
 /* ---- Pille (Booking-Widget 01 aus dem Figma: weiß, 100 hoch, voll gerundet) ---------------- */
 .booking__pill:has(#lodgify-search-bar) {
   display: block; position: relative; overflow: visible; text-align: left; text-transform: none;
-  font: 200 var(--t-std)/var(--t-std-lh) var(--f-body); letter-spacing: var(--t-std-ls);
+  font: 300 var(--t-caps)/var(--t-caps-lh) var(--f-caps); letter-spacing: var(--t-caps-ls); text-transform: uppercase;
   padding: 14px 14px 14px 26px;
 }
 #lodgify-search-bar { width: 100%; height: 100%; }
@@ -101,7 +103,7 @@
 }
 #lodgify-search-bar [data-testid$="-date-button"] .date {
   display: block; margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%;
-  color: var(--schwarz); font: 200 var(--t-std)/var(--t-std-lh) var(--f-body); letter-spacing: var(--t-std-ls);
+  color: var(--schwarz); font: 300 var(--t-caps)/var(--t-caps-lh) var(--f-caps); letter-spacing: var(--t-caps-ls); text-transform: uppercase;
 }
 #lodgify-search-bar [data-testid$="-date-button"] .date:empty::before { content: var(--psb-txt-add-date); opacity: .45; }
 /* Löschen-Kreuz der Daten */
@@ -126,7 +128,7 @@
 #lodgify-search-bar [data-testid^="counter-"][data-testid$="-button"]:focus-visible { outline: 2px solid var(--hblau); outline-offset: 2px; }
 #lodgify-search-bar #portable-search-bar > div:has([data-testid="counter-input"]) > div {
   grid-row: 2; justify-content: center; color: var(--schwarz); white-space: nowrap;
-  font: 200 var(--t-std)/var(--t-std-lh) var(--f-body); letter-spacing: var(--t-std-ls);
+  font: 300 var(--t-caps)/var(--t-caps-lh) var(--f-caps); letter-spacing: var(--t-caps-ls); text-transform: uppercase;
 }
 #lodgify-search-bar [data-testid="counter-input"] {
   width: 1.4em; margin: 0; padding: 0; background: none; color: var(--schwarz); -webkit-text-fill-color: var(--schwarz);
@@ -178,7 +180,7 @@
   #lodgify-search-bar #portable-search-bar > div:has([data-testid="counter-input"]) { flex: 1 1 auto; padding: 0 8px 0 18px; }
   #lodgify-search-bar #portable-search-bar > div:has([data-testid="counter-input"])::before { display: none; }
   #lodgify-search-bar a[data-testid="button"] { height: 60px; padding: 0 24px; }
-  #lodgify-search-bar [data-testid$="-date-button"] .date { font-size: 16px; }
+  #lodgify-search-bar [data-testid$="-date-button"] .date { font-size: 20px; }
   /* Kalender: ein Monat, muss in 360 px passen */
   :root { --ldg-component-calendar-padding: 18px 10px 12px; --ldg-component-calendar-cell-padding: .62em .1em;
     --ldg-component-calendar-cell-font-size: 15px; --ldg-component-calendar-width: 100%; }

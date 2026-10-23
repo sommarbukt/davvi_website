@@ -55,7 +55,7 @@ HTML, CSS und JS werden direkt ausgeliefert (Vercel, Framework „Other“, ohne
 ### Lodgify-Suchleiste (22.10.2026)
 - Das „Booking-Widget 01“ aus dem Figma ist jetzt die Lodgify „Portable Search Bar“ des DAVVI-Accounts (Website-ID 682380):
   Startseite, Chalets (nur PC, wie im Figma) und 365 Days (über dem Nordlicht-Bild). Suche öffnet
-  `https://davvi-ridge.com/en/all-properties` in neuem Tab.
+  `https://davvi-ridge.com/en/choose-your-chalet` in neuem Tab.
 - Markup (`#lodgify-search-bar` mit allen `data-…`-Texten) in der `.booking__pill`, Script
   `app.lodgify.com/portable-search-bar/stable/renderPortableSearchBar.js` am Seitenende.
 - Look in `css/lodgify.css` (nur Tokens aus `tokens.css`): weiße Pille 100 px, Felder mit Caps-Label + Wert, Trennlinien,
@@ -64,3 +64,22 @@ HTML, CSS und JS werden direkt ausgeliefert (Vercel, Framework „Other“, ohne
 - Lodgify-Klassen (`css-xxxx`) ändern sich bei Updates → angesprochen wird nur über IDs, `data-testid` und `role`.
   Texte „Guests“/„Add date“ kommen aus CSS-Variablen (`--psb-txt-…`), für DE dort überschreiben.
 - Ohne JS oder wenn Lodgify nicht lädt, ist die Pille ein Link „Check availability“ zur Lodgify-Suchseite.
+
+### Update 23.10.2026 (Mail Andreas „SUB 3 Chalets“, Prio A)
+- Chalet-Kacheln: Tind, Nordlys, Bjørka, Skaret mit Fakten aus Lodgify (davvi-ridge.com/en/chalets), „Book a stay“ → jeweilige
+  Lodgify-Hausseite (neuer Tab). Kachel 5 und 6 als „Coming soon“ (`.kombi--soon`, ohne Button). Fotos weiter Platzhalter, Auswahl kommt von Andreas.
+- Chalet-Swiper TAB: Kachel = 6 Rasterspalten, elastisch (`calc((100% - gutter) / 2)`), Anschnitt rechts = links. PHN unverändert (zentriert, symmetrisch).
+- Booking-Widget (Lodgify) auf der Chalets-Seite jetzt auch in TAB und PHN, Abstand oben = Section oben.
+- Footer auf allen Seiten englisch: „Imprint“ → `imprint.html`, „Privacy“ → `privacy.html`. Beide Seiten sind ENTWÜRFE auf Basis von
+  davvi-ridge.com/en/imprint bzw. /en/privacy-policy, ergänzt um Vercel, Adobe Fonts und Lodgify-Suchleiste – juristisch prüfen (`<!-- Prüfen -->`-Kommentare).
+- Prio B: Lodgify-Suchleiste – Werte in den Feldern („Add date“, Datum, Gästezahl) in der schmalen Caps-Schrift (`css/lodgify.css`).
+- Prio C: Grundrisse öffnen per Klick/Tipp groß im Overlay (`js/plans.js`, `<dialog>`): Pfeile, Pfeiltasten, Wischen; Schließen mit X, Esc oder Klick daneben.
+
+### Update 23.10.2026 (Mail Andreas „Additional Services“, SUB 4, Prio A)
+- Faktenblock „Additional services“: zwei Gruppen wie im Figma (Gruppe 1 = 5 Kacheln, Gruppe 2 = 4). PC: eine Zeile, wenn alle neun passen,
+  sonst 5+4 – nie mehr 8+1 oder 6+3. TAB 3+3+3 und PHN-Swiper unverändert (Gruppen dort `display: contents`).
+- Headline „Additional services“ im PC eine Spalte nach rechts: Spalte 2–7 (`.band--2to7`).
+
+### Bilder für das Lodgify-Buchungsportal (23.10.2026)
+- `img/booking/start-dsc00956-*.webp` = Hintergrund von davvi-ridge.com/en/choose-your-chalet, `img/booking/inquiry-dji-0146-*.webp` = für eine
+  spätere Seite „Individual Inquiry“. Werden vom Lodgify-Custom-CSS (`../04_Lodgify_Bloecke/00_custom_css_head.css`) per absoluter URL geladen – nicht umbenennen.

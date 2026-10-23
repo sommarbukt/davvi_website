@@ -383,7 +383,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .chalets__row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gutter); }
 .chalets__row.r1 { grid-column: 1 / 12; }
 .chalets__row.r2 { grid-column: 4 / -1; }
-.kombi { display: flex; flex-direction: column; }
+.kombi { display: flex; flex-direction: column; min-width: 0; }
 .kombi__img { width: 100%; aspect-ratio: 300 / 200; object-fit: cover; }
 .kombi__body { position: relative; flex: 1; display: flex; flex-direction: column; align-items: center; gap: 10px;
   padding: 30px 30px 100px; background: linear-gradient(180deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, 0)); }
@@ -392,7 +392,12 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 /* Textbox XS */
 .chip { padding: 2px 8px 4px; background: rgba(0, 0, 0, .3); color: rgba(255, 255, 255, .6); text-align: center; white-space: nowrap;
   font: 300 var(--t-caps)/var(--t-caps-lh) var(--f-caps); letter-spacing: var(--t-caps-ls); text-transform: uppercase; }
+/* lange Fakten dürfen in schmalen Kacheln umbrechen, statt die Kachel zu verbreitern */
+.kombi__chips .chip { max-width: 100%; white-space: normal; }
 .kombi .btn { position: absolute; left: 50%; bottom: 40px; transform: translateX(-50%); }
+/* Chalets in Planung (Kachel 5/6): ohne Buchungs-Button, Bild gedimmt – Kachelhöhe bleibt wie bei den anderen */
+.kombi--soon .kombi__img { opacity: .5; }
+.kombi--soon .kombi__title { opacity: .7; }
 
 /* Faktenblock umbrechend (PC): zwei Zeilen à zwei Vierergruppen, Gruppen brechen als Ganzes um */
 .fakten { display: flex; flex-direction: column; align-items: center; gap: 5px; padding: 0 var(--margin); }
@@ -450,8 +455,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   .collage .c4 { grid-column: 9 / -1; grid-row: 2; }
   .collage .c3 { grid-column: 4 / -1; grid-row: 3; aspect-ratio: 570 / 285; }
 
-  /* Booking-Widget: im Figma TAB/PHN nicht vorhanden */
-  .booking--spaced { display: none; }
+  /* Booking-Widget: im Figma TAB/PHN nachgereicht (Andreas 23.10.2026) – Abstand oben wie PC (Section oben), Pille wie Startseite */
 
   /* Swiper: Kombipanels und Faktenblock laufen einzeilig, Steuerung darunter */
   [data-swiper-track] { display: flex; flex-direction: row; align-items: stretch; justify-content: flex-start; gap: var(--gutter);
@@ -459,7 +463,9 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
     padding: 0 var(--margin); scrollbar-width: none; }
   [data-swiper-track]::-webkit-scrollbar { display: none; }
   .chalets__row, .fakten__row, .fakten__grp { display: contents; }
-  .kombi { flex: 0 0 320px; scroll-snap-align: start; }
+  /* Kachel = 6 Rasterspalten (Figma TAB 710: 320 px) und wächst elastisch mit → zwei Kacheln je Ansicht,
+     die Nachbarkacheln schauen links und rechts gleich schmal (Rand − Gutter) herein */
+  .kombi { flex: 0 0 calc((100% - var(--gutter)) / 2); scroll-snap-align: start; }
   .fakten { gap: 5px; }
   .tbs { scroll-snap-align: start; }
   .swiper-ctl { display: block; }
@@ -498,6 +504,8 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   /* Kombipanels: eine Karte mittig, Nachbarn schauen am Rand herein */
   .chalets__list { padding: 0 calc(var(--margin) + var(--gutter)); scroll-padding-inline: calc(var(--margin) + var(--gutter)); }
   .kombi { flex: 0 0 100%; scroll-snap-align: center; }
+  /* Booking-Widget: Abstand oben wie Section (Lodgify-PHN-Regel setzt sonst 20 px) */
+  .booking.booking--spaced:has(#lodgify-search-bar) { padding-top: var(--section-o); padding-bottom: 0; }
   .swiper-ctl { padding: 20px calc(2 * var(--margin)); }
 
   .plans { padding-left: var(--margin); padding-right: var(--margin); }
@@ -628,7 +636,6 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .fakten--days .fakten__brk { display: none; }
 @media (min-width: 900px) and (max-width: 1199.98px) {
   .fakten--days { padding: 0; }
-  .fakten--days .fakten__brk { display: block; flex: 0 0 100%; height: 0; }
 }
 /* Kombipanel Activities: Bild 3:2 (Hero XL 2:1), darunter Fläche mit Verlauf, Headline S und Chips */
 .act { display: flex; flex-direction: column; }
@@ -758,15 +765,18 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 }
 
 /* ---- SUB 4 · Nachtrag 22.10.2026: Figma SUB 4 TAB/PHN fertig gestaltet, Kommentare Andreas (#49–#62) ---------- */
-/* Faktenblock: gruppenbasierter Umbruch – PC L/XL eine Zeile, PC M 5+4, TAB 3+3+3, PHN Swiper (natürliche Boxbreiten) */
+/* Faktenblock: gruppenbasierter Umbruch – PC: alle neun in einer Zeile, sonst Gruppen 5+4 (zwei .fakten__grp, die
+   zweite Gruppe bricht nur als Ganzes um, Andreas 23.10.2026), TAB 3+3+3, PHN Swiper (natürliche Boxbreiten) */
 .fakten--days .fakten__brk { display: none; flex: 0 0 100%; height: 0; }
 .swiper-ctl--phn { display: none; }
-@media (min-width: 900px) and (max-width: 1199.98px) {
-  .fakten--days .fakten__brk--pc { display: block; }
+/* Headline „Additional services“ im PC eine Spalte weiter rechts: Spalte 2–7 (steht so auch bei 2500 px über einer Kachel) */
+@media (min-width: 900px) {
+  .band--2to7 { margin-left: calc(var(--margin) + var(--step)); margin-right: calc(var(--margin) + 5 * var(--step)); }
 }
 @media (max-width: 899.98px) {
   .fakten--days[data-swiper-track] { flex-direction: column; overflow: visible; scroll-snap-type: none; }
   .fakten--days .fakten__row { display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; }
+  .fakten--days .fakten__grp { display: contents; }
   .fakten--days .tbs { flex: none; }
   .fakten--days .fakten__brk--tab { display: block; }
   .swiper-ctl--phn { display: none; }
@@ -795,4 +805,55 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   /* Block Chalets + Booking: feste Höhe 600 px (Kommentar #62), Widget 30 px unter der Oberkante */
   .bcb { height: 600px; }
   .bcb .booking { top: 30px; }
+}
+
+/* ==========================================================================
+   RECHTSTEXTE (imprint.html, privacy.html) – Entwurf 23.10.2026, ohne Figma-Vorlage.
+   Textspalte im Raster: PC Spalte 3–10, TAB Spalte 2–11, PHN volle Breite. Schrift wie Fließtext S.
+   ========================================================================== */
+.legal { padding: var(--section-o) calc(var(--margin) + 2 * var(--step)) calc(var(--section-u) + 80px); }
+.legal__text { display: flex; flex-direction: column; gap: 40px; max-width: 900px; }
+.legal__text h1 { margin-bottom: 10px; }
+.legal__text section { display: flex; flex-direction: column; gap: 12px; }
+.legal__text p { font-size: var(--t-s); line-height: var(--t-s-lh); letter-spacing: var(--t-s-ls); opacity: .85; }
+.legal__text p + p { margin-top: calc(var(--t-s-para) - 12px); }
+.legal__text a { text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.legal__text a:hover { color: var(--ice-grey); }
+.legal__date { margin-top: -30px; }
+.footer .btn[aria-current="page"]::before { opacity: .6; }
+@media (max-width: 899.98px) { .legal { padding-left: calc(var(--margin) + var(--step)); padding-right: calc(var(--margin) + var(--step)); } }
+@media (max-width: 599.98px) { .legal { padding-left: var(--margin); padding-right: var(--margin); } .legal__text { gap: 30px; } }
+
+/* ==========================================================================
+   GRUNDRISSE: vergrößerte Ansicht im Overlay (js/plans.js) – Andreas 23.10.2026, Prio C.
+   Ohne Figma-Vorlage: dunkle Fläche, Grundriss so groß wie möglich (max. Originalbreite 1200 px),
+   Beschriftung wie an der Kachel, Steuerung = Swiper-Pfeile, Schließen-X oben rechts.
+   ========================================================================== */
+.plans .plan { cursor: zoom-in; transition: background-color .2s ease; }
+.plans .plan:hover { background-color: rgba(255, 255, 255, .04); }
+.has-lightbox { overflow: hidden; }
+.lightbox { position: fixed; inset: 0; width: 100%; max-width: none; height: 100%; max-height: none; margin: 0; padding: 0; border: 0;
+  display: none; flex-direction: column; background: var(--dark-grey-d2); color: var(--weiss); }
+.lightbox[open] { display: flex; animation: lightbox-in .25s ease both; }
+.lightbox::backdrop { background: rgba(0, 0, 0, .5); }
+@keyframes lightbox-in { from { opacity: 0; } to { opacity: 1; } }
+.lightbox__stage { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center;
+  padding: 80px var(--margin) 20px; }
+.lightbox__fig { display: flex; flex-direction: column; align-items: center; gap: 15px; max-width: 1200px; width: 100%; height: 100%; justify-content: center; }
+.lightbox__img { flex: 0 1 auto; min-height: 0; max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; }
+.lightbox__cap { flex: none; text-align: center; }
+.lightbox__cap span { display: inline; font-size: var(--t-s); line-height: var(--t-s-lh); letter-spacing: var(--t-s-ls); }
+.lightbox__cap strong { display: inline; margin: 0 .5em; font: 700 var(--h-m)/var(--h-m-lh) var(--f-head); letter-spacing: 1px; text-transform: uppercase; }
+.lightbox__ctl { flex: none; align-self: center; width: min(400px, calc(100% - 2 * var(--margin))); margin: 0 0 30px; justify-content: space-between; }
+.lightbox__count { font: 300 var(--t-caps)/var(--t-caps-lh) var(--f-caps); letter-spacing: var(--t-caps-ls); opacity: .8; }
+.lightbox__close { position: absolute; top: 20px; right: var(--margin); width: 50px; height: 50px; border-radius: 50%; }
+.lightbox__close::before { content: ""; position: absolute; inset: 3px; border-radius: 50%; background: #000; opacity: .6; transition: inset .2s ease, opacity .2s ease; }
+.lightbox__close:hover::before, .lightbox__close:focus-visible::before { inset: 0; opacity: 1; }
+.lightbox__close span, .lightbox__close span::before { position: absolute; left: 15px; top: 24px; width: 20px; height: 2px; background: #fff; transform: rotate(45deg); }
+.lightbox__close span::before { content: ""; left: 0; top: 0; transform: rotate(90deg); }
+@media (prefers-reduced-motion: reduce) { .lightbox[open] { animation: none; } }
+@media (max-width: 599.98px) {
+  .lightbox__stage { padding-top: 80px; }
+  .lightbox__cap strong { display: block; margin: 2px 0; }
+  .lightbox__close { top: 15px; }
 }
