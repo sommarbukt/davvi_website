@@ -86,4 +86,5 @@ HTML, CSS und JS werden direkt ausgeliefert (Vercel, Framework „Other“, ohne
 
 ### Domains (23.10.2026)
 - Homepage (dieses Repo, Vercel): **davvi-ridge.com** (+ www). DNS bei United Domains: A `@` und A `www` → 216.198.79.1 (Vercel). MX/autodiscover (Microsoft 365) unverändert.
-- Buchungsportal (Lodgify): **davvi.de** – alle Buchungslinks, Suchleiste und Hausseiten zeigen auf `https://davvi.de/en/…`.
+- Buchungsportal (Lodgify): **booking.davvi-ridge.com** (Hauptdomain in Lodgify) – alle Buchungslinks, Suchleiste und Hausseiten zeigen auf `https://booking.davvi-ridge.com/en/…`.
+- davvi.de (+ www) leitet auf davvi-ridge.com weiter.
