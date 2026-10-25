@@ -395,8 +395,8 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 /* lange Fakten dürfen in schmalen Kacheln umbrechen, statt die Kachel zu verbreitern */
 .kombi__chips .chip { max-width: 100%; white-space: normal; }
 .kombi .btn { position: absolute; left: 50%; bottom: 40px; transform: translateX(-50%); }
-/* Chalets in Planung (Kachel 5/6): ohne Buchungs-Button, Bild gedimmt – Kachelhöhe bleibt wie bei den anderen */
-.kombi--soon .kombi__img { opacity: .5; }
+/* Chalets in Planung (Kachel 5/6): ohne Buchungs-Button, Bild wie mit Deckkraft .3 auf Schwarz (Andreas 25.10.) – Kachelhöhe bleibt wie bei den anderen */
+.kombi--soon .kombi__img { filter: brightness(.3); }
 .kombi--soon .kombi__title { opacity: .7; }
 
 /* Faktenblock umbrechend (PC): zwei Zeilen à zwei Vierergruppen, Gruppen brechen als Ganzes um */
@@ -811,7 +811,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
    RECHTSTEXTE (imprint.html, privacy.html) – Entwurf 23.10.2026, ohne Figma-Vorlage.
    Textspalte im Raster: PC Spalte 3–10, TAB Spalte 2–11, PHN volle Breite. Schrift wie Fließtext S.
    ========================================================================== */
-.legal { padding: var(--section-o) calc(var(--margin) + 2 * var(--step)) calc(var(--section-u) + 80px); }
+.legal { background: var(--schwarz); padding: var(--section-o) calc(var(--margin) + 2 * var(--step)) calc(var(--section-u) + 80px); }
 .legal__text { display: flex; flex-direction: column; gap: 40px; max-width: 900px; }
 .legal__text h1 { margin-bottom: 10px; }
 .legal__text section { display: flex; flex-direction: column; gap: 12px; }
