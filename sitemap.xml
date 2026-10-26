@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://davvi-ridge.com/</loc><lastmod>2026-10-26</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://davvi-ridge.com/chalets.html</loc><lastmod>2026-10-26</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://davvi-ridge.com/experiences.html</loc><lastmod>2026-10-26</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://davvi-ridge.com/the-place.html</loc><lastmod>2026-10-26</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://davvi-ridge.com/vibrant-arctic.html</loc><lastmod>2026-10-26</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://davvi-ridge.com/imprint.html</loc><lastmod>2026-10-26</lastmod><changefreq>yearly</changefreq><priority>0.2</priority></url>
-  <url><loc>https://davvi-ridge.com/privacy.html</loc><lastmod>2026-10-26</lastmod><changefreq>yearly</changefreq><priority>0.2</priority></url>
+  <url><loc>https://davvi-ridge.com/chalets</loc><lastmod>2026-10-26</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://davvi-ridge.com/experiences</loc><lastmod>2026-10-26</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://davvi-ridge.com/the-place</loc><lastmod>2026-10-26</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://davvi-ridge.com/vibrant-arctic</loc><lastmod>2026-10-26</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://davvi-ridge.com/imprint</loc><lastmod>2026-10-26</lastmod><changefreq>yearly</changefreq><priority>0.2</priority></url>
+  <url><loc>https://davvi-ridge.com/privacy</loc><lastmod>2026-10-26</lastmod><changefreq>yearly</changefreq><priority>0.2</priority></url>
 </urlset>

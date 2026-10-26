@@ -4,9 +4,11 @@ Statische Website für DAVVI (vier Chalets in Sjursnes am Ullsfjord). Kein Build
 HTML, CSS und JS werden direkt ausgeliefert (Vercel, Framework „Other“, ohne Build-Command).
 
 - **Lokal starten:** im Ordner `website` ein Terminal öffnen (Explorer → Adresszeile `cmd` eintippen) und
-  `python -m http.server 8000` ausführen, dann im Browser http://localhost:8000 öffnen. Alternative ohne Python: `npx serve`.
-  Nicht per Doppelklick auf die HTML-Datei öffnen (file://), sonst laden Slider-Configs und Lodgify nicht sauber.
-  Beenden mit Strg+C.
+  `python serve.py` ausführen, dann im Browser http://localhost:8000 öffnen. `serve.py` liefert kurze URLs wie Vercel
+  (`/chalets` statt `/chalets.html`; alte .html-Adressen leiten weiter). `python -m http.server` reicht dafür nicht mehr.
+  Nicht per Doppelklick auf die HTML-Datei öffnen (file://). Beenden mit Strg+C.
+- **URLs (seit 26.10.2026):** `vercel.json` mit `cleanUrls` – interne Links ohne `.html` (`/`, `/chalets`, `/the-place` …),
+  `/chalets.html` leitet per 308 auf `/chalets`. SEO: `robots.txt`, `sitemap.xml`, Canonical/Open Graph/JSON-LD im `<head>`.
 - Design-Quelle: Figma „26-8039-DVV-IN26 – R-00 DEV“
 - Design-Tokens (Figma-Variablen, Modi PC/TAB/PHN): `css/tokens.css`
 - Layout und Komponenten: `css/davvi.css`
