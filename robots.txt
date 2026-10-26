@@ -1,0 +1,6 @@
+# DAVVI – davvi-ridge.com
+# Alle Suchmaschinen und KI-Crawler (Google, Bing, ChatGPT, Perplexity, Claude …) dürfen alles lesen.
+User-agent: *
+Allow: /
+
+Sitemap: https://davvi-ridge.com/sitemap.xml
