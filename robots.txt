@@ -3,4 +3,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://davvi-ridge.com/sitemap.xml
+Sitemap: https://www.davvi-ridge.com/sitemap.xml
