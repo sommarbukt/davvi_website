@@ -3,6 +3,8 @@
    Hier nur die Klicks, die zur Buchung führen:
      „Book a stay“  – Buttons mit data-track-chalet="<haus>" (Chalets-Seite)   → { chalet, page }
      „Search“       – Search-Button der Lodgify-Suchleiste bzw. Ersatzlink      → { page, dates }
+     „Campaign visit“ – Ankunft über einen Link mit utm_source (z. B. Norway Hidden Gems) → { source, campaign }
+       (UTM-Auswertung im Dashboard gäbe es erst mit Web Analytics Plus; so geht es im Pro-Plan.)
    Pro-Plan: max. 2 Eigenschaften je Event, Werte max. 255 Zeichen, keine personenbezogenen Daten senden.
    Test: Seite mit ?va-debug öffnen (oder lokal) → jedes Event erscheint in der Browser-Konsole. */
 (function () {
@@ -31,6 +33,17 @@
     }
     return 'no';
   }
+
+  // Ankunft über Partner-Link mit UTM-Parametern (einmal je Seitenaufruf, nichts wird im Browser gespeichert)
+  (function () {
+    var q = new URLSearchParams(location.search);
+    var source = (q.get('utm_source') || '').trim();
+    if (!source) return;
+    send('Campaign visit', {
+      source: source.slice(0, 100),
+      campaign: ((q.get('utm_campaign') || '').trim() || 'none').slice(0, 100)
+    });
+  })();
 
   // Capture-Phase: greift auch, wenn Lodgify das Klick-Event selbst abfängt
   document.addEventListener('click', function (e) {

@@ -101,6 +101,10 @@ HTML, CSS und JS werden direkt ausgeliefert (Vercel, Framework „Other“, ohne
     Neue Häuser: Attribut am Button ergänzen, sonst nichts.
   - **Search** – Search-Button der Lodgify-Suchleiste (`#lodgify-search-bar a[data-testid="button"]`) → `{ page, dates: yes|no }`;
     Ersatzlink „Check availability“ → `dates: fallback`. `page` = Seitenname ohne `.html` (`home`, `chalets`, `experiences`).
+  - **Campaign visit** (seit 03.11.2026) – Ankunft über einen Link mit `utm_source` → `{ source, campaign }`.
+    Ersatz für die UTM-Auswertung, die es erst mit Web Analytics Plus gibt. Norway Hidden Gems:
+    `https://www.davvi-ridge.com/?utm_source=norwayhiddengems&utm_medium=app_listing&utm_campaign=featured_stay`.
+    Neue Partner bekommen einfach einen Link mit eigenem `utm_source`, im Code ist nichts zu ändern.
 - Test: Seite mit `?va-debug` öffnen (lokal immer an) → jedes Event steht in der Konsole als `[va] event …`. Lokal liefert
   `/_vercel/insights/script.js` 404, das ist normal; die Events landen dann nur in `window.vaq`.
 - **Live schalten:** (1) `privacy.html` juristisch prüfen (neuer Absatz „Visitor statistics“ in 02, Anpassungen in 09/10/11,
