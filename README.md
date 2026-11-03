@@ -90,3 +90,4 @@ HTML, CSS und JS werden direkt ausgeliefert (Vercel, Framework „Other“, ohne
 - Homepage (dieses Repo, Vercel): **davvi-ridge.com** (+ www). DNS bei United Domains: A `@` und A `www` → 216.198.79.1 (Vercel). MX/autodiscover (Microsoft 365) unverändert.
 - Buchungsportal (Lodgify): **booking.davvi-ridge.com** (Hauptdomain in Lodgify) – alle Buchungslinks, Suchleiste und Hausseiten zeigen auf `https://booking.davvi-ridge.com/en/…`.
 - davvi.de (+ www) leitet auf davvi-ridge.com weiter.
+- Alte Lodgify-Pfade auf davvi-ridge.com (30.10.2026, `vercel.json`): `/en` → `/`, `/en/chalets` → `/chalets`, `/en/the-place`, `/en/experiences`, `/en/imprint`, `/en/privacy-policy` → `/privacy`, übrige `/en/…` (Hausseiten, all-properties, choose-your-chalet) → `booking.davvi-ridge.com/en/…`, `/de|no|nb|nn/…` → `/`. sommarbukt.com wird bewusst NICHT umgeleitet (Marke Sommarbukt lebt weiter).

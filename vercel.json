@@ -5,8 +5,85 @@
   "headers": [
     {
       "source": "/(.*)",
-      "has": [{ "type": "host", "value": "davvi-website.vercel.app" }],
-      "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }]
+      "has": [
+        {
+          "type": "host",
+          "value": "davvi-website.vercel.app"
+        }
+      ],
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
+        }
+      ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/en",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/en/chalets",
+      "destination": "/chalets",
+      "permanent": true
+    },
+    {
+      "source": "/en/the-place",
+      "destination": "/the-place",
+      "permanent": true
+    },
+    {
+      "source": "/en/experiences",
+      "destination": "/experiences",
+      "permanent": true
+    },
+    {
+      "source": "/en/story",
+      "destination": "/the-place",
+      "permanent": true
+    },
+    {
+      "source": "/en/getting-here",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/en/contact-us",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/en/imprint",
+      "destination": "/imprint",
+      "permanent": true
+    },
+    {
+      "source": "/en/privacy-policy",
+      "destination": "/privacy",
+      "permanent": true
+    },
+    {
+      "source": "/en/pictures",
+      "destination": "/chalets",
+      "permanent": true
+    },
+    {
+      "source": "/en/:path*",
+      "destination": "https://booking.davvi-ridge.com/en/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:lang(de|no|nb|nn)",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/:lang(de|no|nb|nn)/:path*",
+      "destination": "/",
+      "permanent": true
     }
   ]
 }
