@@ -91,3 +91,20 @@ HTML, CSS und JS werden direkt ausgeliefert (Vercel, Framework „Other“, ohne
 - Buchungsportal (Lodgify): **booking.davvi-ridge.com** (Hauptdomain in Lodgify) – alle Buchungslinks, Suchleiste und Hausseiten zeigen auf `https://booking.davvi-ridge.com/en/…`.
 - davvi.de (+ www) leitet auf davvi-ridge.com weiter.
 - Alte Lodgify-Pfade auf davvi-ridge.com (30.10.2026, `vercel.json`): `/en` → `/`, `/en/chalets` → `/chalets`, `/en/the-place`, `/en/experiences`, `/en/imprint`, `/en/privacy-policy` → `/privacy`, übrige `/en/…` (Hausseiten, all-properties, choose-your-chalet) → `booking.davvi-ridge.com/en/…`, `/de|no|nb|nn/…` → `/`. sommarbukt.com wird bewusst NICHT umgeleitet (Marke Sommarbukt lebt weiter).
+
+### Vercel Web Analytics (seit 03.11.2026)
+- Projekt davvi-website ist auf Vercel **Pro** (eigene Events erlaubt, 12 Monate Historie, 2 Eigenschaften je Event).
+- Am Ende jeder Seite: `window.va`-Warteschlange + `<script defer src="/_vercel/insights/script.js">` + `js/analytics.js`.
+  Seitenaufrufe zählt Vercel automatisch, ohne Cookies.
+- Eigene Events (`js/analytics.js`, Klick-Erkennung in der Capture-Phase):
+  - **Book a stay** – Buttons mit `data-track-chalet="tind|nordlys|bjorka|skaret"` auf der Chalets-Seite → `{ chalet, page }`.
+    Neue Häuser: Attribut am Button ergänzen, sonst nichts.
+  - **Search** – Search-Button der Lodgify-Suchleiste (`#lodgify-search-bar a[data-testid="button"]`) → `{ page, dates: yes|no }`;
+    Ersatzlink „Check availability“ → `dates: fallback`. `page` = Seitenname ohne `.html` (`home`, `chalets`, `experiences`).
+- Test: Seite mit `?va-debug` öffnen (lokal immer an) → jedes Event steht in der Konsole als `[va] event …`. Lokal liefert
+  `/_vercel/insights/script.js` 404, das ist normal; die Events landen dann nur in `window.vaq`.
+- **Live schalten:** (1) `privacy.html` juristisch prüfen (neuer Absatz „Visitor statistics“ in 02, Anpassungen in 09/10/11,
+  `Prüfen`-Kommentar). (2) Vercel → Projekt davvi-website → Analytics → **Enable**. (3) Commit + Push auf `main`.
+  (4) Auf www.davvi-ridge.com im Netzwerk-Tab prüfen, dass `…/view` und `…/event` gesendet werden.
+  Optional danach: den im Dashboard angezeigten projekteigenen Script-Pfad statt `/_vercel/insights/script.js` eintragen (wird seltener von Werbeblockern gesperrt).
+- Klicks auf booking.davvi-ridge.com (Lodgify) selbst werden nicht erfasst, nur was auf www passiert.

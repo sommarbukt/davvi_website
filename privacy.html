@@ -65,6 +65,10 @@
     <p>When you open one of our websites, your browser automatically transmits technical data to the hosting provider: IP address, date and time of access, page requested, referring page, browser type and operating system. This data is needed to deliver the websites securely and is stored in server log files for a short period only. Legal basis: our legitimate interest in secure, working websites (Art. 6(1)(f) GDPR).</p>
     <p>Hosting of this website: Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, USA. Vercel may process data in the USA; transfers are based on the EU-US Data Privacy Framework or Standard Contractual Clauses. The booking website is hosted by Lodgify (see section 04).</p>
     <!-- Prüfen: Vercel-Region / AVV (DPA) abschließen, falls noch nicht geschehen -->
+    <p>Visitor statistics: to understand how this website is used, for example which pages are visited and how often the booking buttons and the availability search are used, we use Vercel Web Analytics, a service of Vercel Inc. (address above). It works without cookies and does not store anything in your browser. With every page view and every click on a booking button or on “Search”, Vercel records the page, the referring page, the time, browser, operating system, device type and the approximate location (country, region, city) derived from your IP address. To tell visits apart, Vercel creates a temporary identifier from the request, which is discarded after 24 hours. The data is only used for aggregated statistics, cannot be traced back to you and is not combined with other data. We keep the statistics for up to 12 months. Legal basis: our legitimate interest in improving our website and our booking offer (Art. 6(1)(f) GDPR). You can object at any time by email; you can also block the statistics with a content blocker in your browser.</p>
+    <!-- Prüfen (Vercel Web Analytics, 03.11.2026): Angaben nach vercel.com/docs/analytics/privacy-policy (keine Cookies, Hash aus der Anfrage, nach 24 h verworfen, Datenpunkte siehe dort).
+         Rechtsgrundlage berechtigtes Interesse ohne Einwilligung tragfähig? (DSGVO + Cookie-Regel der norw. ekomloven bzw. dt. TDDDG § 25 – greift wohl nicht, da nichts im Browser gespeichert/ausgelesen wird?)
+         Wird die IP-Adresse von Vercel für die Statistik gespeichert? Speicherdauer 12 Monate = Pro-Plan. -->
   </section>
 
   <section>
@@ -105,21 +109,21 @@
 
   <section>
     <h2 class="hl-s">09 Cookies</h2>
-    <p>This website itself does not set cookies and does not use statistics, advertising or tracking tools. The Lodgify search bar may store strictly necessary information in your browser (for example the selected dates) so that the search works.</p>
+    <p>This website itself does not set cookies and does not use advertising or tracking tools. The visitor statistics described in section 02 work without cookies. The Lodgify search bar may store strictly necessary information in your browser (for example the selected dates) so that the search works.</p>
     <p>The booking website only uses cookies that are needed for it to work, for example to remember your currency or to keep a booking in progress. They are set by the booking system and are always active. We do not use cookies for statistics or advertising, and we do not build user profiles. Legal basis: Art. 6(1)(f) GDPR; strictly necessary cookies do not require consent.</p>
     <!-- Prüfen: setzt die Portable Search Bar Cookies/LocalStorage? Cookie-Hinweis im Lodgify-Footer („Cookie Policy“) mit diesem Text abgleichen. -->
   </section>
 
   <section>
     <h2 class="hl-s">10 Service providers</h2>
-    <p>We do not sell data. We only share it with service providers we need to run our websites and handle bookings, and all of them are contractually bound to protect your data: Vercel (hosting of this website, USA), Adobe (fonts, Ireland/USA), Lodgify (booking system, booking website and availability search, Spain), Google (maps on the booking website, Ireland/USA), the payment provider connected to the booking system, Booking.com and Airbnb (bookings made on these platforms, Netherlands/Ireland) and Fiken (invoicing and accounting, Norway).</p>
+    <p>We do not sell data. We only share it with service providers we need to run our websites and handle bookings, and all of them are contractually bound to protect your data: Vercel (hosting and visitor statistics of this website, USA), Adobe (fonts, Ireland/USA), Lodgify (booking system, booking website and availability search, Spain), Google (maps on the booking website, Ireland/USA), the payment provider connected to the booking system, Booking.com and Airbnb (bookings made on these platforms, Netherlands/Ireland) and Fiken (invoicing and accounting, Norway).</p>
     <p>For transfers to the USA we rely on the EU-US Data Privacy Framework or on Standard Contractual Clauses of the European Commission.</p>
     <!-- Prüfen: Fiken aus der alten Lodgify-Fassung übernommen – noch aktuell? -->
   </section>
 
   <section>
     <h2 class="hl-s">11 How long we keep data</h2>
-    <p>We only keep data for as long as necessary: messages and enquiries until the matter is settled and then for up to 3 years; booking and billing data for up to 5 years after your stay (Norwegian accounting rules); check-in data and the guest register for at least 2 years (Norwegian law); technical server data only as long as needed for secure operation.</p>
+    <p>We only keep data for as long as necessary: messages and enquiries until the matter is settled and then for up to 3 years; booking and billing data for up to 5 years after your stay (Norwegian accounting rules); check-in data and the guest register for at least 2 years (Norwegian law); technical server data only as long as needed for secure operation; anonymous visitor statistics for up to 12 months.</p>
     <!-- Prüfen: Aufbewahrungsfrist Gästeregister (Utlendingsforskriften) bestätigen -->
   </section>
 
@@ -156,5 +160,9 @@
   </div>
 </footer>
 <script src="js/davvi.js" defer></script>
+<!-- Vercel Web Analytics (ohne Cookies), eigene Events in js/analytics.js -->
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script defer src="js/analytics.js"></script>
 </body>
 </html>

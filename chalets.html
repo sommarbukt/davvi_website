@@ -237,7 +237,7 @@
         <div class="kombi__body">
           <h3 class="hl-s kombi__title">Tind</h3>
           <div class="kombi__chips"><span class="chip">6 Guests</span><span class="chip">3 Bedrooms</span><span class="chip">Widest panorama</span></div>
-          <a class="btn" href="https://booking.davvi-ridge.com/en/tind" target="_blank" rel="noopener" aria-label="Book a stay at chalet Tind (opens in a new tab)"><span>Book a stay</span></a>
+          <a class="btn" href="https://booking.davvi-ridge.com/en/tind" data-track-chalet="tind" target="_blank" rel="noopener" aria-label="Book a stay at chalet Tind (opens in a new tab)"><span>Book a stay</span></a>
         </div>
       </article>
       <article class="kombi" data-swiper-item>
@@ -245,7 +245,7 @@
         <div class="kombi__body">
           <h3 class="hl-s kombi__title">Nordlys</h3>
           <div class="kombi__chips"><span class="chip">6 Guests</span><span class="chip">3 Bedrooms</span><span class="chip">2 Bathrooms</span></div>
-          <a class="btn" href="https://booking.davvi-ridge.com/en/nordlys" target="_blank" rel="noopener" aria-label="Book a stay at chalet Nordlys (opens in a new tab)"><span>Book a stay</span></a>
+          <a class="btn" href="https://booking.davvi-ridge.com/en/nordlys" data-track-chalet="nordlys" target="_blank" rel="noopener" aria-label="Book a stay at chalet Nordlys (opens in a new tab)"><span>Book a stay</span></a>
         </div>
       </article>
       <article class="kombi" data-swiper-item>
@@ -253,7 +253,7 @@
         <div class="kombi__body">
           <h3 class="hl-s kombi__title">Bjørka</h3>
           <div class="kombi__chips"><span class="chip">6 Guests</span><span class="chip">3 Bedrooms</span></div>
-          <a class="btn" href="https://booking.davvi-ridge.com/en/bjorka" target="_blank" rel="noopener" aria-label="Book a stay at chalet Bjørka (opens in a new tab)"><span>Book a stay</span></a>
+          <a class="btn" href="https://booking.davvi-ridge.com/en/bjorka" data-track-chalet="bjorka" target="_blank" rel="noopener" aria-label="Book a stay at chalet Bjørka (opens in a new tab)"><span>Book a stay</span></a>
         </div>
       </article>
     </div>
@@ -263,7 +263,7 @@
         <div class="kombi__body">
           <h3 class="hl-s kombi__title">Skaret</h3>
           <div class="kombi__chips"><span class="chip">4 Guests</span><span class="chip">2 Bedrooms</span></div>
-          <a class="btn" href="https://booking.davvi-ridge.com/en/skaret" target="_blank" rel="noopener" aria-label="Book a stay at chalet Skaret (opens in a new tab)"><span>Book a stay</span></a>
+          <a class="btn" href="https://booking.davvi-ridge.com/en/skaret" data-track-chalet="skaret" target="_blank" rel="noopener" aria-label="Book a stay at chalet Skaret (opens in a new tab)"><span>Book a stay</span></a>
         </div>
       </article>
       <article class="kombi kombi--soon" data-swiper-item>
@@ -367,5 +367,9 @@
 <script src="https://app.lodgify.com/portable-search-bar/stable/renderPortableSearchBar.js" defer></script>
 <script src="js/swiper.js" defer></script>
 <script src="js/plans.js" defer></script>
+<!-- Vercel Web Analytics (ohne Cookies), eigene Events in js/analytics.js -->
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script defer src="js/analytics.js"></script>
 </body>
 </html>
