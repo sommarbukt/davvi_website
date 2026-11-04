@@ -94,7 +94,7 @@ HTML, CSS und JS werden direkt ausgeliefert (Vercel, Framework „Other“, ohne
 
 ### Vercel Web Analytics (seit 03.11.2026)
 - Projekt davvi-website ist auf Vercel **Pro** (eigene Events erlaubt, 12 Monate Historie, 2 Eigenschaften je Event).
-- Am Ende jeder Seite: `window.va`-Warteschlange + `<script defer src="/_vercel/insights/script.js">` + `js/analytics.js`.
+- Am Ende jeder Seite: `js/va-setup.js` (Warteschlange + Schalter, ohne defer) + `<script defer src="/_vercel/insights/script.js">` + `js/analytics.js`.
   Seitenaufrufe zählt Vercel automatisch, ohne Cookies.
 - Eigene Events (`js/analytics.js`, Klick-Erkennung in der Capture-Phase):
   - **Book a stay** – Buttons mit `data-track-chalet="tind|nordlys|bjorka|skaret"` auf der Chalets-Seite → `{ chalet, page }`.
@@ -105,6 +105,10 @@ HTML, CSS und JS werden direkt ausgeliefert (Vercel, Framework „Other“, ohne
     Ersatz für die UTM-Auswertung, die es erst mit Web Analytics Plus gibt. Norway Hidden Gems:
     `https://www.davvi-ridge.com/?utm_source=norwayhiddengems&utm_medium=app_listing&utm_campaign=featured_stay`.
     Neue Partner bekommen einfach einen Link mit eigenem `utm_source`, im Code ist nichts zu ändern.
+- **Eigene Besuche nicht zählen** (seit 04.11.2026, `js/va-setup.js`): einmal `https://www.davvi-ridge.com/?stats-off` aufrufen →
+  Merker `va-disable` im localStorage, Seitenaufrufe und Events dieses Browsers werden verworfen (`beforeSend` → `null`).
+  `?stats-on` hebt es auf. Gilt je Browser/Gerät; privates Fenster oder gelöschte Websitedaten zählen wieder. Konsole zeigt `[va] stats-off …`.
+  Zum Testen mit `?va-debug` vorher `?stats-on`, sonst kommt im Dashboard nichts an.
 - Test: Seite mit `?va-debug` öffnen (lokal immer an) → jedes Event steht in der Konsole als `[va] event …`. Lokal liefert
   `/_vercel/insights/script.js` 404, das ist normal; die Events landen dann nur in `window.vaq`.
 - **Live schalten:** (1) `privacy.html` juristisch prüfen (neuer Absatz „Visitor statistics“ in 02, Anpassungen in 09/10/11,
